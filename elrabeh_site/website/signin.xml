@@ -1,0 +1,284 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+
+        <template id="signin_in">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                        .d-none { display: none !important; }
+                    </style>
+
+                    <div class="wrap-ar">
+                        <div class="py-5 text-white text-center"
+                             t-att-style="'background-image: url(/elrabeh_site/static/src/images/singinlog.jpg); background-size: cover; background-position: center;'">
+                            <div class="container">
+                                <h1 class="display-4 fw-bold" id="formTitle">حسابي</h1>
+                                <p><a href="/" class="text-white text-decoration-underline">الرئيسية</a> / حسابي</p>
+                            </div>
+                        </div>
+
+                        <div class="container py-5">
+                            <div class="row">
+                                <!-- الجانب الأيسر للتبديل -->
+                                <div class="col-md-6 border-end text-center">
+                                    <h3 class="fw-bold mb-3" id="toggleTitle">إنشاء حساب جديد</h3>
+                                    <p id="toggleDesc">
+                                        يتيح لك التسجيل في هذا الموقع الوصول إلى حالة طلبك وسجله.
+                                        ما عليك سوى ملء الحقول أدناه، وسننشئ لك حسابًا جديدًا.
+                                    </p>
+                                    <button type="button" class="btn btn-outline-dark mt-3" id="toggleBtn">تسجيل الدخول</button>
+                                </div>
+
+                                <!-- الجانب الأيمن لنموذج التسجيل/الدخول -->
+                                <div class="col-md-6">
+                                    <!-- نموذج التسجيل -->
+                                    <form action="/web/signup" method="post" id="signupForm">
+                                        <!-- الدور -->
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">الدور</label>
+                                            <select name="role" class="form-control text-end ">
+                                                <option selected="true">عميل</option>
+                                                <option>تاجر</option>
+                                                <option selected="true">  عميل بالجملة</option>
+                                            </select>
+                                        </div>
+                                        <!-- البريد الإلكتروني -->
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">البريد الإلكتروني *</label>
+                                            <input type="email" class="form-control" name="email" required="true"/>
+                                        </div>
+                                        <!-- كلمة السر -->
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">كلمة السر *</label>
+                                            <input type="password" class="form-control" name="password" required="true"/>
+                                        </div>
+                                        <!-- رقم الواتساب -->
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">رقم واتساب الخاص بك *</label>
+                                            <div class="input-group">
+                                                <div class="input-group">
+                                                    <select class="form-select" name="country_code" style="max-width: 120px;">
+                                                        <option value="+20" selected="true">
+                                                            🇪🇬 +20
+                                                        </option>
+                                                        <option value="+974">
+                                                            🇶🇦 +974
+                                                        </option>
+                                                    </select>
+                                                    <input type="tel" class="form-control" name="whatsapp" placeholder="رقم الوتساب الخاص بك " required="true" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- زر إرسال رمز التأكيد -->
+                                        <button type="button" class="btn btn-success w-100 mb-2">
+                                            <i class="fa fa-paper-plane"></i> أرسل رمز التأكيد عبر الواتساب
+                                        </button>
+                                        <!-- الشروط -->
+                                        <div class="form-check mb-2 text-end">
+                                            <input class="form-check-input" type="checkbox" id="terms" required="true" />
+                                            <label class="form-check-label" for="terms">
+                                                أوافق على الشروط والأحكام العامة و شروط وأحكام التجار
+                                            </label>
+                                        </div>
+                                        <!-- ملاحظة الخصوصية -->
+                                        <p class="small text-muted text-end">
+                                            سيتم استخدام بياناتك الشخصية لمعالجة طلبك، ودعم تجربتك عبر هذا الموقع،
+                                            ولأغراض أخرى موصوفة في <a href="#" class="text-decoration-underline">سياسة الخصوصية</a>.
+                                        </p>
+                                        <!-- زر التسجيل -->
+                                        <button type="submit" class="btn btn-warning w-100">تسجيل</button>
+                                        <!-- تسجيل خارجي -->
+                                        <div class="d-flex justify-content-center gap-2 mt-3">
+                                            <a href="#"><i class="fab fa-linkedin fa-2x text-primary"></i></a>
+                                            <a href="#"><i class="fab fa-google fa-2x text-danger"></i></a>
+                                            <a href="#"><i class="fab fa-facebook fa-2x text-primary"></i></a>
+                                        </div>
+                                    </form>
+
+                                    <!-- نموذج تسجيل الدخول -->
+                                    <form action="/en/web/login" method="post" id="loginForm" class="d-none">
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">اسم المستخدم أو البريد الإلكتروني *</label>
+                                            <input type="text" class="form-control" name="login" required="true"/>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label w-100 text-end">كلمة السر *</label>
+                                            <input type="password" class="form-control" name="password" required="true"/>
+                                        </div>
+                                        <button type="submit" class="btn btn-warning w-100">تسجيل الدخول</button>
+                                        <a href="#" class="btn btn-success w-100 mt-2">
+                                            <i class="fa fa-whatsapp"></i> تسجيل الدخول عبر الواتساب
+                                        </a>
+                                        <p class="mt-3 text-danger text-center">نسيت كلمة السر؟</p>
+                                        <div class="d-flex justify-content-center gap-2 mt-3">
+                                            <a href="#"><i class="fab fa-linkedin fa-2x text-primary"></i></a>
+                                            <a href="#"><i class="fab fa-google fa-2x text-danger"></i></a>
+                                            <a href="#"><i class="fab fa-facebook fa-2x text-primary"></i></a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+    <div class="py-5 text-white text-center" t-att-style="'background-image: url(/elrabeh_site/static/src/images/singinlog.jpg); background-size: cover; background-position: center;'">
+        <div class="container">
+            <h1 class="display-4 fw-bold" id="formTitleEn">My Account</h1>
+            <p><a href="/" class="text-white text-decoration-underline">Home</a> / My Account</p>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="container py-5">
+        <div class="row">
+            <!-- Toggle -->
+            <div class="col-md-6 border-end text-center">
+                <h3 class="fw-bold mb-3" id="toggleTitleEn">Create a New Account</h3>
+                <p id="toggleDescEn">
+                    Registering on this website allows you to access your order status and history.
+                    Just fill in the fields below and we’ll set up a new account for you.
+                </p>
+                <button type="button" class="btn btn-outline-dark mt-3" id="toggleBtnEn">Login</button>
+            </div>
+
+            <!-- Form area -->
+            <div class="col-md-6">
+                <!-- Signup Form -->
+                <form action="/web/signup" method="post" id="signupFormEn">
+                    <div class="mb-3">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" class="form-control" name="name" required="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Email *</label>
+                        <input type="email" class="form-control" name="email" required="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password *</label>
+                        <input type="password" class="form-control" name="password" required="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">WhatsApp Number *</label>
+                        <div class="input-group">
+                            <select class="form-select" name="country_code" style="max-width: 120px;">
+                                <option value="+20" selected="true">🇪🇬 +20</option>
+                                <option value="+974">🇶🇦 +974</option>
+                            </select>
+                            <input type="tel" class="form-control" name="whatsapp" placeholder="Your WhatsApp Number" required="true" />
+                        </div>
+                                     <button type="button" class="btn btn-success w-100 mb-2">
+                <i class="fa fa-paper-plane"></i> Send Confirmation Code via WhatsApp
+            </button>
+
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" required="true" id="agreeTermsEn"/>
+                        <label class="form-check-label" for="agreeTermsEn">
+                            I agree to the <a href="#">terms and conditions</a>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Register</button>
+                </form>
+
+                <!-- Login Form -->
+                <form action="/en/web/login" method="post" id="loginFormEn" class="d-none">
+                    <div class="mb-3">
+                        <label class="form-label">Username or Email *</label>
+                        <input type="text" class="form-control" name="login" required="true"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password *</label>
+                        <input type="password" class="form-control" name="password" required="true"/>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Login</button>
+                    <a href="#" class="btn btn-success w-100 mt-2">
+                        <i class="fa fa-whatsapp"></i> Login with WhatsApp
+                    </a>
+                    <p class="mt-3 text-danger text-center">Forgot your password?</p>
+                </form>
+
+                <!-- Social -->
+                <div class="d-flex justify-content-center gap-2 mt-3">
+                    <a href="#"><i class="fab fa-linkedin fa-2x text-primary"></i></a>
+                    <a href="#"><i class="fab fa-google fa-2x text-danger"></i></a>
+                    <a href="#"><i class="fab fa-facebook fa-2x text-primary"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+                    <!-- JavaScript لتبديل النموذج -->
+                    <script type="text/javascript">
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const toggleBtn = document.getElementById("toggleBtn");
+                            const signupForm = document.getElementById("signupForm");
+                            const loginForm = document.getElementById("loginForm");
+                            const toggleTitle = document.getElementById("toggleTitle");
+                            const toggleDesc = document.getElementById("toggleDesc");
+
+                            toggleBtn.addEventListener("click", function () {
+                                const isSignupVisible = !signupForm.classList.contains("d-none");
+
+                                if (isSignupVisible) {
+                                    signupForm.classList.add("d-none");
+                                    loginForm.classList.remove("d-none");
+                                    toggleTitle.innerText = "تسجيل الدخول";
+                                    toggleDesc.innerText = "أدخل بياناتك لتسجيل الدخول إلى حسابك.";
+                                    toggleBtn.innerText = "إنشاء حساب جديد";
+                                } else {
+                                    signupForm.classList.remove("d-none");
+                                    loginForm.classList.add("d-none");
+                                    toggleTitle.innerText = "إنشاء حساب جديد";
+                                    toggleDesc.innerText = "يتيح لك التسجيل في هذا الموقع الوصول إلى حالة طلبك وسجله. ما عليك سوى ملء الحقول أدناه.";
+                                    toggleBtn.innerText = "تسجيل الدخول";
+                                }
+                            });
+                        });
+                            document.addEventListener('DOMContentLoaded', function () {
+        const toggleBtnEn = document.getElementById("toggleBtnEn");
+        const signupFormEn = document.getElementById("signupFormEn");
+        const loginFormEn = document.getElementById("loginFormEn");
+        const toggleTitleEn = document.getElementById("toggleTitleEn");
+        const toggleDescEn = document.getElementById("toggleDescEn");
+        const formTitleEn = document.getElementById("formTitleEn");
+
+        if (toggleBtnEn) {
+            toggleBtnEn.addEventListener("click", function () {
+                const isSignupVisible = !signupFormEn.classList.contains("d-none");
+
+                if (isSignupVisible) {
+                    signupFormEn.classList.add("d-none");
+                    loginFormEn.classList.remove("d-none");
+                    toggleTitleEn.innerText = "Login";
+                    toggleDescEn.innerText = "Enter your credentials to log in.";
+                    toggleBtnEn.innerText = "Create a New Account";
+                    formTitleEn.innerText = "Login";
+                } else {
+                    signupFormEn.classList.remove("d-none");
+                    loginFormEn.classList.add("d-none");
+                    toggleTitleEn.innerText = "Create a New Account";
+                    toggleDescEn.innerText = "Registering on this website allows you to access your order status and history.";
+                    toggleBtnEn.innerText = "Login";
+                    formTitleEn.innerText = "My Account";
+                }
+            });
+        }
+    });
+                    </script>
+                </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

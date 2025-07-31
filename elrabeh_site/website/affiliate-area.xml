@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+
+    <!-- رأس الصفحة -->
+    <template id="homeHead" inherit_id="website.layout">
+      <xpath expr="//head" position="inside">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+        <style>
+          .affiliate-bg {
+            background: url(/elrabeh_site/static/src/images/afflit.png) no-repeat center center/cover;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: -3rem;
+          }
+          @media (max-width: 576px) {
+            .affiliate-bg {
+              height: 150px;
+              margin-bottom: -2rem;
+            }
+          }
+<!--          .affiliate-content {-->
+<!--            background: rgba(255,255,255,0.95);-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow: 0 2px 6px rgba(0,0,0,0.1);-->
+<!--            padding: 2rem;-->
+<!--          }-->
+          .btn-gen i {
+            margin-left: 0.5rem;
+          }
+        </style>
+      </xpath>
+    </template>
+
+    <!-- صفحة التسجيل -->
+    <template id="affiliate-area" name="Affiliate Register Page">
+      <t t-call="website.layout">
+
+
+          <!-- Arabic Form -->
+          <div class="wrap-ar">
+            <div class="container my-5">
+            <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/afflit.png); background-size: cover; background-position: center;'"></div>
+            <div class="affiliate-content" style="direction: rtl;">
+              <h2 class="text-center mb-4">سجل حساب مسوّق بالعمولة جديد</h2>
+                <t t-set="user" t-value="request.env.user"/>
+               <form action="/affiliate/register" method="post" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">اسمك</label>
+                  <input type="text" name="name" class="form-control" required="true"   t-att-value="user.name"  readonly="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">اسم المستخدم</label>
+                  <input type="text" name="username" class="form-control" required="true" t-att-value="user.login" readonly="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">إيميل الحساب</label>
+                  <input type="email" name="email" class="form-control" required="true"   t-att-value="user.email" readonly="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">إيميل إرسال الدفع</label>
+                  <input type="email" name="payment_email" class="form-control" required="true"/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">عنوان الموقع</label>
+                  <input type="text" name="website_url" class="form-control"/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">كيف ستقوم بالترويج لنا؟</label>
+                  <textarea name="promotion_method" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-success btn-gen">
+                    تسجيل <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+              </form>
+
+            </div>
+           </div>
+           </div>
+
+          <!-- English Form -->
+          <div class="wrap-en">
+            <div class="container my-5">
+           <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/afflit.png); background-size: cover; background-position: center;'"></div>
+            <div class="affiliate-content" style="direction: ltr;">
+              <h2 class="text-center mb-4">Register as a New Affiliate</h2>
+              <form action="/affiliate/register" method="post" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Your Name</label>
+                  <input type="text" name="name" class="form-control" required="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Username</label>
+                  <input type="text" name="username" class="form-control" required="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Account Email</label>
+                  <input type="email" name="email" class="form-control" required="true"/>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Payment Email</label>
+                  <input type="email" name="payment_email" class="form-control" required="true"/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Website URL</label>
+                  <input type="text" name="website_url" class="form-control"/>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">How will you promote us?</label>
+                  <textarea name="promotion_method" class="form-control" rows="4"></textarea>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-success btn-gen">
+                    Register <i class="fas fa-paper-plane"></i>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </t>
+
+
+
+       <script type="text/javascript">
+      $(document).ready(function () {
+        if ($.fn and  $.fn.init and $.fn.init.prototype) {
+          $.fn.init.prototype.getScrollingTarget = function () {
+            return $(window);
+          };
+        }
+      });
+    </script>
+
+
+    </template>
+
+  </data>
+</odoo>

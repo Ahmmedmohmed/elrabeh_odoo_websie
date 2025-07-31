@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="auth_signup_fields_extend" inherit_id="auth_signup.fields" name="Extend Signup Fields">
+        <xpath expr="//input[@name='login']" position="after">
+
+            <div class="wrap-ar">
+                 <div class="form-group field">
+                <label>العنوان الأول</label>
+                <input type="text" name="street" class="form-control"/>
+            </div>
+              <div class="form-group field">
+                <label>العنوان الثاني</label>
+                <input type="text" name="street2" class="form-control"/>
+            </div>
+
+            </div>
+
+             <div class="wrap-en">
+                 <div class="form-group field">
+                <label>
+                             First address          </label>
+                <input type="text" name="street" class="form-control"/>
+            </div>
+              <div class="form-group field">
+                <label>second address</label>
+                <input type="text" name="street2" class="form-control"/>
+            </div>
+
+            </div>
+
+        </xpath>
+    </template>
+</odoo>

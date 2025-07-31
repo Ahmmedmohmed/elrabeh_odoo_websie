@@ -1,0 +1,615 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+        <template id="our_services">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                         .my-navbar{
+                           background: transparent !important;
+
+                         color: white;
+                         width: 100%;
+                        }
+                        header.o_header_is_scrolled .my-navbar{
+                        background: rgb(255, 255, 255) !important;
+                        }
+                        .my-navbar .nav-link{
+
+                        }
+                        header.o_header_is_scrolled .my-navbar .nav-link{
+                        color: black;
+                        }
+                        header:not(.o_header_is_scrolled) .whiteLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .blackLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .whiteLogo{
+                        display:none;
+                        }
+
+                        ul.bookFree{
+                        list-style: none;
+                        padding: 0;
+                        }
+                        ul.bookFree li{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        }
+                        ul.bookFree li::before{
+                        content: '';
+                        background-image: url('/elrabeh_site/static/src/images/check.png');
+                        width: 20px;
+                        height: 20px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        }
+
+                    </style>
+                    <div class="wrap-ar">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        خدماتنا
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center text-nowrap">
+                                        حلول متكاملة.. نجاح مستدام
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <section class="services-section">
+                                <div class="container">
+
+                                    <div class="row g-4">
+                                        <!-- Other Service Cards -->
+                                        <div class="col-lg-8">
+                                            <div class="row g-4">
+                                                <!--1-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-odoo">
+                                                            <img src="/elrabeh_site/static/src/images/odoo.png"
+                                                                 alt="Odoo Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">خدمات ال Odoo</h3>
+                                                        <p class="service-description greyPara">حلول شاملة لإدارة
+                                                            أعمالك.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--2-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-mobile">
+                                                            <img src="/elrabeh_site/static/src/images/servicesicon.png"
+                                                                 alt="Mobile Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">تصميم تطبيقات الجوال</h3>
+                                                        <p class="service-description greyPara">تطبيقات سهلة ومخصصة
+                                                            لعملائك.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--3-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-web">
+                                                            <img src="/elrabeh_site/static/src/images/service2.png"
+                                                                 alt="Web Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">تصميم مواقع إلكترونية</h3>
+                                                        <p class="service-description greyPara">مواقع مبتكرة لأعمالك
+                                                            الناجحة.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--4-->
+<!--                                                <div class="col-md-4">-->
+<!--                                                    <div class="service-card">-->
+<!--                                                        <div class="service-icon icon-marketing">-->
+<!--                                                            <img src="/elrabeh_site/static/src/images/service4.png"-->
+<!--                                                                 alt="Marketing Icon"/>-->
+<!--                                                        </div>-->
+<!--                                                        <h3 class="service-title">التسويق الإلكتروني</h3>-->
+<!--                                                        <p class="service-description greyPara">خطط تسويقية لنجاح رقمي-->
+<!--                                                            مضمون.-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;5&ndash;&gt;-->
+<!--                                                <div class="col-md-4">-->
+<!--                                                    <div class="service-card">-->
+<!--                                                        <div class="service-icon icon-graphic">-->
+<!--                                                            <img src="/elrabeh_site/static/src/images/service6.png"-->
+<!--                                                                 alt="Graphic Icon"/>-->
+<!--                                                        </div>-->
+<!--                                                        <h3 class="service-title">التصميم الجرافيكي</h3>-->
+<!--                                                        <p class="service-description greyPara">تصاميم تلفت الأنظار-->
+<!--                                                            ببراعة.-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                &lt;!&ndash;6&ndash;&gt;-->
+<!--                                                <div class="col-md-4">-->
+<!--                                                    <div class="service-card">-->
+<!--                                                        <div class="service-icon icon-content">-->
+<!--                                                            <img src="/elrabeh_site/static/src/images/service7.png"-->
+<!--                                                                 alt="Content Icon"/>-->
+<!--                                                        </div>-->
+<!--                                                        <h3 class="service-title">إدارة المحتـــــــوى</h3>-->
+<!--                                                        <p class="service-description greyPara">محتوى منظم لزيادة-->
+<!--                                                            التفاعل.-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+
+
+                                            </div>
+                                        </div>
+                                        <!-- Featured Service Card -->
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="service-card">
+                                                <div class="service-icon icon-brand">
+                                                    <img src="/elrabeh_site/static/src/images/service3.png"
+                                                         alt="Brand Icon"/>
+                                                </div>
+                                                <h3 class="service-title">الهـويــــــــــــــــات البصريــــــــــــــة
+                                                </h3>
+                                                <p class="service-description greyPara">مواقع مبتكرة لأعمالك الناجحة.
+                                                </p>
+                                                <img src="/elrabeh_site/static/src/images/frame.png"
+                                                     alt="Brand Identity"
+                                                     class="feature-image mt-4"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <!--تواصل معنا-->
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <div>
+                                                    <div class="tag my-3 justify-content-start">
+                                                        <img class="sparkles-1"
+                                                             src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                                        <div class="frame-1984077944">
+                                                            <div class="title1 ">تواصل معنا</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="heading-title">أخبرنا باحتياجاتك...</h1>
+                                                <p class="sub-text">شاركنا احتياجاتك وسيتواصل معك فريقنا لتقديم الدعم.
+                                                    نحن
+                                                    هنا
+                                                    لخدمتك مهما كان نوع عملك.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="اسمك بالكامل"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="البريد الالكتروني"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/saudi-arabia.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+966</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="ادخل رقم الجوال"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="اكتب احتياجك هنا..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="submit-btn">إرسال</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                <div class="row g-3 my-5">
+                                    <div class="col-12 col-md-6">
+                                        <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                            <span>+97472016100</span>
+                                            <img src="/elrabeh_site/static/src/images/mobile.png" alt="Phone" class="ms-2"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                            <span>+97472016100</span>
+                                            <img src="/elrabeh_site/static/src/images/whatsapp.png" alt="WhatsApp" class="ms-2"/>
+                                        </div>
+                                    </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                                <!-- إضافة div إضافي للتحكم في المحاذاة -->
+                                                <div class="d-flex justify-content-end w-100">
+                                                    <span class="text-start me-2">Info@qatar.rabeh-mena.com</span>
+                                                </div>
+                                                <img src="/elrabeh_site/static/src/images/email.png" alt="Email"/>
+                                            </div>
+                                        </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">تطبيق رابـــح في جيبك!</h1>
+                                        <p class="promo-description">
+                                            عيش تجربة فريدة مع تطبيق رابح. سهّل حياتك، تابع خدماتك، وكن قريب من كل اللي
+                                            تحتاجه بسرعة وسهولة.
+                                        </p>
+                                        <div>
+                                            <p class="download-title">حمل التطبيق الأن:</p>
+                                            <div class="d-flex gap-3 flex-row-reverse justify-content-end">
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <div style="width: 100%; min-height: 277px;">
+                                            <img src="/elrabeh_site/static/src/images/appRabeh.png" width="80%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        our services
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        Integrated solutions.. Sustainable success
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <section class="services-section">
+                                <div class="container">
+
+                                    <div class="row g-4">
+                                        <!-- Other Service Cards -->
+                                        <div class="col-lg-8">
+                                            <div class="row g-4">
+                                                <!--1-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-odoo">
+                                                            <img src="/elrabeh_site/static/src/images/odoo.png"
+                                                                 alt="Odoo Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Odoo Services</h3>
+                                                        <p class="service-description greyPara">Comprehensive solutions
+                                                            for managing your business.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--2-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-mobile">
+                                                            <img src="/elrabeh_site/static/src/images/servicesicon.png"
+                                                                 alt="Mobile Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Mobile App Design</h3>
+                                                        <p class="service-description greyPara">Easy and customized
+                                                            applications for your clients.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--3-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-web">
+                                                            <img src="/elrabeh_site/static/src/images/service2.png"
+                                                                 alt="Web Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Website Design</h3>
+                                                        <p class="service-description greyPara">Innovative websites for
+                                                            your successful business.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--4-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-marketing">
+                                                            <img src="/elrabeh_site/static/src/images/service4.png"
+                                                                 alt="Marketing Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Digital Marketing</h3>
+                                                        <p class="service-description greyPara">Marketing plans for
+                                                            guaranteed digital success.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--5-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-graphic">
+                                                            <img src="/elrabeh_site/static/src/images/service6.png"
+                                                                 alt="Graphic Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Graphic Design</h3>
+                                                        <p class="service-description greyPara">Eye-catching designs
+                                                            with finesse.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <!--6-->
+                                                <div class="col-md-4">
+                                                    <div class="service-card">
+                                                        <div class="service-icon icon-content">
+                                                            <img src="/elrabeh_site/static/src/images/service7.png"
+                                                                 alt="Content Icon"/>
+                                                        </div>
+                                                        <h3 class="service-title">Content Management</h3>
+                                                        <p class="service-description greyPara">Organized content to
+                                                            increase engagement.
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                        <!-- Featured Service Card -->
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="service-card">
+                                                <div class="service-icon icon-brand">
+                                                    <img src="/elrabeh_site/static/src/images/service3.png"
+                                                         alt="Brand Icon"/>
+                                                </div>
+                                                <h3 class="service-title">Visual Identities
+                                                </h3>
+                                                <p class="service-description greyPara">Innovative websites for your
+                                                    successful business.
+                                                </p>
+                                                <img src="/elrabeh_site/static/src/images/frame.png"
+                                                     alt="Brand Identity"
+                                                     class="feature-image mt-4"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <!--تواصل معنا-->
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <div>
+                                                    <div class="tag my-3 justify-content-start">
+                                                        <img class="sparkles-1"
+                                                             src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                                        <div class="frame-1984077944">
+                                                            <div class="title1 ">Contact us.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="heading-title">Tell us your needs...</h1>
+                                                <p class="sub-text greyPara">Share your needs with us and our team will
+                                                    reach out to provide support. We are here to serve you, no matter
+                                                    what type of business you have.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="full name"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="email address"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/saudi-arabia.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+966</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="phone number"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="write your needs here..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <button type="submit" class="submit-btn">send</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-left p-5 pb-0">
+                                            <div class="text-center mb-5 pb-4">
+                                                <h4 class="mb-3 fw-bolder">Always here for you</h4>
+                                            </div>
+
+                                            <div class="row g-3 my-5" dir="rtl">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/mobile.png"/>
+                                                        0097455006180
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/whatsapp.png"/>
+                                                        0097455006180
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/email.png"/>
+                                                        info-digial@rabeh-mena.com
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="social-icons my-5">
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/twit.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/insta.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/fa.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/in.png"/>
+                                                </div>
+                                            </div>
+                                            <img src="/elrabeh_site/static/src/images/hello.png" width="100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">Rabeh app in your pocket!</h1>
+                                        <p class="promo-description">
+                                            Experience something unique with the Winning app. Simplify your life, keep
+                                            track of your services, and stay close to everything you need quickly and
+                                            easily.
+                                        </p>
+                                        <div>
+                                            <p class="download-title">Download the app now:</p>
+                                            <div class="d-flex gap-3">
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <div style="width: 100%; min-height: 277px;">
+                                            <img src="/elrabeh_site/static/src/images/rabeh-app.png" width="80%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </t>
+        </template>
+    </data>
+</odoo>

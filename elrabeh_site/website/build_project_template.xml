@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <template id="build_project_template" name="My Build Projects" >
+          
+    <t t-call="website.layout">
+        
+        <div class="wrap-ar">
+                    <div class="container mt-5">
+            <h2>مشاريعي</h2>
+            <ul>
+                <t t-foreach="projects" t-as="project">
+                    <li>
+                       <t t-foreach="projects" t-as="proj">
+                <li>
+                  <strong><t t-esc="proj.name"/></strong> -
+                  <a t-attf-href="/my/project/{{proj.id}}">عرض</a>
+                </li>
+               </t>
+                    </li>
+                </t>
+            </ul>
+        </div>
+
+            
+            
+        </div>
+
+                <div class="wrap-en">
+                    <div class="container mt-5">
+            <h2>my projects</h2>
+            <ul>
+                <t t-foreach="projects" t-as="project">
+                    <li>
+                         <t t-foreach="projects" t-as="proj">
+                <li>
+                  <strong><t t-esc="proj.name"/></strong> -
+                  <a t-attf-href="/my/project/{{proj.id}}">viwe</a>
+                </li>
+              </t>
+                    </li>
+                </t>
+            </ul>
+        </div>
+
+
+
+        </div>
+        
+        
+        
+    </t>
+</template>
+  </data>
+
+</odoo>
+
+

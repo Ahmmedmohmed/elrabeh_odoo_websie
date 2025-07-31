@@ -1,0 +1,810 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+               <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            </xpath>
+        </template>
+        <template id="home">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                            .carousel-bg {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.4); /* تغبيش خفيف للنص */
+  padding: 2rem;
+  border-radius: 1rem;
+
+}
+                        .category-carousel-container {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .category-carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .category-carousel::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-btn:hover {
+            opacity: 1;
+        }
+
+        .scroll-btn.left {
+            left: 5px;
+        }
+
+        .scroll-btn.right {
+            right: 5px;
+        }
+
+        .category-card {
+            flex: 0 0 auto;
+            width: 180px;
+            min-width: 180px;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-img {
+            height: 120px;
+            object-fit: cover;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .category-img i {
+            font-size: 50px;
+            color: #0d6efd;
+        }
+
+        @media (max-width: 768px) {
+            .category-carousel-container {
+                padding: 0 40px;
+            }
+
+            .category-card {
+                width: 160px;
+                min-width: 160px;
+            }
+
+            .scroll-btn {
+                width: 35px;
+                height: 35px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .category-carousel-container {
+                padding: 0 35px;
+            }
+
+            .category-card {
+                width: 140px;
+                min-width: 140px;
+            }
+
+            .scroll-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.8rem;
+            }
+        }
+
+
+                :root {
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #dee2e6;
+            --primary-color: #0d6efd;
+            --accent-color: #198754;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #1e5799 0%,#207cca 51%,#2989d8 100%);
+            color: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+
+        .main-title {
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            padding: 20px 0;
+        }
+
+        .section-title {
+            background-color: var(--light-gray);
+            border-right: 4px solid var(--primary-color);
+            padding: 10px 15px;
+            margin: 20px 0 15px;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .product-group {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .product-header {
+            background-color: var(--medium-gray);
+            padding: 12px 20px;
+            font-weight: 600;
+            color: #444;
+            border-bottom: 1px solid var(--dark-gray);
+        }
+
+        .product-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--dark-gray);
+            transition: background-color 0.2s;
+        }
+
+        .product-item:last-child {
+            border-bottom: none;
+        }
+
+        .product-item:hover {
+            background-color: #f0f8ff;
+        }
+
+        .product-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1a1a1a;
+        }
+
+        .product-sku {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .product-price {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .badge-custom {
+            background-color: var(--primary-color);
+            padding: 5px 10px;
+            font-weight: 500;
+        }
+
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, #ccc, transparent);
+            margin: 25px 0;
+        }
+
+        .modular-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+
+        .modular-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+        }
+
+        .modular-item i {
+            color: var(--primary-color);
+            margin-left: 10px;
+        }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+        }
+
+        .carousel-control-prev {
+            right: 15px;
+            left: auto;
+        }
+
+        .carousel-control-next {
+            left: 15px;
+            right: auto;
+        }
+
+        .carousel-control-prev:hover,
+        .carousel-control-next:hover {
+            opacity: 0.9;
+        }
+
+        .carousel-indicators {
+            bottom: -40px;
+        }
+
+        .carousel-indicators button {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #aaa;
+        }
+
+        .carousel-indicators .active {
+            background-color: var(--primary-color);
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .product-header, .product-item {
+                padding: 10px 15px;
+            }
+
+            .carousel-control-prev, .carousel-control-next {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .main-title {
+                font-size: 1.5rem;
+            }
+
+            .product-name {
+                font-size: 1.05rem;
+            }
+
+            .carousel-control-prev, .carousel-control-next {
+                display: none;
+            }
+        }
+           .offers-section {
+            padding: 40px 0;
+        }
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end; /* Align title to the right */
+            margin-bottom: 30px;
+        }
+        .section-header h2 {
+            margin-bottom: 0;
+            padding-left: 15px; /* Space between title and line */
+            font-weight: 600;
+        }
+        .section-header .line {
+            flex-grow: 1; /* Make the line take up remaining space */
+            height: 1px;
+            background-color: #dee2e6; /* Light grey line */
+        }
+        .product-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 20px; /* Space between cards in case of wrapping */
+            position: relative; /* For SKU positioning if needed */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Push button to bottom */
+            height: 100%; /* Ensure all cards in a row have similar height */
+        }
+        .product-card .sku {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #6c757d;
+            font-size: 0.8em;
+        }
+        .product-card h5 { /* Product Title */
+            font-size: 1.05em; /* Slightly adjusted */
+            font-weight: 500;
+            min-height: 44px; /* Ensure space for up to 2 lines of title */
+            margin-bottom: 10px; /* Reduced margin */
+            color: #343a40;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-card .by-text {
+            font-size: 0.8em; /* Slightly smaller */
+            color: #6c757d;
+            margin-bottom: 10px; /* Reduced margin */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .product-card .price-container {
+            margin-bottom: 15px; /* Space above button */
+            min-height: 24px; /* To prevent jump if only one price */
+        }
+        .product-card .price {
+            font-size: 1.2em; /* Slightly adjusted */
+            font-weight: bold;
+            color: #dc3545; /* Red color for price */
+            display: inline; /* Allow old price next to it */
+        }
+        .product-card .old-price {
+            text-decoration: line-through;
+            color: #6c757d;
+            font-size: 0.85em; /* Slightly adjusted */
+            margin-left: 5px; /* Space between old and new price when RTL (will appear on right) */
+            display: inline;
+        }
+        .product-card .btn-add-to-cart {
+            width: 100%;
+            background-color: #dc3545; /* Red button */
+            border-color: #dc3545;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem; /* Adjusted padding */
+            font-size: 0.9rem; /* Adjusted font size */
+        }
+        .product-card .btn-add-to-cart:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        /* Arrows styling */
+        .products-carousel-container {
+            position: relative;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .carousel-arrow:hover {
+            background-color: #fff;
+            color: #000;
+        }
+        .carousel-arrow.prev-arrow {
+            left: -20px; /* Position outside the cards area */
+        }
+        .carousel-arrow.next-arrow {
+            right: -20px; /* Position outside the cards area */
+        }
+        /* Hide arrows on small screens if cards stack */
+        @media (max-width: 767.98px) {
+            .carousel-arrow {
+                display: none;
+            }
+        }
+                    </style>
+					<div class="wrap-ar">
+					<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" dir="rtl">
+					  <div class="carousel-inner">
+
+						<!-- الشريحة الأولى -->
+						<div class="carousel-item active">
+					   <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post1.png); background-size: cover; background-position: center;'">
+
+						<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+							  <p class="fs-5 text-info">تتمتع رابح بخدمة عملاء على مدار الساعة</p>
+							  <h1 class="display-5 fw-bold mb-4">مع رابح أنت دائمًا متميزًا بخدمة دعم</h1>
+								<h1 class="display-5 fw-bold mb-4">على مدار الساعة طوال الاسبوع</h1>
+							  <div class="d-flex flex-column flex-md-row gap-3">
+								<a href="#" class="btn btn-danger btn-lg">عرض المزيد</a>
+								<a href="#" class="btn btn-outline-light btn-lg">تصفح المنتجات</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+
+						<!-- الشريحة الثانية -->
+						<div class="carousel-item">
+						  <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post2.png); background-size: cover; background-position: center;'">
+							<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+							  <p class="fs-5 text-info">أشهر الماركات العالمية</p>
+							  <h1 class="display-5 fw-bold mb-4">أحدث التصميمات المميزة  </h1>
+								  <h1 class="display-5 fw-bold mb-4">للحمامات مع أشهر العلامات </h1>
+							  <div class="d-flex flex-column flex-md-row gap-3">
+								<a href="#" class="btn btn-danger btn-lg">عرض المزيد</a>
+								<a href="#" class="btn btn-outline-light btn-lg">تصفح المنتجات</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+
+						<!-- الشريحة الثالثة -->
+						<div class="carousel-item">
+						  <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post3.png); background-size: cover; background-position: center;'">
+							<div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+							  <p class="fs-5 text-info">مرحبا بكم فى موقع رايح </p>
+							  <h1 class="display-5 fw-bold mb-4">الموقع الاكبر والاشمل لكافة اعمال </h1>
+								 <h1 class="display-5 fw-bold mb-4"> البناء والتشطيب والديكور </h1>
+							  <div class="d-flex flex-column flex-md-row gap-3">
+								<a href="#" class="btn btn-danger btn-lg">عرض المزيد</a>
+								<a href="#" class="btn btn-outline-light btn-lg">تصفح المنتجات</a>
+							  </div>
+							</div>
+						  </div>
+						</div>
+
+					  </div>
+
+					  <!-- أزرار الانتقال -->
+					  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">السابق</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">التالي</span>
+					  </button>
+					</div>
+                <div class="container my-5">
+  <h1 class="text-end mb-4">الفئات الرئيسية</h1>
+
+<div class="position-relative my-5">
+        <!-- السهم اليسار -->
+        <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3 d-block" onclick="scrollCategoryLeft()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+
+        <!-- الكروسل -->
+        <div id="category-carousel" class="d-flex overflow-auto flex-nowrap gap-3 px-5">
+          <t t-foreach="request.env['product.public.category'].search([])" t-as="cat">
+            <a t-att-href="'/shop/category/' + slug(cat)" class="text-decoration-none text-dark">
+              <div class="card text-center flex-shrink-0" style="width: 200px; min-width: 200px;">
+                <img t-att-src="'/web/image/product.public.category/%s/image_1920' % cat.id" class="card-img-top img-fluid" t-att-alt="cat.name"/>
+                <div class="card-body p-2">
+                  <p class="card-text fw-bold"><t t-esc="cat.with_context(lang='ar_001').name"/></p>
+                </div>
+              </div>
+            </a>
+          </t>
+        </div>
+
+        <!-- السهم اليمين -->
+        <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3 d-block" onclick="scrollCategoryRight()">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+                </div>
+                 <section class="offers-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="line"></div>
+            <h2>عروض اليوم</h2>
+        </div>
+
+        <div class="products-carousel-container">
+            <div class="carousel-arrow prev-arrow d-none d-md-flex">‹</div> <div class="carousel-arrow next-arrow d-none d-md-flex">›</div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="product-card">
+                        <div> <span class="sku text-muted">SKU123</span>
+                            <h5>خزان مياه SMC CRP HOT "PRESSED PANEL TYPE" طويل جدا ليختبر السطر الثاني</h5>
+                            <p class="by-text">بواسطة: محمد بيومي</p>
+                            <div class="price-container">
+                                <span class="price">3 د.ق</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-add-to-cart">أضف للسلة <i class="bi bi-cart-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="product-card">
+                        <div>
+                            <span class="sku text-muted">SKU456</span>
+                            <h5>طبق أسمنتي</h5>
+                            <p class="by-text">بواسطة: Manager Website</p>
+                            <div class="price-container">
+                                <span class="old-price">300 ر.ق</span>
+                                <span class="price">250 ر.ق</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-add-to-cart">أضف للسلة <i class="bi bi-cart-plus"></i></button>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="product-card">
+                        <div>
+                            <span class="sku text-muted">SKU789</span>
+                            <h5>Note book</h5>
+                            <p class="by-text">بواسطة: Mohamed Shahawy</p>
+                            <div class="price-container">
+                                <span class="old-price">150 ر.ق</span>
+                                <span class="price">120 ر.ق</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-danger btn-add-to-cart">أضف للسلة <i class="bi bi-cart-plus"></i></button>
+                    </div>
+                </div>
+                </div>
+        </div>
+    </div>
+</section>
+<t t-set="category_ar" t-value="request.env['product.public.category'].with_context(lang='ar_001').sudo().browse(5)"/>
+<div class="container my-5" dir="rtl">
+  <h2 class="text-end mb-4"><t t-esc="category_ar.name"/></h2>
+
+  <div id="carousel-ar" class="d-flex overflow-auto flex-nowrap gap-3 px-5" style="scroll-behavior: smooth;">
+    <t t-foreach="category_ar.product_tmpl_ids[:10]" t-as="product">
+      <div class="card flex-shrink-0" style="width: 200px;">
+<img t-att-src="'/web/image/product.template/%s/image_512' % product.id" class="img-fluid"/>
+          <div class="card-body">
+          <h5 class="card-title"><t t-esc="product.name"/></h5>
+          <p class="card-text text-danger"><t t-esc="product.list_price"/>دولار </p>
+          <a t-attf-href="/shop/product/{{ slug(product) }}" class="btn btn-danger btn-sm">أضف للسلة</a>
+        </div>
+      </div>
+    </t>
+  </div>
+</div>
+
+
+<t t-set="category_ar" t-value="request.env['product.public.category'].with_context(lang='ar_001').sudo().browse(1)"/>
+<div class="container my-5" dir="rtl">
+  <h2 class="text-end mb-4"><t t-esc="category_ar.name"/></h2>
+
+  <div id="carousel-ar" class="d-flex overflow-auto flex-nowrap gap-3 px-5" style="scroll-behavior: smooth;">
+    <t t-foreach="category_ar.product_tmpl_ids[:10]" t-as="product">
+      <div class="card flex-shrink-0" style="width: 200px;">
+<img t-att-src="'/web/image/product.template/%s/image_512' % product.id" class="img-fluid"/>
+          <div class="card-body">
+          <h5 class="card-title"><t t-esc="product.name"/></h5>
+          <p class="card-text text-danger"><t t-esc="product.list_price"/>دولار </p>
+          <a t-attf-href="/shop/product/{{ slug(product) }}" class="btn btn-danger btn-sm">أضف للسلة</a>
+        </div>
+      </div>
+    </t>
+  </div>
+</div>
+
+ <t t-set="category_ar" t-value="request.env['product.public.category'].with_context(lang='ar_001').sudo().browse(2)"/>
+<div class="container my-5" dir="rtl">
+  <h2 class="text-end mb-4"><t t-esc="category_ar.name"/></h2>
+
+  <div id="carousel-ar" class="d-flex overflow-auto flex-nowrap gap-3 px-5" style="scroll-behavior: smooth;">
+    <t t-foreach="category_ar.product_tmpl_ids[:10]" t-as="product">
+      <div class="card flex-shrink-0" style="width: 200px;">
+<img t-att-src="'/web/image/product.template/%s/image_512' % product.id" class="img-fluid"/>
+          <div class="card-body">
+          <h5 class="card-title"><t t-esc="product.name"/></h5>
+          <p class="card-text text-danger"><t t-esc="product.list_price"/>دولار </p>
+          <a t-attf-href="/shop/product/{{ slug(product) }}" class="btn btn-danger btn-sm">أضف للسلة</a>
+        </div>
+      </div>
+    </t>
+  </div>
+</div>
+
+<t t-set="category_ar" t-value="request.env['product.public.category'].with_context(lang='ar_001').sudo().browse(4)"/>
+<div class="container my-5" dir="rtl">
+  <h2 class="text-end mb-4"><t t-esc="category_ar.name"/></h2>
+
+  <div id="carousel-ar" class="d-flex overflow-auto flex-nowrap gap-3 px-5" style="scroll-behavior: smooth;">
+    <t t-foreach="category_ar.product_tmpl_ids[:10]" t-as="product">
+      <div class="card flex-shrink-0" style="width: 200px;">
+<img t-att-src="'/web/image/product.template/%s/image_512' % product.id" class="img-fluid"/>
+          <div class="card-body">
+          <h5 class="card-title"><t t-esc="product.name"/></h5>
+          <p class="card-text text-danger"><t t-esc="product.list_price"/>دولار </p>
+          <a t-attf-href="/shop/product/{{ slug(product) }}" class="btn btn-danger btn-sm">أضف للسلة</a>
+        </div>
+      </div>
+    </t>
+  </div>
+</div>
+
+
+
+                    </div>
+                    <div class="wrap-en">
+<div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" dir="ltr">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post1.png); background-size: cover; background-position: center;'">
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+          <p class="fs-5 text-info">Rabeh offers 24/7 customer service</p>
+          <h1 class="display-5 fw-bold mb-4">With Rabeh, you're always distinguished by</h1>
+          <h1 class="display-5 fw-bold mb-4">24/7 support service</h1>
+          <div class="d-flex flex-column flex-md-row gap-3">
+            <a href="#" class="btn btn-danger btn-lg">Learn More</a>
+            <a href="#" class="btn btn-outline-light btn-lg">Browse Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post2.png); background-size: cover; background-position: center;'">
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+          <p class="fs-5 text-info">Top international brands</p>
+          <h1 class="display-5 fw-bold mb-4">The latest unique designs</h1>
+          <h1 class="display-5 fw-bold mb-4">for bathrooms with top brands</h1>
+          <div class="d-flex flex-column flex-md-row gap-3">
+            <a href="#" class="btn btn-danger btn-lg">Learn More</a>
+            <a href="#" class="btn btn-outline-light btn-lg">Browse Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="carousel-bg" t-att-style="'background-image: url(/elrabeh_site/static/src/images/post3.png); background-size: cover; background-position: center;'">
+        <div class="carousel-caption d-flex flex-column justify-content-center align-items-center text-white text-center">
+          <p class="fs-5 text-info">Welcome to the Rabeh website</p>
+          <h1 class="display-5 fw-bold mb-4">The largest and most comprehensive platform</h1>
+          <h1 class="display-5 fw-bold mb-4">for construction, finishing, and décor</h1>
+          <div class="d-flex flex-column flex-md-row gap-3">
+            <a href="#" class="btn btn-danger btn-lg">Learn More</a>
+            <a href="#" class="btn btn-outline-light btn-lg">Browse Products</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Carousel Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+                        <div class="container my-5">
+  <h1 class="text-end mb-4">Main categories
+</h1>
+
+<div class="position-relative my-5">
+        <!-- السهم اليسار -->
+        <button class="btn btn-dark position-absolute top-50 start-0 translate-middle-y z-3 d-block" onclick="scrollCategoryLeft()">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+
+        <!-- الكروسل -->
+        <div id="category-carousel" class="d-flex overflow-auto flex-nowrap gap-3 px-5">
+          <t t-foreach="request.env['product.public.category'].search([])" t-as="cat">
+            <a t-att-href="'/shop/category/' + slug(cat)" class="text-decoration-none text-dark">
+              <div class="card text-center flex-shrink-0" style="width: 200px; min-width: 200px;">
+                <img t-att-src="'/web/image/product.public.category/%s/image_1920' % cat.id" class="card-img-top img-fluid" t-att-alt="cat.name"/>
+                <div class="card-body p-2">
+                  <p class="card-text fw-bold"><t t-esc="cat.with_context(lang='en_US').name"/></p>
+                </div>
+              </div>
+            </a>
+          </t>
+        </div>
+
+        <!-- السهم اليمين -->
+        <button class="btn btn-dark position-absolute top-50 end-0 translate-middle-y z-3 d-block" onclick="scrollCategoryRight()">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+      </div>
+                </div>
+
+
+
+                    </div>
+                </div>
+                <script>
+                    function scrollCategoryLeft() {
+                    const container = document.getElementById('category-carousel');
+                    if (container.scrollLeft === 0) {
+                      // لو في أول عنصر، روح للنهاية
+                      container.scrollTo({ left: container.scrollWidth, behavior: 'smooth' });
+                    } else {
+                      container.scrollBy({ left: -220, behavior: 'smooth' });
+                    }
+                  }
+
+                  function scrollCategoryRight() {
+                    const container = document.getElementById('category-carousel');
+                    const maxScrollLeft = container.scrollWidth - container.clientWidth;
+                    if (container.scrollLeft >= maxScrollLeft - 1) {
+                      // لو في آخر عنصر، ارجع للبداية
+                      container.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                      container.scrollBy({ left: 220, behavior: 'smooth' });
+                    }
+                  }
+
+               </script>
+
+            </t>
+        </template>
+    </data>
+</odoo>

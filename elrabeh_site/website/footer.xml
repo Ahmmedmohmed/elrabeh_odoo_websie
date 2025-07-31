@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit the main footer template -->
+    <template id="footer_custom" inherit_id="website.layout" name="Custom Footer">
+        <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace">
+            <!--            <div></div>-->
+        </xpath>
+        <xpath expr="//div[@id='footer']" position="replace">
+            <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+                <style>
+                    ul.custom-style{
+                    list-style-type: disclosure-closed;
+                    padding-inline-start: 0;
+                    }
+                    .inputEmail{
+                    padding: 8px 24px 8px 8px;
+                    border-radius: 16px;
+                    background-color: white;
+                    }
+                    .inputEmail:has(>.arrowEnBox) {
+                    padding: 8px 8px 8px 24px;
+                    }
+                    .inputEmail input{
+                    width: 80%;
+                    }
+                    .arrowArBox , .arrowEnBox{
+                    width: 56px;
+                    height: 56px;
+                    border-radius: 12px;
+                    background: #4ACECB;
+                    transition: all 0.5s;
+                    }
+                    .arrowArBox:hover, .arrowEnBox:hover{
+                    background: #2F181F;
+                    transition: all 0.5s;
+                    }
+                    .socialIcon:hover{
+                    background: #4ACECB;
+                    transition: all 0.5s;
+                    }
+
+                    .arrowArBox img, .arrowEnBox img{
+                    width: 40%;
+                    }
+                    .arrowArBox img{
+                    transform: rotate(135deg);
+                    transition: all 0.5s;
+                    }
+                    .arrowEnBox img{
+                    transform: rotate(45deg);
+                    transition: all 0.5s;
+                    }
+                    .arrowEnBox:hover img{
+                    transform: rotate(0deg);
+                    transition: all 0.5s;
+                    }
+                    .arrowArBox:hover img{
+                    transform: rotate(180deg);
+                    transition: all 0.5s;
+                    }
+
+                    .box-info{
+                    background-color: #FFFFFF0D;
+                    padding: 24px;
+                    border-radius: 20px;
+                    }
+                    .backToTop{
+                    width: 125px;
+                    border: solid 1px #FFFFFF33;
+                    border-radius: 50%;
+                    height: 125px;
+                    }
+                    .backToTop .green-btn{
+                    border-radius: 50%;
+                    top: 100%;
+                    transition: all 0.5s;
+                    }
+                    .backToTop:hover .green-btn{
+                    top: 0;
+                    transition: all 0.5s;
+                    }
+                    .backToTop a[href="#top"]{
+                    top: 40px;
+                     transition: all 0.5s;
+                    }
+                    .backToTop:hover a[href="#top"]{
+                    top: 30px;
+                     transition: all 0.5s;
+                    }
+                </style>
+                <div class="wrap-ar">
+                    <section class="s_text_block pt48 pb24" data-snippet="s_text_block">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Footer Column 1: Company Info -->
+                                <div class="col-lg-4 pt16 pb16">
+                                    <div style="width: 171px;" class="mb-4">
+                                        <img src="/elrabeh_site/static/src/images/white-logo.png" class="w-100"/>
+                                    </div>
+                                    <p class="mb-5">لدينا فريق عمل احترافي يجمع بين الخبرة، المهارة، الإبداع، الابتكار
+                                        مما يضمن حصولك
+                                        على خدمة مميزة ومصممة خصيصاً لتلبية احتياجك.
+                                    </p>
+                                    <h5 style="color: #4ACECB;" class="mb-3">الاشتراك في نشرتنا الإخبارية</h5>
+                                    <div class="inputEmail d-flex justify-content-between">
+                                        <input type="email" name="email" placeholder="أدخل بريدك الإلكتروني"
+                                               class="border-0"/>
+                                        <div class="arrowArBox d-flex justify-content-center align-items-center">
+                                            <img src="/elrabeh_site/static/src/images/next-arrow.svg"/>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex  align-items-center gap-4 mt-3" data-snippet="s_social_media">
+                                        <a href="https://x.com/rabbhgroup?sfnsn=scwspwa/" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/twit.png"/>
+                                        </a>
+                                        <a href="https://www.facebook.com/share/15sGstZ3UZ/" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/fa.png"/>
+                                        </a>
+                                        <a href="https://www.instagram.com/rabehqa?igsh=aTQzNGNmb3Y3bDdz" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/insta.png"/>
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/rabehqa/" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/in.png"/>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <!-- Footer Column 2: Products -->
+                                <div class="col-lg-4 pt16 pb16 align-items-right d-flex flex-column">
+                                    <h3 style="color: #4ACECB;">روابط تهمك</h3>
+                                    <ul class="custom-style">
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white" href="/aboutRabeh">من نحن</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/ourservices">خدماتنا
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="https://online.fliphtml5.com/djyju/abuj/#p=4">ملف الشركة
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white" href="/userComments">أراء
+                                                العملاء
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/contactus">تواصل معنا
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/freqQues">الاسئلة الشائعة
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Footer Column 3: Social Media -->
+                                <div class="col-lg-4 pt16 pb16">
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/whatsapp.png"/>
+                                        </div>
+                                        <div>
+                                            97472016100+
+                                        </div>
+                                    </div>
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/mobile.png"/>
+                                        </div>
+                                        <div>
+                                            97472016100+
+                                        </div>
+                                    </div>
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/email.png"/>
+                                        </div>
+                                        <div>
+                                            Info@qatar.rabeh-mena.com
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Copyright Section -->
+            <section class="footer_copyright pt-16 pb-16">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <!-- القسم الأيسر (7 أعمدة) -->
+                        <div class="col-12 col-md-7 row"> <!-- أضفنا col-12 للجوال -->
+                            <div class="col-12 col-md-6 mb-3 mb-md-0"> <!-- أضفنا فاصل للجوال -->
+                                <span class="o_footer_copyright_name">
+                                    حقوق الطبع والنشر © 2024 رابح ديجيتال
+                                </span>
+                            </div>
+
+                            <div class="col-6 col-md-3 text-start text-md-end"> <!-- تعديل المحاذاة -->
+                                سياسة الخصوصية
+                            </div>
+
+                            <div class="col-6 col-md-3 text-start text-md-end"> <!-- تعديل المحاذاة -->
+                                شروط الاستخدام
+                            </div>
+                        </div>
+
+                        <!-- القسم الأيمن (5 أعمدة) -->
+<!--                        <div class="col-12 col-md-5 row justify-content-end mt-3 mt-md-0"> &lt;!&ndash; أضفنا هامش علوي للجوال &ndash;&gt;-->
+<!--                            <div class="backToTop cursor-pointer p-0 position-relative overflow-hidden">-->
+<!--                                <div class="green-btn w-100 h-100 position-absolute"></div> &lt;!&ndash; أصلحنا إغلاق الديف &ndash;&gt;-->
+<!--                                <a href="#top"-->
+<!--                                   class="text-decoration-none w-100 h-100 d-block position-absolute text-center backtop">-->
+<!--                                    <img src="/elrabeh_site/static/src/images/backtToTop.svg"-->
+<!--                                         alt="العودة للأعلى"-->
+<!--                                         class="img-fluid"/>-->
+<!--                                </a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+                    </div>
+                </div>
+            </section>                </div>
+                <div class="wrap-en">
+                    <section class="s_text_block pt48 pb24" data-snippet="s_text_block">
+                        <div class="container">
+                            <div class="row">
+                                <!-- Footer Column 1: Company Info -->
+                                <div class="col-lg-4 pt16 pb16">
+                                    <div style="width:100%;" class="mb-4">
+                                        <img src="/elrabeh_site/static/src/images/white-logo-en.png" class="w-100"/>
+                                    </div>
+                                    <p class="mb-5">Our expert team blends experience, skill, and creativity to provide
+                                        you with exceptional, tailored service.
+                                    </p>
+                                    <h5 style="color: #4ACECB;" class="mb-3">Subscribe to our newsletter</h5>
+                                    <div class="inputEmail d-flex justify-content-between">
+                                        <input type="email" name="email" placeholder="Enter your email"
+                                               class="border-0"/>
+                                        <div class="arrowEnBox d-flex justify-content-center align-items-center">
+                                            <img src="/elrabeh_site/static/src/images/next-arrow.svg"/>
+                                        </div>
+                                    </div>
+                                     <div class="d-flex align-items-center flex-wrap justify-content-center gap-2 gap-md-4 mt-3" data-snippet="s_social_media">
+                                         <a href="https://x.com/rabbhgroup?sfnsn=scwspwa" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/twit.png"/>
+                                        </a>
+                                        <a href="https://www.facebook.com/share/15sGstZ3UZ/" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/fa.png"/>
+                                        </a>
+                                        <a href="https://www.instagram.com/rabehqa?igsh=aTQzNGNmb3Y3bDdz" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/insta.png"/>
+                                        </a>
+                                        <a href="#" class="socialIcon" target="_blank">
+                                            <img src="/elrabeh_site/static/src/images/in.png"/>
+                                        </a>
+
+                                    </div>
+
+                                </div>
+                                <!-- Footer Column 2: Products -->
+                                <div class="col-lg-4 pt16 pb16 align-items-center d-flex flex-column">
+                                    <h3 style="color: #4ACECB;">Important Links</h3>
+                                    <ul class="custom-style">
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white" href="/aboutRabeh">About us</a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/ourservices">Our services
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="https://online.fliphtml5.com/djyju/abuj/#p=4">Company profile
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white" href="/userComments">
+                                                Testiomonials
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/contactus">Contact us
+                                            </a>
+                                        </li>
+                                        <li class="mb-3">
+                                            <a class="text-decoration-none text-white"
+                                               href="/freqQues">FAQS
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Footer Column 3: Social Media -->
+                                <div class="col-lg-4 pt16 pb16">
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/whatsapp.png"/>
+                                        </div>
+                                        <div>
+                                            +97472016100
+                                        </div>
+                                    </div>
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/mobile.png"/>
+                                        </div>
+                                        <div>
+                                            +97472016100
+                                        </div>
+                                    </div>
+                                    <div class="box-info d-flex mb-3 gap-2">
+                                        <div>
+                                            <img src="/elrabeh_site/static/src/images/email.png"/>
+                                        </div>
+                                        <div>
+                                            Info@qatar.rabeh-mena.com
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    <!-- Copyright Section -->
+                      <section class="footer_copyright  pt16 pb16 ">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 row">
+                                    <div class="col-md-3">
+                                        <span class="o_footer_copyright_name">Terms of conditions
+                                        </span>
+                                    </div>
+                                    <div class="col-md-3 text-lg-end">
+                                        Privacy Policy
+                                    </div>
+                                    <div class="col-md-6 text-lg-end">
+                                       Copyright © 2024 Rabeh Digital
+                                    </div>
+                                </div>
+                                <div class="col-md-5 row justify-content-end">
+                                    <div class="backToTop cursor-pointer p-0 position-relative overflow-hidden mb-5">
+                                        <div class="green-btn w-100 h-100 position-absolute"></div>
+                                       <a href="#top"
+                                           class="text-decoration-none  w-100 h-100  d-block position-absolute text-center">
+                                            <img src="/elrabeh_site/static/src/images/backtToTop.svg"/>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <script>
+
+                </script>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>

@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+
+    <!-- Tree View -->
+    <record id="view_affiliate_request_tree" model="ir.ui.view">
+      <field name="name">affiliate.request.tree</field>
+      <field name="model">elrabeh.affiliate.request</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="username"/>
+          <field name="email"/>
+          <field name="payment_email"/>
+          <field name="state"/>
+
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_affiliate_request_form" model="ir.ui.view">
+      <field name="name">affiliate.request.form</field>
+      <field name="model">elrabeh.affiliate.request</field>
+      <field name="arch" type="xml">
+        <form>
+         <header>
+              <button name="action_approve"
+                      type="object"
+                      string="Approve"
+                      class="btn-primary"
+                      attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+              <button name="action_reject"
+                      type="object"
+                      string="Reject"
+                      class="btn-danger"
+                      attrs="{'invisible': [('state', '!=', 'pending')]}"/>
+            </header>
+          <sheet>
+            <group>
+              <field name="name"/>
+              <field name="username"/>
+              <field name="email"/>
+              <field name="payment_email"/>
+              <field name="website_url"/>
+              <field name="promotion_method"/>
+              <field name="state" readonly="1"/>
+              <field name="tracking_url" readonly="1"/>
+              <field name="commission_rate"/>
+
+              <field name="amount_of_commission" readonly="1"/>
+
+
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action Menu -->
+    <record id="action_affiliate_request" model="ir.actions.act_window">
+      <field name="name">Affiliate Requests</field>
+      <field name="res_model">elrabeh.affiliate.request</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Add to menu -->
+    <menuitem id="menu_affiliate_root" name="Affiliate Program" sequence="100"/>
+    <menuitem id="menu_affiliate_request" name="Requests" parent="menu_affiliate_root" action="action_affiliate_request"/>
+
+  </data>
+</odoo>

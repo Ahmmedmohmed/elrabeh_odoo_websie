@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <data>
+
+    <template id="build_project_detail_page" name="Project Detail Page">
+  <t t-call="website.layout">
+
+    <div class="wrap-ar">
+      <div class="container my-5 text-end">
+        <h2>المشروع: <t t-esc="project.name"/></h2>
+
+        <h3 class="mt-4">التصنيفات والمنتجات</h3>
+        <t t-foreach="products_by_category" t-as="cat_data">
+          <div class="my-3">
+            <h5><t t-esc="cat_data['category'].name"/></h5>
+            <div class="row">
+              <t t-foreach="cat_data['products']" t-as="product">
+                <div class="col-md-4 mb-3">
+                  <div class="card">
+                    <img t-att-src="'/web/image/product.product/' + str(product.id) + '/image_1920'" class="card-img-top"/>
+                    <div class="card-body">
+                      <h5 class="card-title"><t t-esc="product.name"/></h5>
+                      <p><t t-esc="product.list_price"/> ج.م</p>
+                      <t t-if="product in project.product_ids">
+                        <a t-attf-href="/remove_product_from_project/{{project.id}}/{{product.id}}" class="btn btn-danger btn-sm">إزالة</a>
+                      </t>
+                      <t t-else="">
+                        <a t-attf-href="/add_product_to_project/{{project.id}}/{{product.id}}" class="btn btn-primary btn-sm">إضافة</a>
+                      </t>
+                    </div>
+                  </div>
+                </div>
+              </t>
+            </div>
+          </div>
+        </t>
+
+        <hr class="my-4"/>
+
+        <h3>منتجاتي بالمشروع</h3>
+        <ul>
+          <t t-foreach="project.product_ids" t-as="p">
+            <li>
+              <t t-esc="p.name"/>
+              - <a t-attf-href="/remove_product_from_project/{{project.id}}/{{p.id}}" class="btn btn-sm btn-outline-danger">إزالة</a>
+            </li>
+          </t>
+        </ul>
+
+        <div class="text-center my-4">
+          <a href="/add_to_cart/{{project.id}}" class="btn btn-success">إضافة الكل إلى السلة</a>
+          <a href="/remove_from_cart/{{project.id}}" class="btn btn-secondary">إزالة الكل من السلة</a>
+        </div>
+      </div>
+    </div>
+
+  </t>
+</template>
+</data>
+</odoo>
+
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+  <template id="build_project_page" name="Build My Project Page" >
+      <t t-call="website.layout">
+
+      <!-- القسم العربي -->
+      <div class="wrap-ar">
+        <section class="container my-5 text-end">
+          <h1 class="text-center">ابنِ مشروعك</h1>
+
+          <form action="/my/project/create" method="POST">
+            <div class="mb-3">
+              <label for="project_name">اسم المشروع</label>
+              <input type="text" name="project_name" required="1" class="form-control text-end"/>
+            </div>
+            <button type="submit" class="btn btn-primary">إنشاء المشروع</button>
+          </form>
+
+          <t t-if="projects">
+            <h2 class="mt-5">مشاريعي</h2>
+            <ul>
+              <t t-foreach="projects" t-as="proj">
+                <li>
+                  <strong><t t-esc="proj.name"/></strong> -
+                  <a t-attf-href="/my/project/{{proj.id}}">عرض</a>
+                </li>
+              </t>
+            </ul>
+          </t>
+        </section>
+      </div>
+
+      <!-- القسم الإنجليزي -->
+      <div class="wrap-en">
+        <section class="container my-5">
+          <h1 class="text-center">Build My Project</h1>
+
+          <form action="/my/project/create" method="POST">
+            <div class="mb-3">
+              <label for="project_name">Project Name</label>
+              <input type="text" name="project_name" required="1" class="form-control"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Project</button>
+          </form>
+
+          <t t-if="projects">
+            <h2 class="mt-5">My Projects</h2>
+            <ul>
+              <t t-foreach="projects" t-as="proj">
+                <li>
+                  <strong><t t-esc="proj.name"/></strong> -
+                  <a t-attf-href="/my/project/{{proj.id}}">View</a>
+                </li>
+              </t>
+            </ul>
+          </t>
+        </section>
+      </div>
+      </t>
+  </template>
+      </data>
+</odoo>

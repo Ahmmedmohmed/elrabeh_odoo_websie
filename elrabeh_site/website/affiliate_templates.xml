@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+      <template id="affiliate_thanks" name="Affiliate Thank You Page">
+    <t t-call="website.layout">
+    <div class="container py-5">
+
+      <!-- Arabic Version -->
+      <div class="warp-ar">
+        <div class="text-center" style="direction: rtl;">
+          <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+          <h2>تم إرسال طلب التسجيل</h2>
+          <p class="lead">شكراً لتسجيلك معنا في نظام التسويق بالعمولة.</p>
+          <p>سنقوم بمراجعة طلبك والرد عليك في أقرب وقت ممكن.</p>
+          <a href="/" class="btn btn-primary mt-3">العودة إلى الصفحة الرئيسية</a>
+        </div>
+      </div>
+
+      <!-- English Version -->
+      <div class="warp-en">
+        <div class="text-center" style="direction: ltr;">
+          <i class="fas fa-check-circle fa-4x text-success mb-3"></i>
+          <h2>Registration Submitted</h2>
+          <p class="lead">Thank you for signing up for our affiliate program.</p>
+          <p>We will review your request and get back to you shortly.</p>
+          <a href="/" class="btn btn-primary mt-3">Back to Homepage</a>
+        </div>
+      </div>
+
+    </div>
+  </t>
+</template>
+</data>
+
+</odoo>

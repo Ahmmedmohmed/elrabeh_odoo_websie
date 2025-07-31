@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+  <template id="footer_custom" inherit_id="website.layout" name="Custom Footer">
+    <xpath expr="//div[hasclass('o_footer_copyright')]" position="replace">
+      <!-- إزالة الفوتر الأصلي -->
+    </xpath>
+    <xpath expr="//div[@id='footer']" position="replace">
+      <div id="footer" class="oe_structure oe_structure_solo" t-ignore="true" t-if="not no_footer">
+        <div id="wrap">
+        <style>
+          /* التنسيقات العامة للفوتر */
+          .rabeh-footer {
+            background: rgb(65,62,55);
+            color: #fff;
+            padding: 40px 0 0;
+            border-top: 4px solid #3498db;
+            font-family: 'Tajawal', sans-serif;
+          }
+
+          .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+          }
+
+          .footer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+          }
+
+          .footer-col {
+            flex: 1;
+            min-width: 250px;
+          }
+
+          .footer-logo-col {
+            flex: 0 0 300px;
+          }
+
+          .footer-logo {
+            max-width: 100%;
+            margin-top: 20px;
+          }
+
+          .contact-info p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+          }
+
+          .contact-info i {
+            margin-left: 10px;
+            color: #3498db;
+          }
+
+          .footer-links h4 {
+            color: #f5691d;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+          }
+
+          .footer-links ul {
+            list-style: none;
+            padding: 0;
+          }
+
+          .footer-links li {
+            margin-bottom: 10px;
+          }
+
+          .footer-links a {
+            color: #f5691d;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+          }
+
+          .footer-links a:hover {
+            color: #3498db;
+            padding-right: 5px;
+          }
+
+          .footer-links i {
+            margin-left: 8px;
+            font-size: 0.9rem;
+          }
+
+          .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            color: #a0aec0;
+            font-size: 0.9rem;
+          }
+
+          .social-icons-wrapper {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+          }
+
+          .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+          }
+
+          .social-icon:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+          }
+
+          .quick-request-btn {
+            background: #ffffff;
+            color: white;
+            border-radius: 30px;
+            padding: 10px 20px;
+            text-align: center;
+            display: inline-block;
+            margin-top: 15px;
+            transition: all 0.3s;
+          }
+
+          .quick-request-btn:hover {
+            background: #ffffff;
+            transform: translateY(-3px);
+          }
+
+          .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 15px 0;
+          }
+
+          /* التجاوب مع الشاشات الصغيرة */
+          @media (max-width: 768px) {
+            .footer-row {
+              flex-direction: column;
+            }
+
+            .footer-col {
+              width: 100%;
+            }
+
+            .footer-logo-col {
+              flex: 0 0 100%;
+            }
+          }
+        </style>
+        <!-- النسخة العربية -->
+        <div class="wrap-ar" >
+          <div class="rabeh-footer">
+            <div class="footer-container">
+              <div class="footer-row">
+                <div class="footer-col footer-logo-col">
+                  <img src="/elrabeh_site/static/src/images/rabeh-white-logo.png" alt="رابح منى" class="footer-logo"/>
+
+
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>روابط مفيدة</h4>
+                    <ul>
+                      <li><a href="/about-us"><i class="fa fa-angle-left"></i> عن رابح</a></li>
+                      <li><a href="/store-listing"><i class="fa fa-angle-left"></i> تجار رابح</a></li>
+                      <li><a href="/affiliate-area"><i class="fa fa-angle-left"></i> منطقة التاجر بالعمولة</a></li>
+                      <li><a href="/privacy-policy"><i class="fa fa-angle-left"></i> سياسة الخصوصية</a></li>
+                      <li><a href="/refund_returns"><i class="fa fa-angle-left"></i> سياسة الإسترجاع</a></li>
+                      <li><a href="/terms-conditions"><i class="fa fa-angle-left"></i> الأحكام و الشروط</a></li>
+                      <li><a href="/seller/signup"><i class="fa fa-angle-left"></i> تسجيل الدخول لتجار </a></li>
+                      <li><a href="/terms-conditions-vendors"><i class="fa fa-angle-left"></i> الأحكام و الشروط للتجار</a></li>
+                      <li><a href="/packages"><i class="fa fa-angle-left"></i> باقات تُجار رابح</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>الأكثر بحثا</h4>
+                    <ul>
+                      <li><a href="/product-category/painting-decoraying"><i class="fa fa-angle-left"></i> الدهانات والديكور</a></li>
+                      <li><a href="/product-category/heating-cooling"><i class="fa fa-angle-left"></i> التدفئة والتبريد</a></li>
+                      <li><a href="/product-category/kitchens-appliance"><i class="fa fa-angle-left"></i> مطابخ وأجهزة منزلية</a></li>
+                      <li><a href="/product-category/bathrooms"><i class="fa fa-angle-left"></i> الحمامات</a></li>
+                      <li><a href="/product-category/doors-windows"><i class="fa fa-angle-left"></i> الأبواب والنوافذ</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>طلب أسعار سريع</h4>
+                    <a href="/request-quote" class="quick-request-btn">
+                      <i class="fa fa-clock"></i> طلب عرض سعر سريع
+                    </a>
+
+                    <div class="divider"></div>
+
+                    <h4 class="text-end">يمكننا مساعدتك</h4>
+<!-- السعودية - عربي -->
+<div class="contact-info contact-ksa d-none text-end">
+  <p><a href="https://wa.link/ksa" style="color:#25d366;"><i class="fa fa-whatsapp"></i> +96650000000</a></p>
+  <p><a href="tel:00966500000000"><i class="fa fa-phone"></i> +96650000000</a></p>
+  <p><a href="mailto:ksa@rabeh.com" style="color:#f5691d;"><i class="fa fa-envelope"></i> ksa@rabeh.com</a></p>
+</div>
+
+<!-- عمان - عربي -->
+<div class="contact-info contact-oman d-none text-end">
+  <p><a href="https://wa.link/oman" style="color:#25d366;"><i class="fa fa-whatsapp"></i> +96894095320</a></p>
+  <p><a href="tel:0096894095320"><i class="fa fa-phone"></i> +96894095320</a></p>
+  <p><a href="mailto:info-digital@rabeh-mena.com" style="color:#f5691d;"><i class="fa fa-envelope"></i> info-digital@rabeh-mena.com</a></p>
+</div>
+
+<!-- قطر - عربي -->
+<div class="contact-info contact-qatar d-none text-end">
+  <p><a href="https://wa.link/qatar" style="color:#25d366;"><i class="fa fa-whatsapp"></i> +97470354000</a></p>
+  <p><a href="tel:0097470354000"><i class="fa fa-phone"></i> +97470354000</a></p>
+  <p><a href="mailto:info@rabeh-mena.com" style="color:#f5691d;"><i class="fa fa-envelope"></i> info@rabeh-mena.com</a></p>
+</div>
+<!-- وهكذا ممكن تكرر نفس الكلام للإنجليزي بكلاس lang-en بدل lang-ar -->
+
+                               <div class="social-icons-wrapper">
+                    <a href="https://www.instagram.com/rabehqa" class="social-icon" target="_blank">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/add/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-snapchat"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/rabehqa/" class="social-icon" target="_blank">
+                      <i class="fa fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-youtube"></i>
+                    </a>
+                  </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="footer-bottom">
+                <p>
+                  تصميم و تطوير شركة <a href="https://peofree.com"><strong>رابح للحلول المتكاملة</strong></a> |
+                  <i class="fa fa-copyright"></i> جميع الحقوق محفوظة لشركة رابح
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- النسخة الإنجليزية -->
+        <div class="wrap-en" >
+          <div class="rabeh-footer">
+            <div class="footer-container">
+              <div class="footer-row">
+                <div class="footer-col footer-logo-col">
+                  <img src="/elrabeh_site/static/src/images/rabeh-white-logo.png" alt="Rabeh Mena" class="footer-logo"/>
+
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>Useful Links</h4>
+                    <ul>
+                      <li><a href="/about-us"><i class="fa fa-angle-right"></i> About Rabeh</a></li>
+                      <li><a href="/store-listing"><i class="fa fa-angle-right"></i> Rabeh Dealers</a></li>
+                      <li><a href="/affiliate-area"><i class="fa fa-angle-right"></i> Affiliate Area</a></li>
+                      <li><a href="/privacy-policy"><i class="fa fa-angle-right"></i> Privacy Policy</a></li>
+                      <li><a href="/refund_returns"><i class="fa fa-angle-right"></i> Return Policy</a></li>
+                       <li><a href="/seller/signup"><i class="fa fa-angle-left"></i> Seller Login</a></li>
+                      <li><a href="/terms-conditions"><i class="fa fa-angle-right"></i> Terms  Conditions</a></li>
+                      <li><a href="/terms-conditions-vendors"><i class="fa fa-angle-right"></i> Vendor Terms</a></li>
+                      <li><a href="/packages"><i class="fa fa-angle-right"></i> Dealer Packages</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>Most Searched</h4>
+                    <ul>
+                      <li><a href="/product-category/painting-decoraying"><i class="fa fa-angle-right"></i> Painting  Decorating</a></li>
+                      <li><a href="/product-category/heating-cooling"><i class="fa fa-angle-right"></i> Heating  Cooling</a></li>
+                      <li><a href="/product-category/kitchens-appliance"><i class="fa fa-angle-right"></i> Kitchens  Appliances</a></li>
+                      <li><a href="/product-category/bathrooms"><i class="fa fa-angle-right"></i> Bathrooms</a></li>
+                      <li><a href="/product-category/doors-windows"><i class="fa fa-angle-right"></i> Doors  Windows</a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="footer-col">
+                  <div class="footer-links">
+                    <h4>Quick Quote</h4>
+                    <a href="/request-quote" class="quick-request-btn">
+                      <i class="fa fa-clock"></i> Request a Quick Quote
+                    </a>
+
+                    <div class="divider"></div>
+
+                    <h4>We Can Help You</h4>
+                    <p>
+                      <a href="https://wa.link/rkxz5a" style="color: #25d366;">
+                        <i class="fa fa-whatsapp"></i> +974 7035 4000
+                      </a>
+                    </p>
+                    <p>
+                      <a href="tel:0097470354000">
+                        <i class="fa fa-phone"></i> +974 7035 4000
+                      </a>
+                    </p>
+                    <p>
+                      <a href="mailto:Info@rabeh-mena.com" style="color: #f5691d;">
+                        <i class="fa fa-envelope"></i> Info@rabeh-mena.com
+                      </a>
+                    </p>
+                    <div class="social-icons-wrapper">
+                    <a href="https://www.instagram.com/rabehqa" class="social-icon" target="_blank">
+                      <i class="fa fa-instagram"></i>
+                    </a>
+                    <a href="https://www.facebook.com/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-facebook"></i>
+                    </a>
+                    <a href="https://www.snapchat.com/add/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-snapchat"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/company/rabehqa/" class="social-icon" target="_blank">
+                      <i class="fa fa-linkedin"></i>
+                    </a>
+                    <a href="https://twitter.com/rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-twitter"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@rabehgroup" class="social-icon" target="_blank">
+                      <i class="fa fa-youtube"></i>
+                    </a>
+                  </div>
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="footer-bottom">
+                <p>
+                  Designed and developed by <a href="#"><strong>Rabeh Integrated Solutions</strong></a> |
+                  <i class="fa fa-copyright"></i> All rights reserved to Rabeh
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+       <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const selector = document.querySelector('.currency-selector');
+
+    function updateVisibleContact(value) {
+      // أخفي كل البلوكات
+      document.querySelectorAll('.contact-info').forEach(el => el.classList.add('d-none'));
+
+      // حدد اسم الدولة من قيمة select
+      let country = '';
+      if (value === '9') country = 'ksa';
+      else if (value === '7') country = 'oman';
+      else if (value === '8') country = 'qatar';
+
+      // أظهر العنصر المناسب
+      if (country) {
+        const block = document.querySelector(`.contact-${country}`);
+        if (block) block.classList.remove('d-none');
+      }
+    }
+
+    // أول تحميل
+    updateVisibleContact(selector.value);
+
+    // عند التغيير
+    selector.addEventListener('change', function () {
+      updateVisibleContact(this.value);
+    });
+  });
+</script>
+
+
+    </xpath>
+  </template>
+  </data>
+</odoo>

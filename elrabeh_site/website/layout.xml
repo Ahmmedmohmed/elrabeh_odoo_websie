@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<odoo>
+
+<template id="custom_website_layout" inherit_id="website.layout">
+    <xpath expr="//head" position="inside">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </xpath>
+</template>
+</odoo>

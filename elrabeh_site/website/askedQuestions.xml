@@ -1,0 +1,449 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+        <template id="askedQuestionsAr">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                        .my-navbar{
+                        background: transparent !important;
+
+                        color: white;
+                        width: 100%;
+                        }
+                        header.o_header_is_scrolled .my-navbar{
+                        background: rgb(255, 255, 255) !important;
+                        }
+                        .my-navbar .nav-link{
+                        color: white;
+                        }
+                        header.o_header_is_scrolled .my-navbar .nav-link{
+                        color: black;
+                        }
+                        <!--                         header .blackLogo{-->
+                        <!--                        display:none;-->
+                        <!--                        }-->
+                        header:not(.o_header_is_scrolled) .whiteLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .blackLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .whiteLogo{
+                        display:none;
+                        }
+                        header:not(.o_header_is_scrolled) .blackLogo{
+                        display: none;
+                        }
+
+                    </style>
+                    <div class="wrap-ar">
+                        <!--                    الأسئلة الشائعة-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        الأسئلة الشائعة
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        كل ما تحتاج لمعرفته حول خدماتنا وأعمالنا!
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+                                <div class="accordion mb-5 quesss" id="accordionExample" dir="ltr">
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse "
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cta mb-5">
+                                    <div class="div">
+                                        <h5 class="fw-bold">تحميل المزيد</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="container">
+                                <div>
+                                    <div class="questionAsked">
+
+                                        <div style="">
+                                            <h3>لم تجد إجابتك؟</h3>
+                                            <div>نحن هنا للمساعدة! تواصل معنا مباشرة للحصول على إجابة سريعة
+                                                ومعلومات دقيقة.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class=" border-0 green-btn">
+                                                تواصل معنا الآن
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center" dir="rtl">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">تطبيق رابـــح في جيبك!</h1>
+                                        <p class="promo-description">
+                                            عيش تجربة فريدة مع تطبيق رابح. سهّل حياتك، تابع خدماتك، وكن قريب من كل اللي
+                                            تحتاجه بسرعة وسهولة.
+                                        </p>
+                                          <div>
+                                            <p class="download-title">حمل التطبيق الأن:</p>
+                                            <div class="d-flex gap-3 flex-row-reverse justify-content-end">
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                 <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                         width="100%"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <div style="width: 100%; min-height: 277px;">
+                                            <img src="/elrabeh_site/static/src/images/appRabeh.png" width="80%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+                        <!--                    الأسئلة الشائعة-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        Frequently Asked Questions
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        Everything You Need To Know About Our Services And Business!
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+                                <div class="accordion mb-5 quesss" id="accordionEnExample" dir="rtl">
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse "
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                 <h6 class="text-start ps-2" dir="ltr">How long does it take to implement the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                           <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                              <h6 class="text-start ps-2" dir="ltr">How long does it take to implement the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                          <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
+                                                 <h6 class="text-start ps-2" dir="ltr">How long does it take to implement the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                             <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cta mb-5">
+                                    <div class="div">
+                                        <h5 class="fw-bold">load more</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="container">
+                                <div>
+                                    <div class="questionAsked">
+
+                                        <div style="">
+                                            <h3>Didn't find your answer?</h3>
+                                            <div class="greyPara">We're here to help! Contact us directly for a quick
+                                                answer and accurate information.
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <button class=" border-0 green-btn">
+                                                Contact us now
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">Rabeh app in your pocket!</h1>
+                                         <p class="promo-description">
+                                            Experience something unique with the Winning app. Simplify your life, keep
+                                            track of your services, and stay close to everything you need quickly and
+                                            easily.
+                                         </p>
+                                        <div>
+                                            <p class="download-title">Download the app now:</p>
+                                             <div class="d-flex gap-3">
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                     alt="App Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                     alt="Play Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                     alt="Huawei AppGallery"
+                                                     width="100%"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <img src="/elrabeh_site/static/src/images/rabeh-app.png"
+                                             alt="Rabeh App"
+                                             width="80%"/>
+                                    </div>
+                                </div>
+                            </div><div/>
+                                         <div/>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

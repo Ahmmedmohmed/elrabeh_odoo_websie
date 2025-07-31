@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+
+    <template id="affiliate_link_page" name="Affiliate Link Page">
+      <t t-call="website.layout">
+        <t t-set="user_id" t-value="request.env.user.id"/>
+        <t t-set="affiliate" t-value="request.env['elrabeh.affiliate.request'].sudo().search([('user_id', '=', request.env.user.id), ('state', '=', 'approved')], limit=1)"/>
+
+
+        <div class="container my-5">
+
+          <t t-if="affiliate and affiliate.tracking_url">
+
+            <!-- Arabic Section -->
+            <div class="warp-ar">
+              <div class="affiliate-content" style="direction: rtl;">
+                <h2 class="text-center mb-3">رابط التسويق الخاص بك</h2>
+                <p>👤 <strong>اسمك:</strong> <t t-esc="affiliate.name"/></p>
+                <div class="alert alert-success mt-3">
+                  <strong>الرابط:</strong><br/>
+                  <a t-att-href="affiliate.tracking_url">
+                    <t t-esc="affiliate.tracking_url"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- English Section -->
+            <div class="warp-en">
+              <div class="affiliate-content" style="direction: ltr;">
+                <h2 class="text-center mb-3">Your Affiliate Link</h2>
+                <p>👤 <strong>Name:</strong> <t t-esc="affiliate.name"/></p>
+                <div class="alert alert-success mt-3">
+                  <strong>Link:</strong><br/>
+                  <a t-att-href="affiliate.tracking_url">
+                    <t t-esc="affiliate.tracking_url"/>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </t>
+          <t t-else="">
+            <div class="alert alert-warning text-center">
+              <div class="warp-ar">
+                لم يتم قبول طلبك بعد، يرجى الانتظار للمراجعة.
+              </div>
+              <div class="warp-en">
+                Your request is still under review. Please wait for admin approval.
+              </div>
+            </div>
+          </t>
+
+        </div>
+      </t>
+    </template>
+
+  </data>
+</odoo>

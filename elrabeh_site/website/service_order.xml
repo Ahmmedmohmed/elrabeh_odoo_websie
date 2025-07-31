@@ -1,0 +1,1159 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="service_order">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                        form#multiStepForm {
+                        background: rgba(74, 206, 203, 0.05);
+                        border: 2px solid white;
+                        border-radius: 16px;
+                        padding: 16px 24px;
+                        }
+                        .checkbox-label {
+                        color: #333;
+                        font-size: 16px;
+                        }
+
+                        /* Hide the default checkbox */
+                        .custom-checkbox {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                        height: 0;
+                        width: 0;
+                        }
+
+                        /* Create custom checkbox */
+                        .checkbox-container {
+                        position: relative;
+                        display: inline-block;
+                        height: 24px;
+                        width: 24px;
+                        border: 2px solid white;
+                        border-radius: 5px;
+                        }
+
+                        /* Style for checked state - checkmark */
+                        .custom-checkbox:checked + .checkbox-container:after {
+                        content: "";
+                        position: absolute;
+                        display: block;
+                        left: 7px;
+                        top: 3px;
+                        width: 6px;
+                        height: 12px;
+                        border: solid white;
+                        border-width: 0 2px 2px 0;
+                        transform: rotate(45deg);
+                        }
+                        .custom-checkbox:checked + .checkbox-container{
+                        background: #4dcbc2;
+                        }
+                        .prevarren{
+                        transform: rotate(180deg);
+                        }
+
+                    </style>
+                    <div class="wrap-ar">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="container mt-5">
+                                <form id="multiStepForm" class="mb-5 col-md-9 mx-auto">
+                                    <h2>
+                                        اطلب خدمتك وابدأ بالنمو!
+                                    </h2>
+                                    <!-- Step 1 -->
+                                    <div class="stepform mt-5" id="step1">
+                                        <h3>1/6</h3>
+                                        <h4>مرحبًا بك،</h4>
+                                        <h4>ما اسمك الأول والاخير؟</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <input type="email"
+                                                   class="form-control border-0 bg-transparent emailInput"
+                                                   placeholder="اسمك الأول"/>
+                                        </div>
+                                        <div class="form-control-custom position-relative mb-5">
+                                            <input type="email"
+                                                   class="form-control border-0 bg-transparent emailInput"
+                                                   placeholder="اسمك الاخير"/>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        اضغط
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextStep(2)">
+                                                التالي
+                                                <img src="/elrabeh_site/static/src/images/next-arrow.svg" class="ms-3"/>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Step 2 -->
+                                    <div class="stepform mt-5 d-none" id="step2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevStep(1)" class="cursor-pointer">
+                                                <div>
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>2/6</h3>
+                                        </div>
+                                        <h4>مرحبا، usf</h4>
+                                        <h4>ما هي الخدمة التي تبحث عنها؟</h4>
+
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv1"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv1" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            خدمات تصميم مواقع إلكترونية
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv2"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv2" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            خدمات تصميم تطبيقات الجوال
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv3"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv3" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            خدمات ال Odoo
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+<!--                                        <div class="form-control-custom position-relative py-2">-->
+<!--                                            <div class="custom-radio d-flex">-->
+<!--                                                <label for="serv4"-->
+<!--                                                       class="justify-content-between align-items-center w-100">-->
+<!--                                                    <div class="d-flex justify-content-between align-items-center">-->
+<!--                                                        <input type="checkbox" id="serv4" name="myRadio"/>-->
+<!--                                                        <p class="m-0 ps-2">-->
+<!--                                                            الهـويــــــــــــــــات البصريــــــــــــــة-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-control-custom position-relative py-2">-->
+<!--                                            <div class="custom-radio d-flex">-->
+<!--                                                <label for="serv5"-->
+<!--                                                       class="justify-content-between align-items-center w-100">-->
+<!--                                                    <div class="d-flex justify-content-between align-items-center">-->
+<!--                                                        <input type="checkbox" id="serv5" name="myRadio"/>-->
+<!--                                                        <p class="m-0 ps-2">-->
+<!--                                                            التسويق الإلكتروني-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-control-custom position-relative py-2">-->
+<!--                                            <div class="custom-radio d-flex">-->
+<!--                                                <label for="serv6"-->
+<!--                                                       class="justify-content-between align-items-center w-100">-->
+<!--                                                    <div class="d-flex justify-content-between align-items-center">-->
+<!--                                                        <input type="checkbox" id="serv6" name="myRadio"/>-->
+<!--                                                        <p class="m-0 ps-2">-->
+<!--                                                            خدمات التصميم الجرافيكي-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-control-custom position-relative py-2">-->
+<!--                                            <div class="custom-radio d-flex">-->
+<!--                                                <label for="serv7"-->
+<!--                                                       class="justify-content-between align-items-center w-100">-->
+<!--                                                    <div class="d-flex justify-content-between align-items-center">-->
+<!--                                                        <input type="checkbox" id="serv7" name="myRadio"/>-->
+<!--                                                        <p class="m-0 ps-2">-->
+<!--                                                            إدارة المحتـــــــوى-->
+<!--                                                        </p>-->
+<!--                                                    </div>-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        اضغط
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextStep(3)">
+                                                التالي
+                                                <img src="/elrabeh_site/static/src/images/next-arrow.svg" class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 3 -->
+                                    <div class="stepform mt-5 d-none" id="step3">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevStep(2)" class="cursor-pointer">
+                                                <div>
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>3/6</h3>
+                                        </div>
+                                        <h4>هل تستخدم حاليا أي نظام تخطيط
+                                            موارد المؤسسات (ERP)؟
+                                        </h4>
+
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="no"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="no" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            لا
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="yes"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="yes" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            نعم
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        اضغط
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextStep(4)">
+                                                التالي
+                                                <img src="/elrabeh_site/static/src/images/next-arrow.svg" class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 4 -->
+                                    <div class="stepform mt-5 d-none" id="step4">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevStep(3)" class="cursor-pointer">
+                                                <div>
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>4/6</h3>
+                                        </div>
+                                        <h4>ما هي المنطقة التي ترغب في المساعدة
+                                            فيها في Odoo؟
+                                        </h4>
+
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo1" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo1"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">مبيعات</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo2" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo2"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">محاسبة</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo3" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo3"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">جرد</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo4" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo4"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">مبيعات</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        اضغط
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextStep(5)">
+                                                التالي
+                                                <img src="/elrabeh_site/static/src/images/next-arrow.svg" class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 5 -->
+                                    <div class="stepform mt-5 d-none" id="step5">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevStep(4)" class="cursor-pointer">
+                                                <div>
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>5/6</h3>
+                                        </div>
+                                        <h4>هل يمكنك إخبارنا بالمزيد عن</h4>
+                                        <h4>مشروعك؟</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <textarea class="form-control border-0 bg-transparent"
+                                                      style="min-height: 220px;"
+                                                      placeholder="اعرض فكرة مشروعك..."></textarea>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        اضغط
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextStep(6)">
+                                                التالي
+                                                <img src="/elrabeh_site/static/src/images/next-arrow.svg" class="ms-3"/>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Step 6 -->
+                                    <div class="stepform mt-5 d-none" id="step6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevStep(5)" class="cursor-pointer">
+                                                <div>
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>6/6</h3>
+                                        </div>
+                                        <h4>كيف يمكننا التواصل معك؟</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <div class="d-flex align-items-center">
+                                                <img class="inputIcon"
+                                                     src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                     width="30" height="30"/>
+                                                <input type="email"
+                                                       class="form-control border-0 bg-transparent emailInput"
+                                                       placeholder="البريد الالكتروني"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom mb-5">
+                                            <div class="d-flex align-items-center">
+                                                <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                     alt="Flag"
+                                                     class="me-2" style="width: 24px; height: 18px;"/>
+                                                <span class="me-2">+974</span>
+                                                <input type="tel" class="form-control border-0 bg-transparent"
+                                                       placeholder="ادخل رقم الجوال"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="submit-btn" data-bs-toggle="modal"
+                                                    data-bs-target="#sendArModal">إرسال
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="sendArModal" tabindex="-1"
+                                                 aria-labelledby="sendArModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!--                                                                    <h1 class="modal-title fs-5" id="sendArModalLabel">-->
+                                                            <!--                                                                        Modal title-->
+                                                            <!--                                                                    </h1>-->
+                                                            <button type="button" class="btn-close"
+                                                                    style=" margin-inline: -0.5rem auto;"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="text-center">
+                                                                <img src="/elrabeh_site/static/src/images/verify.gif"
+                                                                     class="w-25"/>
+                                                            </div>
+                                                            <h3 class="text-center">
+                                                                شكرًا لك! تم إرسال الرسالة بنجاح
+                                                            </h3>
+                                                            <p class="greyPara text-center">تم إرسال رسالتك بنجاح!
+                                                                سنتواصل معك قريبًا للرد على استفسارك.
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center pb-3">
+                                                            <button type="button" class="btn  green-btn">العودة إلى
+                                                                الرئيسية
+                                                            </button>
+                                                            <button type="button" class="btn  green-send-outline"
+                                                                    data-bs-dismiss="modal">إلغاء
+                                                            </button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="wrap-en">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="container mt-5">
+                                <form id="multiStepForm">
+                                    <h1>
+                                        Order your service and start growing!
+                                    </h1>
+                                    <!-- Step 1 -->
+                                    <div class="stepform mt-5" id="stepen1">
+                                        <h3>1/6</h3>
+                                        <h4 class="mt-3">Welcome,</h4>
+                                        <h4 class="mb-3">what is your first and last name?</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <input type="email"
+                                                   class="form-control border-0 bg-transparent emailInput"
+                                                   placeholder="Your First Name"/>
+                                        </div>
+                                        <div class="form-control-custom position-relative mb-5">
+                                            <input type="email"
+                                                   class="form-control border-0 bg-transparent emailInput"
+                                                   placeholder="Your Last Name"/>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        Press
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextEnStep(2)">
+                                                Next
+                                                <img src="/elrabeh_site/static/src/images/arrow-en-white.svg"
+                                                     class="ms-3"/>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Step 2 -->
+                                    <div class="stepform mt-5 d-none" id="stepen2">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevEnStep(1)" class="cursor-pointer">
+                                                <div class="prevarren">
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>2/6</h3>
+                                        </div>
+                                        <h4 class="mt-3">Hello, usf</h4>
+                                        <h4 class="mb-3">what service are you looking for?</h4>
+
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv1en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv1en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Website design services
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv2en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv2en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Mobile app design services
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv3en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv3en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Odoo services
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv4en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv4en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Visual identities
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv5en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv5en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Digital marketing
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv6en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv6en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Graphic design services
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="serv7en"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="serv7en" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Content management
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        Press
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextEnStep(3)">
+                                                Next
+                                                <img src="/elrabeh_site/static/src/images/arrow-en-white.svg"
+                                                     class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 3 -->
+                                    <div class="stepform mt-5 d-none" id="stepen3">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevEnStep(2)" class="cursor-pointer">
+                                                <div class="prevarren">
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>3/6</h3>
+                                        </div>
+                                        <h4 class="my-3">Are you currently using any Enterprise Resource Planning (ERP) system?
+                                        </h4>
+
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="noen"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="noen" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            No
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom position-relative py-2">
+                                            <div class="custom-radio d-flex">
+                                                <label for="yesen"
+                                                       class="justify-content-between align-items-center w-100">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <input type="checkbox" id="yesen" name="myRadio"/>
+                                                        <p class="m-0 ps-2">
+                                                            Yes
+                                                        </p>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        Press
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+   <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextEnStep(4)">
+                                                Next
+                                                <img src="/elrabeh_site/static/src/images/arrow-en-white.svg"
+                                                     class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 4 -->
+                                    <div class="stepform mt-5 d-none" id="stepen4">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevEnStep(3)" class="cursor-pointer">
+                                                <div class="prevarren">
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>4/6</h3>
+                                        </div>
+                                        <h4 class="my-3">What area would you like assistance with in Odoo?
+                                        </h4>
+
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo1en" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo1en"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">Sales</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo2en" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo2en"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">Accounting</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo3en" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo3en"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">Inventory</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-control-custom position-relative ">
+                                            <div>
+                                                <label for="odoo4en" class="w-100 d-flex align-items-center py-2">
+                                                    <input type="checkbox" class="custom-checkbox" id="odoo4en"/>
+                                                    <span class="checkbox-container"></span>
+                                                    <span class="checkbox-label ms-2">Sales</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        Press
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+   <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextEnStep(5)">
+                                                Next
+                                                <img src="/elrabeh_site/static/src/images/arrow-en-white.svg"
+                                                     class="ms-3"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- Step 5 -->
+                                    <div class="stepform mt-5 d-none" id="stepen5">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevEnStep(4)" class="cursor-pointer">
+                                                <div class="prevarren">
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>5/6</h3>
+                                        </div>
+                                        <h4 class="my-3">Can you tell us more about your project?</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <textarea class="form-control border-0 bg-transparent"
+                                                      style="min-height: 220px;"
+                                                      placeholder="Describe your project idea..."></textarea>
+                                        </div>
+                                        <div class="d-flex align-items-center justify-content-end gap-3">
+                                            <div>
+                                                <div style="width: 114px; height: 26.66px; justify-content: flex-start; align-items: center; gap: 9px; display: inline-flex">
+
+                                                    <div style="text-align: right; color: #746D6F; font-size: 16px;  font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                        Press
+                                                    </div>
+                                                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                                        <div style="text-align: right; color: #2F181F; font-size: 16px; font-weight: 600; line-height: 24px; word-wrap: break-word">
+                                                            Enter
+                                                        </div>
+                                                    </div>
+ <div>
+                                                        <svg width="20" height="28" viewBox="0 0 20 28" fill="none"
+                                                             xmlns="http://www.w3.org/2000/svg">
+                                                            <g clip-path="url(#clip0_315_15641)">
+                                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                                      d="M3.75772 16.0464L2.8473 16.9558L3.75747 17.8661L9.21836 23.324L10.1285 22.4143L5.24637 17.5343H15.498H16.1415H16.7852V4.02539H15.498V16.2477H5.37654L10.1285 11.498L9.21834 10.5882L3.75772 16.0464Z"
+                                                                      fill="#2F181F"/>
+                                                            </g>
+                                                            <defs>
+                                                                <clipPath id="clip0_315_15641">
+                                                                    <rect width="15.9975" height="21.33" fill="white"
+                                                                          transform="matrix(-1 0 0 1 17.998 2.47363)"/>
+                                                                </clipPath>
+                                                            </defs>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="submit-btn fs-4" onclick="nextEnStep(6)">
+                                                Next
+                                                <img src="/elrabeh_site/static/src/images/arrow-en-white.svg"
+                                                     class="ms-3"/>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                    <!-- Step 6 -->
+                                    <div class="stepform mt-5 d-none" id="stepen6">
+                                        <div class="d-flex align-items-center gap-2">
+                                            <div onclick="prevEnStep(5)" class="cursor-pointer">
+                                                <div class="prevarren">
+                                                    <svg width="40" height="41" viewBox="0 0 40 41" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <rect y="0.804688" width="40" height="40" rx="20" fill="#2F181F"
+                                                              fill-opacity="0.05"/>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                                              d="M20 12.8047L28 20.8047L20 28.8047L18.793 27.5977L24.7327 21.532L12 21.532L12 20.0774L24.7327 20.0774L18.793 14.0116L20 12.8047Z"
+                                                              fill="#2F181F"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3>6/6</h3>
+                                        </div>
+                                        <h4 class="my-3">How can we contact you?</h4>
+                                        <div class="form-control-custom position-relative mt-5">
+                                            <div class="d-flex align-items-center">
+                                                <img class="inputIcon"
+                                                     src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                     width="30" height="30"/>
+                                                <input type="email"
+                                                       class="form-control border-0 bg-transparent emailInput"
+                                                       placeholder="Email"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-control-custom mb-5">
+                                            <div class="d-flex align-items-center">
+                                                <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                     alt="Flag"
+                                                     class="me-2" style="width: 24px; height: 18px;"/>
+                                                <span class="me-2">+974</span>
+                                                <input type="tel" class="form-control border-0 bg-transparent"
+                                                       placeholder="Mobile number"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="d-flex justify-content-end">
+                                            <button type="button" class="submit-btn" data-bs-toggle="modal"
+                                                    data-bs-target="#sendEnModal">Send
+                                            </button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="sendEnModal" tabindex="-1"
+                                                 aria-labelledby="sendArModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!--                                                                    <h1 class="modal-title fs-5" id="sendArModalLabel">-->
+                                                            <!--                                                                        Modal title-->
+                                                            <!--                                                                    </h1>-->
+                                                            <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="text-center">
+                                                                <img src="/elrabeh_site/static/src/images/verify.gif"
+                                                                     class="w-25"/>
+                                                            </div>
+                                                            <h3 class="text-center">
+                                                                Thank you! Your order has been received.
+                                                            </h3>
+                                                            <p class="greyPara text-center">Our team will review your
+                                                                requirements and will contact you soon to discuss the
+                                                                next steps.
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer justify-content-center pb-3">
+                                                            <button type="button" class="btn  green-send-outline"
+                                                                    data-bs-dismiss="modal">Return to Home
+                                                            </button>
+                                                            <button type="button" class="btn  green-btn">Go to My
+                                                                Services
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <script>
+                    function nextStep(step) {
+                    document.querySelectorAll(".stepform").forEach(div => div.classList.add("d-none"));
+                    document.getElementById("step" + step).classList.remove("d-none");
+                    }
+                    function prevStep(step) {
+                    document.querySelectorAll(".stepform").forEach(div => div.classList.add("d-none"));
+                    document.getElementById("step" + step).classList.remove("d-none");
+                    }
+                    function nextEnStep(step) {
+                    document.querySelectorAll(".stepform").forEach(div => div.classList.add("d-none"));
+                    document.getElementById("stepen" + step).classList.remove("d-none");
+                    }
+                    function prevEnStep(step) {
+                    document.querySelectorAll(".stepform").forEach(div => div.classList.add("d-none"));
+                    document.getElementById("stepen" + step).classList.remove("d-none");
+                    }
+                </script>
+            </t>
+        </template>
+    </data>
+</odoo>

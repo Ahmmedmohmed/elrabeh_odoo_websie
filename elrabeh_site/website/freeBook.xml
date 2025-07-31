@@ -1,0 +1,463 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+        <template id="freeBook">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                                            .modal {
+                        z-index: 9999 !important;
+                        position: fixed;
+                    }
+                    .modal-backdrop {
+                        z-index: 9998 !important;
+                    }
+                    /* تقليل أولوية العناصر الأخرى */
+                    .contact-left {
+                        position: static; !important;
+                        z-index: 1;
+                    }
+
+                        .my-navbar{
+                        background: transparent !important;
+
+                        color: white;
+                        width: 100%;
+                        }
+                        header.o_header_is_scrolled .my-navbar{
+                        background: rgb(255, 255, 255) !important;
+                        }
+                        .my-navbar .nav-link{
+                        color: white;
+                        }
+                        header.o_header_is_scrolled .my-navbar .nav-link{
+                        color: black;
+                        }
+                        header:not(.o_header_is_scrolled) .whiteLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .blackLogo{
+                        display:block;
+                        }
+                        header.o_header_is_scrolled .whiteLogo{
+                        display:none;
+                        }
+                        header:not(.o_header_is_scrolled) .blackLogo{
+                        display: none;
+                        }
+                        ul.bookFree{
+                        list-style: none;
+                        padding: 0;
+                        }
+                        ul.bookFree li{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        }
+                        ul.bookFree li::before{
+                        content: '';
+                        background-image: url('/elrabeh_site/static/src/images/check.png');
+                        width: 20px;
+                        height: 20px;
+                        background-size: contain;
+                        background-repeat: no-repeat;
+                        display: inline-block;
+                        }
+                    </style>
+                    <div class="wrap-ar">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        احجز استشارتك المجانية
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        خطوة واحدة نحو النجاح الرقمي!
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <h1 class="heading-title">احجز موعدك الآن</h1>
+                                                <p class="sub-text">
+                                                    هل لديك فكرة؟ أو تبحث عن حلول لتطوير أعمالك؟ احجز استشارتك المجانية
+                                                    الآن، ودع خبراء "رابح" يضعون بين يديك خطة مبتكرة تقودك إلى القمة.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="اسمك بالكامل"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="البريد الالكتروني"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+974</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="ادخل رقم الجوال"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/message-question.png"/>
+                                                        <select class="w-100 ps-2 bg-transparent border-0  py-2 form-select">
+                                                            <option selected="selected">نوع الاستشارة</option>
+                                                            <option value="1">استشارة عبر الجوال</option>
+                                                            <option value="2">زيارة في الموقع</option>
+                                                            <option value="3">اجتماع شخصي</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="اكتب احتياجك هنا..."></textarea>
+                                                </div>
+                                                <div>
+
+                                                    <button type="button" class="submit-btn" data-bs-toggle="modal"
+                                                            data-bs-target="#bookArModal">احجز موعدك
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="bookArModal" tabindex="-1"
+                                                         aria-labelledby="sendArModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <!--                                                                    <h1 class="modal-title fs-5" id="sendArModalLabel">-->
+                                                                    <!--                                                                        Modal title-->
+                                                                    <!--                                                                    </h1>-->
+                                                                    <button type="button" class="btn-close"
+                                                                            style=" margin-inline: -0.5rem auto;"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-center">
+                                                                        <img src="/elrabeh_site/static/src/images/book.gif"
+                                                                             class="w-25"/>
+                                                                    </div>
+                                                                    <h3 class="text-center">
+                                                                        شكراً لحجز استشارتك!
+                                                                    </h3>
+                                                                    <p class="greyPara text-center">سنتواصل معك قريبًا
+                                                                        لتأكيد موعد استشارتك.
+                                                                    </p>
+                                                                    <p class="greyPara text-center">لأي استفسارات عاجلة،
+                                                                        لا تتردد في التواصل معنا عبر البريد الإلكتروني
+                                                                        أو الهاتف. رضاك هو أولويتنا!
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center pb-3">
+                                                                    <button type="button" class="btn  green-btn">العودة
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn  green-send-outline"
+                                                                            data-bs-dismiss="modal">إلغاء
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-left p-5 pb-0 h-100 position-relative">
+                                            <div class="text-center mb-5 pb-4">
+                                                <h4 class="mb-3 fw-bolder">ماذا تتضمن استشارتنا؟</h4>
+                                            </div>
+                                            <div>
+                                                <ul class="bookFree">
+                                                    <li>مناقشة متطلباتك وأهدافك.</li>
+                                                    <li>تقديم حلول تقنية مبتكرة تناسب احتياجاتك.</li>
+                                                    <li>استراتيجيات مخصصة لتعزيز نمو أعمالك.</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h5 class="greenText">
+                                                    احجز الآن واستفد من استشارتك المجانية!
+                                                </h5>
+                                            </div>
+                                            <img src="/elrabeh_site/static/src/images/hello.png" width="100%"
+                                                 class="bottom-0 start-0"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center" dir="rtl">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">تطبيق رابـــح في جيبك!</h1>
+                                        <p class="promo-description">
+                                            عيش تجربة فريدة مع تطبيق رابح. سهّل حياتك، تابع خدماتك، وكن قريب من كل اللي
+                                            تحتاجه بسرعة وسهولة.
+                                        </p>
+                                          <div>
+                                            <p class="download-title">حمل التطبيق الأن:</p>
+                                            <div class="d-flex gap-3 flex-row-reverse justify-content-end">
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                 <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                         width="100%"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <div style="width: 100%; min-height: 277px;">
+                                            <img src="/elrabeh_site/static/src/images/appRabeh.png" width="80%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        Book your free consultation
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        One Step Towards Digital Success!
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <h1 class="heading-title">Book your appointment now</h1>
+                                                <p class="sub-text">
+                                                    Do you have an idea? Or are you looking for solutions to develop
+                                                    your business? Book your free consultation now, and let the "Rabeh"
+                                                    experts provide you with an innovative plan that leads you to the
+                                                    top.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="Full name"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="Email address"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+974</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="Phone number"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/message-question.png"/>
+                                                        <select class="w-100 ps-2 bg-transparent border-0  py-2 form-select">
+                                                            <option selected="selected">Type of consultation</option>
+                                                            <option value="1">Consultation via mobile</option>
+                                                            <option value="2">On-site visit</option>
+                                                            <option value="3">In-person meeting</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom ">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="Write your needs here..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <button type="button" class="submit-btn" data-bs-toggle="modal"
+                                                            data-bs-target="#bookEnModal">Book your appointment
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="bookEnModal" tabindex="-1"
+                                                         aria-labelledby="sendArModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <!--                                                                    <h1 class="modal-title fs-5" id="sendArModalLabel">-->
+                                                                    <!--                                                                        Modal title-->
+                                                                    <!--                                                                    </h1>-->
+                                                                    <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-center">
+                                                                        <img src="/elrabeh_site/static/src/images/book.gif"
+                                                                             class="w-25"/>
+                                                                    </div>
+                                                                    <h3 class="text-center">
+                                                                        Thank you for booking your consultation!
+                                                                    </h3>
+                                                                    <p class="greyPara text-center">We will contact you soon to confirm your consultation appointment.
+                                                                    </p>
+                                                                    <p class="greyPara text-center">For any urgent inquiries, feel free to reach out to us via email or phone. Your satisfaction is our priority!
+                                                                    </p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center pb-3">
+                                                                    <button type="button" class="btn  green-btn w-100">Back
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-left p-5 pb-0 h-100 ">
+                                            <div class="text-center mb-5 pb-4">
+                                                <h4 class="mb-3 fw-bolder">What does our consultation include?</h4>
+                                            </div>
+                                            <div>
+                                                <ul class="bookFree">
+                                                    <li>Discussion of your requirements and goals.</li>
+                                                    <li>Providing innovative technical solutions.</li>
+                                                    <li>Customized strategies to enhance.</li>
+                                                </ul>
+                                            </div>
+                                            <div>
+                                                <h5 class="greenText">
+                                                    Book now and take advantage of your free consultation!
+                                                </h5>
+                                            </div>
+                                            <img src="/elrabeh_site/static/src/images/hello.png" width="100%"
+                                                 class="bottom-0 start-0"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">Rabeh app in your pocket!</h1>
+                                        <p class="promo-description">
+                                            Experience something unique with the Winning app. Simplify your life, keep
+                                            track of your services, and stay close to everything you need quickly and
+                                            easily.
+                                        </p>
+                                        <div>
+                                            <p class="download-title">Download the app now:</p>
+                                             <div class="d-flex gap-3">
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                     alt="App Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                     alt="Play Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                     alt="Huawei AppGallery"
+                                                     width="100%"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <img src="/elrabeh_site/static/src/images/rabeh-app.png"
+                                             alt="Rabeh App"
+                                             width="80%"/>
+                                    </div>
+                                </div>
+                            </div><div/>
+                                         <div/>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

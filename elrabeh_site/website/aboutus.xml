@@ -1,0 +1,1122 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+        <template id="about_us">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                        .my-navbar{
+                        background: transparent !important;
+
+                        color: white;
+                        width: 100%;
+                        }
+                        header.o_header_is_scrolled .my-navbar{
+                        background: rgb(255, 255, 255) !important;
+                        }
+
+                        header.o_header_is_scrolled .my-navbar .nav-link{
+                        color: black;
+                        }
+                       .whiteLogo {
+
+                         display: none;
+                        }
+
+
+
+
+                    </style>
+                    <div class="wrap-ar">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center extra-margin-top">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2 mt-5">
+                                        عن رابح
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        شريكك للنجاح الرقمي
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+
+                                <div class="section1 row align-items-center" style="">
+                                    <div class="col-lg-6" style="">
+                                        <img src="/elrabeh_site/static/src/images/rabehman2.png" width="100%"/>
+                                    </div>
+                                    <div class="col-lg-6" style="">
+                                        <div class="p-section1">
+                                            <h6 class="fw-bold fa-2x">من الفكرة إلى التنفيذ، نضمن تقديم نتائج تتجاوز
+                                                التوقعات.
+                                            </h6>
+                                            <p class="my-3 greyPara">
+                                                نحن في رابح نسعى لتحويل أفكارك إلى واقع ملموس. كفريق متخصص في التحول
+                                                الرقمي
+                                                والتسويق الإبداعي، نعمل بشغف لنوفر لك حلولاً تقنية مبتكرة وخدمات تسويقية
+                                                متكاملة تُعزز من وجودك الرقمي وتُحقق أهدافك بفعالية.
+                                            </p>
+                                            <div class="w-100">
+                                                <ul class="bookFree">
+                                                    <li>دعم متواصل لضمان تحقيق أهدافك.</li>
+                                                    <li>حلول مخصصة تناسب احتياجاتك.</li>
+                                                </ul>
+                                            </div>
+                                            <div class="btns mt-5 w-100" style="">
+                                                <div class="service-btn" style="">
+                                                    <div class="text-btn"
+                                                         style="">
+                                                        <a class="text-btn text-decoration-none"
+                                                           href="/ourservices">
+                                                            اكتشف خدماتنا الآن
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="service-outline-btn" style="">
+                                                    <div class="text-btn-outline"
+                                                         style="">
+                                                        <a class="text-btn-outline text-decoration-none"
+                                                           href="https://online.fliphtml5.com/djyju/abuj/#p=4">
+                                                            ملف الشركة
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container py-5">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-12 ">
+                                        <div class="feature-card-hover feature-card   ">
+                                            <div class="icon-wrapper">
+
+                                                <div class="icon-inner icon1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_1420)">
+                                                            <path d="M6.4925 19.9682L9.394 22.9222C9.53633 21.493 10.1745 20.1478 11.2455 19.1748L12.2652 18.2485L10.15 16.3282C8.9635 15.2513 7.03733 15.487 6.17517 16.95C5.61517 17.9008 5.789 19.1188 6.4925 19.9682ZM1.75 7.5C2.716 7.5 3.5 8.284 3.5 9.25V18H3.51283C3.4545 19.1923 3.82433 20.4045 4.62817 21.3752L9.33333 26.1445V28.5H3.79167L1.2215 25.686C0.435167 24.8262 0 23.7038 0 22.5383V9.25C0 8.284 0.784 7.5 1.75 7.5ZM12.8135 20.9015L17.85 16.3282C19.0365 15.2513 20.9627 15.487 21.8248 16.95C22.3848 17.9008 22.211 19.1177 21.5075 19.967L17.724 23.7878L19.362 25.4258L23.3718 21.3752C24.1757 20.4045 24.5443 19.1923 24.4872 18H24.5V9.25C24.5 8.284 25.284 7.5 26.25 7.5C27.216 7.5 28 8.284 28 9.25V22.5383C28 23.7027 27.5648 24.8262 26.7785 25.686L24.2083 28.5H11.6667V23.4927C11.6667 22.5057 12.0832 21.5653 12.8135 20.9015ZM12.8333 14.2865C12.4682 14.4195 12.0785 14.5 11.6667 14.5C9.7335 14.5 8.16667 12.9332 8.16667 11C8.16667 10.6768 8.225 10.3688 8.30667 10.0713C7.518 9.48683 7 8.557 7 7.5C7 6.20033 7.77583 5.0885 8.8865 4.58333C8.80717 4.30333 8.75 4.014 8.75 3.70833C8.75 1.93617 10.1862 0.5 11.9583 0.5C12.2652 0.5 12.5545 0.556 12.8333 0.637667V14.2865ZM19.6933 10.0713C19.775 10.3688 19.8333 10.6757 19.8333 11C19.8333 12.9332 18.2665 14.5 16.3333 14.5C15.9215 14.5 15.5318 14.4195 15.1667 14.2865V0.637667C15.4455 0.556 15.7348 0.5 16.0417 0.5C17.8138 0.5 19.25 1.93617 19.25 3.70833C19.25 4.014 19.194 4.30333 19.1135 4.58333C20.2242 5.08733 21 6.20033 21 7.5C21 8.557 20.482 9.48683 19.6933 10.0713Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_1420">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">نساعد</h3>
+                                            <p class="card-text">نساعدك في تخطيط حملاتك.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="feature-card-hover feature-card">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <path d="M21.5833 1.66675H6.41667C2.87817 1.66675 0 4.54491 0 8.08342V20.9167C0 24.4541 2.87933 27.3334 6.41667 27.3334H21.5833C25.1207 27.3334 28 24.4541 28 20.9167V8.08342C28 4.54491 25.1207 1.66675 21.5833 1.66675ZM11.0833 4.00008C12.0493 4.00008 12.8333 4.78408 12.8333 5.75008C12.8333 6.71608 12.0493 7.50008 11.0833 7.50008C10.1173 7.50008 9.33333 6.71608 9.33333 5.75008C9.33333 4.78408 10.1173 4.00008 11.0833 4.00008ZM5.25 4.00008C6.216 4.00008 7 4.78408 7 5.75008C7 6.71608 6.216 7.50008 5.25 7.50008C4.284 7.50008 3.5 6.71608 3.5 5.75008C3.5 4.78408 4.284 4.00008 5.25 4.00008ZM24.5 20.9167C24.5 22.5256 23.1922 23.8334 21.5833 23.8334H6.41667C4.80783 23.8334 3.5 22.5256 3.5 20.9167V9.83342H24.5V20.9167ZM7.96133 19.1796C7.3325 18.5531 7 17.7504 7 16.8976C7 16.0447 7.3325 15.2421 7.93683 14.6389L9.89683 12.6789C10.5805 11.9952 11.6877 11.9952 12.3713 12.6789C13.055 13.3626 13.055 14.4697 12.3713 15.1534L10.633 16.8917L12.2955 18.4866C12.9943 19.1551 13.0165 20.2623 12.3468 20.9599C11.6783 21.6588 10.5677 21.6797 9.8735 21.0112L7.9625 19.1784L7.96133 19.1796ZM15.6287 15.1546C14.945 14.4709 14.945 13.3637 15.6287 12.6801C16.3123 11.9964 17.4195 11.9964 18.1032 12.6801L20.0643 14.6412C20.6675 15.2432 21 16.0447 21 16.8987C21 17.7527 20.6675 18.5542 20.0632 19.1574L18.1277 21.0147C17.4335 21.6832 16.3217 21.6623 15.6543 20.9634C14.9847 20.2658 15.0068 19.1586 15.7057 18.4901L17.3682 16.8952L15.6298 15.1569L15.6287 15.1546Z"
+                                                              fill="white"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">نطور</h3>
+                                            <p class="card-text">شريكك الإبداعي في تحقيق الإنجازات.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class=" feature-card-hover feature-card ">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_4937)">
+                                                            <path d="M13.9265 9.18233C14.5405 9.18272 15.1498 9.29051 15.7267 9.50083L16.2762 9.70033C15.8928 8.97642 15.3448 8.3526 14.6764 7.87903C14.008 7.40547 13.2377 7.09538 12.4276 6.97372C11.6175 6.85205 10.7902 6.92219 10.0122 7.17851C9.23411 7.43483 8.52708 7.87017 7.94793 8.44951C7.36878 9.02885 6.93368 9.73603 6.67761 10.5142C6.42155 11.2923 6.35168 12.1196 6.47361 12.9297C6.59555 13.7397 6.90589 14.5099 7.37967 15.1781C7.85346 15.8464 8.47746 16.3942 9.2015 16.7773L9.00317 16.2302C8.71575 15.4377 8.62316 14.5878 8.7332 13.7521C8.84323 12.9163 9.15267 12.1193 9.6354 11.4283C10.1181 10.7372 10.76 10.1725 11.5068 9.78156C12.2537 9.39067 13.0836 9.18515 13.9265 9.18233Z"
+                                                                  fill="white"/>
+                                                            <path d="M3.50001 12.1667C3.51477 10.1159 4.30058 8.14575 5.70126 6.64777C7.10194 5.14978 9.01495 4.23361 11.0601 4.08135C13.1053 3.92908 15.1329 4.55186 16.7399 5.82591C18.347 7.09997 19.4159 8.93203 19.7342 10.958L23.3333 12.2647C23.3333 12.232 23.3333 12.1993 23.3333 12.1667C23.3333 9.85922 22.6491 7.60359 21.3671 5.68502C20.0852 3.76645 18.2631 2.2711 16.1313 1.38808C13.9995 0.505055 11.6537 0.274016 9.39062 0.724177C7.12751 1.17434 5.04871 2.28548 3.41709 3.91709C1.78548 5.54871 0.674338 7.62751 0.224177 9.89062C-0.225984 12.1537 0.00505498 14.4995 0.888077 16.6313C1.7711 18.7631 3.26645 20.5852 5.18502 21.8671C7.10359 23.1491 9.35922 23.8333 11.6667 23.8333C11.7005 23.8333 11.732 23.8333 11.7658 23.8333L10.4592 20.2388C8.52479 19.9496 6.75843 18.9758 5.48131 17.4945C4.20419 16.0131 3.50114 14.1226 3.50001 12.1667Z"
+                                                                  fill="white"/>
+                                                            <path d="M28 16.4472L14.9333 11.7C14.4124 11.5121 13.8487 11.4764 13.3083 11.597C12.7678 11.7176 12.2728 11.9896 11.8812 12.3812C11.4896 12.7728 11.2176 13.2678 11.097 13.8083C10.9764 14.3487 11.0121 14.9124 11.2 15.4333L15.9472 28.5L20.7363 23.7167L25.5255 28.5L28 26.0255L23.2167 21.2363L28 16.4472ZM14.9123 15.4123L21.6382 17.8623L17.3577 22.1428L14.9123 15.4123Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_4937">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">نساهم</h3>
+                                            <p class="card-text">نحوّل أفكارك إلى منتجات ملموسة.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="feature-card-hover feature-card">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_1598)">
+                                                            <path d="M24.1418 6.4605C20.9557 11.882 12.5137 21.6552 2.01017 23.2313C1.9215 23.2453 1.83517 23.2512 1.74767 23.2512C0.896 23.2512 0.149333 22.6293 0.0198333 21.7613C-0.123667 20.8058 0.534333 19.9145 1.491 19.771C10.521 18.4165 18.0693 9.65133 20.9078 5.043L19.0202 4.21467C18.2443 3.874 18.2665 2.76567 19.0563 2.45767L23.7673 0.617833C24.4662 0.344833 25.2525 0.690167 25.5255 1.389L27.363 6.1C27.671 6.88983 26.8707 7.6575 26.0948 7.31683L24.1418 6.4605ZM0 7.5C0 3.6395 3.1395 0.5 7 0.5C10.8605 0.5 14 3.6395 14 7.5C14 11.3605 10.8605 14.5 7 14.5C3.1395 14.5 0 11.3605 0 7.5ZM4.66667 5.16667C4.66667 6.45583 5.71083 7.5 7 7.5C8.28917 7.5 9.33333 6.45583 9.33333 5.16667C9.33333 3.8775 8.28917 2.83333 7 2.83333C5.71083 2.83333 4.66667 3.8775 4.66667 5.16667ZM3.53967 10.6033C4.39483 11.5553 5.621 12.1667 7 12.1667C8.379 12.1667 9.60517 11.5553 10.4603 10.6033C9.73933 9.44483 8.46533 8.66667 7 8.66667C5.53467 8.66667 4.26067 9.44483 3.53967 10.6033ZM26.25 11C25.2828 11 24.5 11.784 24.5 12.75V26.75C24.5 27.716 25.2828 28.5 26.25 28.5C27.2172 28.5 28 27.716 28 26.75V12.75C28 11.784 27.2172 11 26.25 11ZM20.4167 15.6667C19.4495 15.6667 18.6667 16.4507 18.6667 17.4167V26.75C18.6667 27.716 19.4495 28.5 20.4167 28.5C21.3838 28.5 22.1667 27.716 22.1667 26.75V17.4167C22.1667 16.4507 21.3838 15.6667 20.4167 15.6667ZM14.5833 20.3333C13.6162 20.3333 12.8333 21.1173 12.8333 22.0833V26.75C12.8333 27.716 13.6162 28.5 14.5833 28.5C15.5505 28.5 16.3333 27.716 16.3333 26.75V22.0833C16.3333 21.1173 15.5505 20.3333 14.5833 20.3333ZM8.75 23.8333C7.78283 23.8333 7 24.6173 7 25.5833V26.75C7 27.716 7.78283 28.5 8.75 28.5C9.71717 28.5 10.5 27.716 10.5 26.75V25.5833C10.5 24.6173 9.71717 23.8333 8.75 23.8333ZM1.16667 26.75C1.16667 27.716 1.95067 28.5 2.91667 28.5C3.88267 28.5 4.66667 27.716 4.66667 26.75C4.66667 25.784 3.88267 25 2.91667 25C1.95067 25 1.16667 25.784 1.16667 26.75Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_1598">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">نحسن</h3>
+                                            <p class="card-text">نجعل وجودك على الإنترنت أسهل.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="container">
+
+                                <div class="section1 row align-items-center" style="">
+
+                                    <div class="col-lg-6" style="">
+                                        <div class="p-section1">
+                                            <h6 class="fw-bold fa-2x">
+                                                يطور فريقنا الإبداعي استراتيجيات مبتكرة تناسب احتياجاتك.
+                                            </h6>
+                                            <p class="my-3 greyPara">
+                                                رؤيتنا هي أن نكون الشركة الأولى في منطقة الشرق الأوسط في تقديم حلول
+                                                التحول
+                                                الرقمي، وأن نساهم في بناء مستقبل رقمي متقدم ومستدام. قيمنا ترتكز على
+                                                الابتكار، الجودة، التفاني، والتعاون، ونؤمن أن نجاح عملائنا هو معيار
+                                                نجاحنا.
+                                            </p>
+                                            <div class="w-100">
+                                                <ul class="bookFree">
+                                                    <li>نعمل بشغف لنكون شركاء نجاح لعملائنا،</li>
+                                                    <li>نوفر الأدوات والتقنيات الحديثة للتغيرات السوقية وتعزيز
+                                                        تنافسيتهم.
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="btns mt-5 w-100" style="">
+                                                <div class="service-btn" style="">
+                                                    <div class="text-btn"
+                                                         style="">
+                                                        <a class="text-btn text-decoration-none" href="/contactus">
+                                                            تواصل معنا
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6" style="">
+                                        <img src="/elrabeh_site/static/src/images/image-hero.png" width="100%"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="container">
+                                <div class="lightheroHeader mb-5 text-dark">
+                                    <div class=" mb-2 text-center">
+                                        <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                        <span class="heroSpan p-2 rounded-2">
+                                            إجابات واضحة
+                                        </span>
+                                    </div>
+                                    <div class="text-center">
+                                        <h3>
+                                            الأسئلة الشائعة
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="accordion mb-5 quesss" id="accordionExample" dir="ltr">
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse "
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
+                                                <h6 class="text-start ps-2">كم من الوقت يستغرق تنفيذ الخدمة ؟</h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionExample">
+                                            <div class="accordion-body text-start" dir="rtl">
+                                                يمكن أن تختلف هذه المدة بناءً على عوامل مثل نهج التنفيذ (المشروع الجديد
+                                                أو
+                                                المشروع القديم) وخيار النشر (فى الموقع أو السحابة)ز فى هذا المنشور,
+                                                سنستكشف
+                                                الجداول...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cta mb-5 w-100">
+                                    <div class="div">
+                                        <a class="text-btn text-decoration-none" href="/freqQues">
+                                            <h5 class="fw-bold text-center">جميع الأسئلة</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_6">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_7">
+                            <!--تواصل معنا-->
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <div>
+                                                    <div class="tag my-3 justify-content-start">
+                                                        <img class="sparkles-1"
+                                                             src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                                        <div class="frame-1984077944">
+                                                            <div class="title1 ">تواصل معنا</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="heading-title">أخبرنا باحتياجاتك...</h1>
+                                                <p class="sub-text">شاركنا احتياجاتك وسيتواصل معك فريقنا لتقديم الدعم.
+                                                    نحن
+                                                    هنا
+                                                    لخدمتك مهما كان نوع عملك.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="اسمك بالكامل"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="البريد الالكتروني"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+974</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="ادخل رقم الجوال"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="اكتب احتياجك هنا..."></textarea>
+                                                </div>
+                                                <div>
+                                                    <button  type="button" class="submit-btn" data-bs-toggle="modal"
+                                                            data-bs-target="#sendArModal">إرسال</button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="sendArModal" tabindex="-1"
+                                                         aria-labelledby="sendArModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+<!--                                                                    <h1 class="modal-title fs-5" id="sendArModalLabel">-->
+<!--                                                                        Modal title-->
+<!--                                                                    </h1>-->
+                                                                    <button type="button" class="btn-close" style=" margin-inline: -0.5rem auto;"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-center">
+                                                                    <img src="/elrabeh_site/static/src/images/verify.gif" class="w-25"/>
+                                                                    </div>
+                                                                    <h3 class="text-center">
+                                                                        شكرًا لك! تم إرسال الرسالة بنجاح
+                                                                    </h3>
+                                                                    <p class="greyPara text-center">تم إرسال رسالتك بنجاح! سنتواصل معك قريبًا للرد على استفسارك.</p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center pb-3">
+                                                                     <button type="button" class="btn  green-btn">العودة إلى الرئيسية
+                                                                    </button>
+                                                                    <button type="button" class="btn  green-send-outline"
+                                                                            data-bs-dismiss="modal">إلغاء
+                                                                    </button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-left p-5 pb-0">
+                                            <div class="text-center mb-5 pb-4">
+                                                <h4 class="mb-3 fw-bolder">موجودون دائماً من أجلك</h4>
+                                            </div>
+
+                                <div class="row g-3 my-5">
+                                    <div class="col-12 col-md-6">
+                                        <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                            <span>+97472016100</span>
+                                            <img src="/elrabeh_site/static/src/images/mobile.png" alt="Phone" class="ms-2"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                            <span>+97472016100</span>
+                                            <img src="/elrabeh_site/static/src/images/whatsapp.png" alt="WhatsApp" class="ms-2"/>
+                                        </div>
+                                    </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="contact-info d-flex justify-content-end align-items-center gap-2">
+                                                <!-- إضافة div إضافي للتحكم في المحاذاة -->
+                                                <div class="d-flex justify-content-end w-100">
+                                                    <span class="text-start me-2">Info@qatar.rabeh-mena.com</span>
+                                                </div>
+                                                <img src="/elrabeh_site/static/src/images/email.png" alt="Email"/>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                                 <div class="d-flex  align-items-center gap-4 mt-3" data-snippet="s_social_media">
+                                                    <a href="https://x.com/rabbhgroup?sfnsn=scwspwa" class="socialIcon" target="_blank">
+                                                        <img src="/elrabeh_site/static/src/images/twit.png"/>
+                                                    </a>
+                                                    <a href="https://www.facebook.com/share/15sGstZ3UZ/" class="socialIcon" target="_blank">
+                                                        <img src="/elrabeh_site/static/src/images/fa.png"/>
+                                                    </a>
+                                                    <a href="https://www.instagram.com/rabehqa?igsh=aTQzNGNmb3Y3bDdz" class="socialIcon" target="_blank">
+                                                        <img src="/elrabeh_site/static/src/images/insta.png"/>
+                                                    </a>
+                                                    <a href="https://www.linkedin.com/company/rabehqa/" class="socialIcon" target="_blank">
+                                                        <img src="/elrabeh_site/static/src/images/in.png"/>
+                                                    </a>
+
+                                                </div>
+                                            <img src="/elrabeh_site/static/src/images/hello.png" width="100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_8">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center" dir="rtl">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">تطبيق رابـــح في جيبك!</h1>
+                                        <p class="promo-description">
+                                            عيش تجربة فريدة مع تطبيق رابح. سهّل حياتك، تابع خدماتك، وكن قريب من كل اللي
+                                            تحتاجه بسرعة وسهولة.
+                                        </p>
+                                         <div>
+                                            <p class="download-title">حمل التطبيق الأن:</p>
+                                            <div class="d-flex gap-3 flex-row-reverse justify-content-end">
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                         width="100%"/>
+                                                </a>
+                                                 <a href="#" class="">
+                                                    <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                         width="100%"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <div style="width: 100%; min-height: 277px;">
+                                            <img src="/elrabeh_site/static/src/images/appRabeh.png" width="80%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="heroHeader mb-5 text-white">
+                                <div class=" mb-5 text-center">
+                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                    <span class="heroSpan p-2 rounded-2">
+                                        About Rabih
+                                    </span>
+                                </div>
+                                <div>
+                                    <h3 class="text-center">
+                                        Your Partner In Digital Success
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+
+                                <div class="section1 row align-items-center" style="">
+                                    <div class="col-lg-6" style="">
+                                        <img src="/elrabeh_site/static/src/images/rabehman2.png" width="100%"/>
+                                    </div>
+                                    <div class="col-lg-6" style="">
+                                        <div class="p-section1">
+                                            <div class="lightheroHeader mb-5 text-dark">
+                                                <div class=" mb-2 ">
+                                                    <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                                    <span class="heroSpan p-2 rounded-2">
+                                                        About Rabih
+                                                    </span>
+                                                </div>
+                                                <h6 class="fw-bold fa-2x">Your partner for digital success.
+                                                </h6>
+                                                <p class="my-3 greyPara">
+                                                    At Rabih, we strive to turn your ideas into tangible reality. As a
+                                                    specialized team in digital transformation and creative marketing,
+                                                    we
+                                                    passionately work to provide you with innovative technological
+                                                    solutions
+                                                    and comprehensive marketing services that enhance your digital
+                                                    presence
+                                                    and effectively achieve your goals.
+                                                </p>
+                                                <div class="w-100">
+                                                    <ul class="bookFree">
+                                                        <li>Continuous support to ensure you achieve your goals.</li>
+                                                        <li>Customized solutions that fit your needs.</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="btns mt-5 w-100" style="">
+                                                    <div class="service-btn" style="">
+                                                        <div class="text-btn"
+                                                             style="">
+                                                            <a class="text-btn text-decoration-none"
+                                                               href="/ourservices">
+                                                                Discover our services
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="service-outline-btn" style="">
+                                                        <div class="text-btn-outline"
+                                                             style="">
+                                                            <a class="text-btn-outline text-decoration-none"
+                                                               href="https://online.fliphtml5.com/djyju/abuj/#p=4">
+                                                                Company profile
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container py-5">
+                                <div class="row" dir="rtl">
+                                    <div class="col-lg-3 col-md-6 col-12 ">
+                                        <div class="feature-card-hover feature-card   ">
+                                            <div class="icon-wrapper">
+
+                                                <div class="icon-inner icon1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_1420)">
+                                                            <path d="M6.4925 19.9682L9.394 22.9222C9.53633 21.493 10.1745 20.1478 11.2455 19.1748L12.2652 18.2485L10.15 16.3282C8.9635 15.2513 7.03733 15.487 6.17517 16.95C5.61517 17.9008 5.789 19.1188 6.4925 19.9682ZM1.75 7.5C2.716 7.5 3.5 8.284 3.5 9.25V18H3.51283C3.4545 19.1923 3.82433 20.4045 4.62817 21.3752L9.33333 26.1445V28.5H3.79167L1.2215 25.686C0.435167 24.8262 0 23.7038 0 22.5383V9.25C0 8.284 0.784 7.5 1.75 7.5ZM12.8135 20.9015L17.85 16.3282C19.0365 15.2513 20.9627 15.487 21.8248 16.95C22.3848 17.9008 22.211 19.1177 21.5075 19.967L17.724 23.7878L19.362 25.4258L23.3718 21.3752C24.1757 20.4045 24.5443 19.1923 24.4872 18H24.5V9.25C24.5 8.284 25.284 7.5 26.25 7.5C27.216 7.5 28 8.284 28 9.25V22.5383C28 23.7027 27.5648 24.8262 26.7785 25.686L24.2083 28.5H11.6667V23.4927C11.6667 22.5057 12.0832 21.5653 12.8135 20.9015ZM12.8333 14.2865C12.4682 14.4195 12.0785 14.5 11.6667 14.5C9.7335 14.5 8.16667 12.9332 8.16667 11C8.16667 10.6768 8.225 10.3688 8.30667 10.0713C7.518 9.48683 7 8.557 7 7.5C7 6.20033 7.77583 5.0885 8.8865 4.58333C8.80717 4.30333 8.75 4.014 8.75 3.70833C8.75 1.93617 10.1862 0.5 11.9583 0.5C12.2652 0.5 12.5545 0.556 12.8333 0.637667V14.2865ZM19.6933 10.0713C19.775 10.3688 19.8333 10.6757 19.8333 11C19.8333 12.9332 18.2665 14.5 16.3333 14.5C15.9215 14.5 15.5318 14.4195 15.1667 14.2865V0.637667C15.4455 0.556 15.7348 0.5 16.0417 0.5C17.8138 0.5 19.25 1.93617 19.25 3.70833C19.25 4.014 19.194 4.30333 19.1135 4.58333C20.2242 5.08733 21 6.20033 21 7.5C21 8.557 20.482 9.48683 19.6933 10.0713Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_1420">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">We assist</h3>
+                                            <p class="card-text">We help you plan your campaigns.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="feature-card-hover feature-card">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon2">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <path d="M21.5833 1.66675H6.41667C2.87817 1.66675 0 4.54491 0 8.08342V20.9167C0 24.4541 2.87933 27.3334 6.41667 27.3334H21.5833C25.1207 27.3334 28 24.4541 28 20.9167V8.08342C28 4.54491 25.1207 1.66675 21.5833 1.66675ZM11.0833 4.00008C12.0493 4.00008 12.8333 4.78408 12.8333 5.75008C12.8333 6.71608 12.0493 7.50008 11.0833 7.50008C10.1173 7.50008 9.33333 6.71608 9.33333 5.75008C9.33333 4.78408 10.1173 4.00008 11.0833 4.00008ZM5.25 4.00008C6.216 4.00008 7 4.78408 7 5.75008C7 6.71608 6.216 7.50008 5.25 7.50008C4.284 7.50008 3.5 6.71608 3.5 5.75008C3.5 4.78408 4.284 4.00008 5.25 4.00008ZM24.5 20.9167C24.5 22.5256 23.1922 23.8334 21.5833 23.8334H6.41667C4.80783 23.8334 3.5 22.5256 3.5 20.9167V9.83342H24.5V20.9167ZM7.96133 19.1796C7.3325 18.5531 7 17.7504 7 16.8976C7 16.0447 7.3325 15.2421 7.93683 14.6389L9.89683 12.6789C10.5805 11.9952 11.6877 11.9952 12.3713 12.6789C13.055 13.3626 13.055 14.4697 12.3713 15.1534L10.633 16.8917L12.2955 18.4866C12.9943 19.1551 13.0165 20.2623 12.3468 20.9599C11.6783 21.6588 10.5677 21.6797 9.8735 21.0112L7.9625 19.1784L7.96133 19.1796ZM15.6287 15.1546C14.945 14.4709 14.945 13.3637 15.6287 12.6801C16.3123 11.9964 17.4195 11.9964 18.1032 12.6801L20.0643 14.6412C20.6675 15.2432 21 16.0447 21 16.8987C21 17.7527 20.6675 18.5542 20.0632 19.1574L18.1277 21.0147C17.4335 21.6832 16.3217 21.6623 15.6543 20.9634C14.9847 20.2658 15.0068 19.1586 15.7057 18.4901L17.3682 16.8952L15.6298 15.1569L15.6287 15.1546Z"
+                                                              fill="white"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">We develop</h3>
+                                            <p class="card-text">Your creative partner in achieving success.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class=" feature-card-hover feature-card ">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_4937)">
+                                                            <path d="M13.9265 9.18233C14.5405 9.18272 15.1498 9.29051 15.7267 9.50083L16.2762 9.70033C15.8928 8.97642 15.3448 8.3526 14.6764 7.87903C14.008 7.40547 13.2377 7.09538 12.4276 6.97372C11.6175 6.85205 10.7902 6.92219 10.0122 7.17851C9.23411 7.43483 8.52708 7.87017 7.94793 8.44951C7.36878 9.02885 6.93368 9.73603 6.67761 10.5142C6.42155 11.2923 6.35168 12.1196 6.47361 12.9297C6.59555 13.7397 6.90589 14.5099 7.37967 15.1781C7.85346 15.8464 8.47746 16.3942 9.2015 16.7773L9.00317 16.2302C8.71575 15.4377 8.62316 14.5878 8.7332 13.7521C8.84323 12.9163 9.15267 12.1193 9.6354 11.4283C10.1181 10.7372 10.76 10.1725 11.5068 9.78156C12.2537 9.39067 13.0836 9.18515 13.9265 9.18233Z"
+                                                                  fill="white"/>
+                                                            <path d="M3.50001 12.1667C3.51477 10.1159 4.30058 8.14575 5.70126 6.64777C7.10194 5.14978 9.01495 4.23361 11.0601 4.08135C13.1053 3.92908 15.1329 4.55186 16.7399 5.82591C18.347 7.09997 19.4159 8.93203 19.7342 10.958L23.3333 12.2647C23.3333 12.232 23.3333 12.1993 23.3333 12.1667C23.3333 9.85922 22.6491 7.60359 21.3671 5.68502C20.0852 3.76645 18.2631 2.2711 16.1313 1.38808C13.9995 0.505055 11.6537 0.274016 9.39062 0.724177C7.12751 1.17434 5.04871 2.28548 3.41709 3.91709C1.78548 5.54871 0.674338 7.62751 0.224177 9.89062C-0.225984 12.1537 0.00505498 14.4995 0.888077 16.6313C1.7711 18.7631 3.26645 20.5852 5.18502 21.8671C7.10359 23.1491 9.35922 23.8333 11.6667 23.8333C11.7005 23.8333 11.732 23.8333 11.7658 23.8333L10.4592 20.2388C8.52479 19.9496 6.75843 18.9758 5.48131 17.4945C4.20419 16.0131 3.50114 14.1226 3.50001 12.1667Z"
+                                                                  fill="white"/>
+                                                            <path d="M28 16.4472L14.9333 11.7C14.4124 11.5121 13.8487 11.4764 13.3083 11.597C12.7678 11.7176 12.2728 11.9896 11.8812 12.3812C11.4896 12.7728 11.2176 13.2678 11.097 13.8083C10.9764 14.3487 11.0121 14.9124 11.2 15.4333L15.9472 28.5L20.7363 23.7167L25.5255 28.5L28 26.0255L23.2167 21.2363L28 16.4472ZM14.9123 15.4123L21.6382 17.8623L17.3577 22.1428L14.9123 15.4123Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_4937">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">We contribute</h3>
+                                            <p class="card-text">We turn your ideas into tangible products.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-12">
+                                        <div class="feature-card-hover feature-card">
+                                            <div class="icon-wrapper">
+                                                <div class="icon-inner icon4">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="29"
+                                                         viewBox="0 0 28 29" fill="none">
+                                                        <g clip-path="url(#clip0_448_1598)">
+                                                            <path d="M24.1418 6.4605C20.9557 11.882 12.5137 21.6552 2.01017 23.2313C1.9215 23.2453 1.83517 23.2512 1.74767 23.2512C0.896 23.2512 0.149333 22.6293 0.0198333 21.7613C-0.123667 20.8058 0.534333 19.9145 1.491 19.771C10.521 18.4165 18.0693 9.65133 20.9078 5.043L19.0202 4.21467C18.2443 3.874 18.2665 2.76567 19.0563 2.45767L23.7673 0.617833C24.4662 0.344833 25.2525 0.690167 25.5255 1.389L27.363 6.1C27.671 6.88983 26.8707 7.6575 26.0948 7.31683L24.1418 6.4605ZM0 7.5C0 3.6395 3.1395 0.5 7 0.5C10.8605 0.5 14 3.6395 14 7.5C14 11.3605 10.8605 14.5 7 14.5C3.1395 14.5 0 11.3605 0 7.5ZM4.66667 5.16667C4.66667 6.45583 5.71083 7.5 7 7.5C8.28917 7.5 9.33333 6.45583 9.33333 5.16667C9.33333 3.8775 8.28917 2.83333 7 2.83333C5.71083 2.83333 4.66667 3.8775 4.66667 5.16667ZM3.53967 10.6033C4.39483 11.5553 5.621 12.1667 7 12.1667C8.379 12.1667 9.60517 11.5553 10.4603 10.6033C9.73933 9.44483 8.46533 8.66667 7 8.66667C5.53467 8.66667 4.26067 9.44483 3.53967 10.6033ZM26.25 11C25.2828 11 24.5 11.784 24.5 12.75V26.75C24.5 27.716 25.2828 28.5 26.25 28.5C27.2172 28.5 28 27.716 28 26.75V12.75C28 11.784 27.2172 11 26.25 11ZM20.4167 15.6667C19.4495 15.6667 18.6667 16.4507 18.6667 17.4167V26.75C18.6667 27.716 19.4495 28.5 20.4167 28.5C21.3838 28.5 22.1667 27.716 22.1667 26.75V17.4167C22.1667 16.4507 21.3838 15.6667 20.4167 15.6667ZM14.5833 20.3333C13.6162 20.3333 12.8333 21.1173 12.8333 22.0833V26.75C12.8333 27.716 13.6162 28.5 14.5833 28.5C15.5505 28.5 16.3333 27.716 16.3333 26.75V22.0833C16.3333 21.1173 15.5505 20.3333 14.5833 20.3333ZM8.75 23.8333C7.78283 23.8333 7 24.6173 7 25.5833V26.75C7 27.716 7.78283 28.5 8.75 28.5C9.71717 28.5 10.5 27.716 10.5 26.75V25.5833C10.5 24.6173 9.71717 23.8333 8.75 23.8333ZM1.16667 26.75C1.16667 27.716 1.95067 28.5 2.91667 28.5C3.88267 28.5 4.66667 27.716 4.66667 26.75C4.66667 25.784 3.88267 25 2.91667 25C1.95067 25 1.16667 25.784 1.16667 26.75Z"
+                                                                  fill="white"/>
+                                                        </g>
+                                                        <defs>
+                                                            <clipPath id="clip0_448_1598">
+                                                                <rect width="28" height="28" fill="white"
+                                                                      transform="translate(0 0.5)"/>
+                                                            </clipPath>
+                                                        </defs>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <h3 class="card-title">We improve</h3>
+                                            <p class="card-text">We make your online presence easier.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="container">
+
+                                <div class="section1 row align-items-center" style="">
+
+                                    <div class="col-lg-6" style="">
+                                        <div class="p-section1">
+                                            <h6 class="fw-bold fa-2x">
+                                                Our creative team develops innovative strategies that meet your needs.
+                                            </h6>
+                                            <p class="my-3 greyPara">
+                                                Our vision is to be the leading company in the Middle East in providing
+                                                digital transformation solutions, and to contribute to building an
+                                                advanced and sustainable digital future. Our values are based on
+                                                innovation, quality, dedication, and collaboration, and we believe that
+                                                our clients' success is the measure of our success.
+                                            </p>
+                                            <div class="w-100">
+                                                <ul class="bookFree">
+                                                    <li>We work passionately to be partners in success for our
+                                                        clients.
+                                                    </li>
+                                                    <li>We provide modern tools and technologies for market changes
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="btns mt-5 w-100" style="">
+                                                <div class="service-btn" style="">
+                                                    <div class="text-btn"
+                                                         style="">
+                                                        <a class="text-btn text-decoration-none" href="/contactus">
+                                                            Contact us.
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6" style="">
+                                        <img src="/elrabeh_site/static/src/images/image-hero.png" width="100%"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="container">
+                                <div class="lightheroHeader mb-5 text-dark">
+                                    <div class=" mb-2 text-center">
+                                        <img src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                        <span class="heroSpan p-2 rounded-2">
+                                            Clear answers.
+                                        </span>
+                                    </div>
+                                    <div class="text-center">
+                                        <h3>
+                                            Frequently Asked Questions.
+                                        </h3>
+                                    </div>
+                                </div>
+                                <div class="accordion mb-5 quesss" id="accordionEnExample" dir="rtl">
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseOne" aria-expanded="false"
+                                                    aria-controls="collapseOne">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement
+                                                    the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseOne" class="accordion-collapse collapse "
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseTwo" aria-expanded="false"
+                                                    aria-controls="collapseTwo">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement
+                                                    the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseTwo" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseThree" aria-expanded="false"
+                                                    aria-controls="collapseThree">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement
+                                                    the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseThree" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFour" aria-expanded="false"
+                                                    aria-controls="collapseFour">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement
+                                                    the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFour" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item my-4">
+                                        <h2 class="accordion-header">
+                                            <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseFive" aria-expanded="false"
+                                                    aria-controls="collapseFive">
+                                                <h6 class="text-start ps-2" dir="ltr">How long does it take to implement
+                                                    the
+                                                    service?
+                                                </h6>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseFive" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionEnExample">
+                                            <div class="accordion-body text-start" dir="ltr">
+                                                This duration can vary based on factors such as the implementation
+                                                approach (new project or existing project) and the deployment option
+                                                (on-premises or cloud). In this post,
+                                                we will explore the timelines ...
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cta mb-5 w-100">
+                                    <div class="div">
+                                        <a class="text-btn text-decoration-none" href="/freqQues">
+                                            <h5 class="fw-bold text-center">All questions.</h5>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_6">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_7">
+                            <!--تواصل معنا-->
+                            <div class="container contact-container">
+                                <div class="row gy-4">
+                                    <!-- Right Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-right">
+                                            <div class="mb-4">
+                                                <div>
+                                                    <div class="tag my-3 justify-content-start">
+                                                        <img class="sparkles-1"
+                                                             src="/elrabeh_site/static/src/images/sparkles.png"/>
+                                                        <div class="frame-1984077944">
+                                                            <div class="title1 ">Contact us.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <h1 class="heading-title">Tell us your needs...</h1>
+                                                <p class="sub-text">Share your needs with us and our team will reach out
+                                                    to provide support. We are here to serve you, no matter what type of
+                                                    business you have.
+                                                </p>
+                                            </div>
+
+                                            <form>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/profileIcon.png"
+                                                             width="30"/>
+                                                        <input type="text"
+                                                               class="form-control border-0 bg-transparent nameInput"
+                                                               placeholder="Full Name"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="inputIcon"
+                                                             src="/elrabeh_site/static/src/images/inputEmail.png"
+                                                             width="30" height="30"/>
+                                                        <input type="email"
+                                                               class="form-control border-0 bg-transparent emailInput"
+                                                               placeholder="Email Address"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom">
+                                                    <div class="d-flex align-items-center">
+                                                        <img src="/elrabeh_site/static/src/images/qatar_round_icon_64.png"
+                                                             alt="Flag"
+                                                             class="me-2" style="width: 24px; height: 18px;"/>
+                                                        <span class="me-2">+974</span>
+                                                        <input type="tel" class="form-control border-0 bg-transparent"
+                                                               placeholder="Phone Number"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-control-custom position-relative">
+                                                    <textarea class="form-control border-0 bg-transparent"
+                                                              style="min-height: 220px;"
+                                                              placeholder="Write Your Needs Here..."></textarea>
+                                                </div>
+                                                <div>
+                                                        <button type="button" class="submit-btn" data-bs-toggle="modal"
+                                                            data-bs-target="#sendModal">
+                                                        Send
+                                                    </button>
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="sendModal" tabindex="-1"
+                                                         aria-labelledby="sendModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog d-flex justify-content-center align-items-center">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+<!--                                                                    <h1 class="modal-title fs-5" id="sendModalLabel">-->
+<!--                                                                        Modal title-->
+<!--                                                                    </h1>-->
+                                                                    <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="text-center">
+                                                                    <img src="/elrabeh_site/static/src/images/verify.gif" class="w-25"/>
+                                                                    </div>
+                                                                    <h3 class="text-center">
+                                                                        Thank you! The message has been sent successfully.
+                                                                    </h3>
+                                                                    <p class="greyPara text-center">Your message has been sent successfully! We will get back to you soon to address your inquiry.</p>
+                                                                </div>
+                                                                <div class="modal-footer justify-content-center pb-3">
+                                                                    <button type="button" class="btn  green-send-outline"
+                                                                            data-bs-dismiss="modal">Cancel
+                                                                    </button>
+                                                                    <button type="button" class="btn  green-btn">Return to Home
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Left Side -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="contact-left p-5 pb-0">
+                                            <div class="text-center mb-5 pb-4">
+                                                <h4 class="mb-3 fw-bolder">Always here for you</h4>
+                                            </div>
+
+                                            <div class="row g-3 my-5" dir="rtl">
+                                                <div class="col-12 col-md-6">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/mobile.png"/>
+                                                        +97472016100
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 col-md-6">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/whatsapp.png"/>
+                                                        +97472016100
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="contact-info">
+                                                        <img src="/elrabeh_site/static/src/images/email.png"/>
+                                                        Info@qatar.rabeh-mena.com
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="social-icons my-5">
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/twit.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/insta.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/fa.png"/>
+                                                </div>
+                                                <div class="social-icon">
+                                                    <img src="/elrabeh_site/static/src/images/in.png"/>
+                                                </div>
+                                            </div>
+                                            <img src="/elrabeh_site/static/src/images/hello.png" width="100%"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--تطبيق رابـــح في جيبك!-->
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_8">
+                            <div class="promo-container container my-5 pb-0">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 ">
+                                        <h1 class="promo-title">Rabeh app in your pocket!</h1>
+                                        <p class="promo-description">
+                                            Experience something unique with the Winning app. Simplify your life, keep
+                                            track of your services, and stay close to everything you need quickly and
+                                            easily.
+                                        </p>
+                                          <div>
+                                            <p class="download-title">Download the app now:</p>
+                                             <div class="d-flex gap-3">
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/appstore.png"
+                                                     alt="App Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/playstore.png"
+                                                     alt="Play Store"
+                                                     width="100%"/>
+                                            </a>
+                                            <a href="#">
+                                                <img src="/elrabeh_site/static/src/images/huawei.png"
+                                                     alt="Huawei AppGallery"
+                                                     width="100%"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-12 text-center">
+                                        <img src="/elrabeh_site/static/src/images/rabeh-app.png"
+                                             alt="Rabeh App"
+                                             width="80%"/>
+                                    </div>
+                                </div>
+                            </div><div/>
+                                         <div/>
+                                    </div>
+
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

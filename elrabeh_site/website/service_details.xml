@@ -1,0 +1,1162 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="service_details">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+                        :root {
+                        --primary-color: #2F181F;
+                        --accent-color: #4ACECB;
+                        --light-blue: #E2EAFF;
+                        --orange: #FFB448;
+                        }
+
+                        body {
+                        font-family: 'Arial', sans-serif;
+                        color: var(--primary-color);
+                        }
+
+                        .service-tag {
+                        background: rgba(74, 206, 203, 0.10);
+                        border-radius: 8px;
+                        padding: 8px 12px;
+                        font-size: 15px;
+                        }
+
+                        .breadcrumb-icon {
+                        width: 30px;
+                        height: 30px;
+                        position: relative;
+                        }
+
+                        .breadcrumb-icon div {
+                        background: var(--orange);
+                        position: absolute;
+                        }
+
+                        .feature-tag {
+                        background: rgba(47, 24, 31, 0.03);
+                        border-radius: 8px;
+                        border: 2px solid white;
+                        padding: 16px 24px;
+                        font-size: 15px;
+                        white-space: nowrap;
+                        }
+
+                        .illustration {
+                        max-width: 100%;
+                        height: auto;
+                        }
+                        .description{
+                        font-size: 20px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 34px;
+                        }
+                        .creative-section {
+                        padding: 40px 15px;
+                        }
+
+                        .section-title {
+                        color: #2F181F;
+                        font-size: 35px;
+                        width: 305px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        text-transform: capitalize;
+                        margin-bottom: 72px;
+                        }
+                        .section-en-title {
+                        color: #2F181F;
+                        font-size: 35px;
+                        font-style: normal;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        text-transform: capitalize;
+                        margin-bottom: 72px;
+                        }
+                        .row-wrapper {
+                        display: flex;
+                        gap: 96px;
+                        margin-bottom: 0;
+                        }
+
+                        .feature-block {
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-end;
+                        gap: 24px;
+                        }
+
+                        .feature-title {
+                        color: #2F181F;
+                        font-size: 20px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 700;
+                        line-height: 30px;
+                        width: 100%;
+                        margin: 0;
+                        }
+
+                        .feature-desc {
+                        color: #2F181F;
+                        font-size: 18px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 400;
+                        line-height: 30px;
+                        text-align: justify;
+                        width: 100%;
+                        margin: 0;
+                        }
+                        .image-container {
+                        width: 100%;
+                        max-width: 1440px;
+                        margin: 0 auto;
+                        padding: 0 15px;
+                        }
+
+                        .responsive-image {
+                        width: 100%;
+                        height: auto;
+                        border-radius: 20px;
+                        padding: calc(118.25px* 0.3) 20px;
+                        box-sizing: border-box;
+                        }
+                        .process-section {
+                        max-width: 1440px;
+                        margin: 0 auto;
+                        padding: 30px 20px;
+                        border-radius: 16px;
+                        }
+
+                        .main-title {
+                        color: #2F181F;
+                        font-size: 36px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        text-transform: capitalize;
+                        margin-bottom: 64px;
+                        max-width: 894px;
+                        }
+                        .description {
+                        flex: 1;
+                        color: #2F181F;
+                        font-size: 20px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 400;
+                        line-height: 34px;
+                        }
+
+                        .steps-container {
+                        display: flex;
+                        gap: 127px;
+                        flex-direction: row-reverse;
+                        align-items: flex-start;
+                        }
+
+                        .steps-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 40px;
+                        align-items: flex-start;
+                        }
+
+                        .step {
+                        padding: 4px 0;
+                        font-size: 18px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 600;
+                        line-height: 27px;
+                        text-transform: capitalize;
+                        color: #746D6F;
+                        cursor: pointer;
+                        transition: all 0.3s ease;
+                        }
+
+                        .step.active {
+                        color: #2F181F;
+                        border-bottom: 2px solid #2F181F;
+                        }
+
+                        .step-number {
+                        color: #2F181F;
+                        font-size: 36px;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        }
+                        .content-row {
+                        border-radius: 24px;
+                        background: var(--Colors-green, #4ACECB);
+                        width: 100%;
+                        min-height: 72px;
+                        max-height: 72px;
+                        color: var(--Colors-light, #EFEFEF);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        font-size: 22px;
+                        font-style: normal;
+                        margin-block: 2rem 4rem;
+                        font-weight: 700;
+                        }
+                        .content-row:hover .hover-btn{
+                        opacity: 1;
+                        transform: scale(1);
+                        transition: all 0.5s;
+                        }
+                        .content-row:hover .display-btn{
+                        opacity: 0;
+                        top: -50px;
+                        transition: all 0.5s;
+                        }
+                        .display-btn {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        opacity: 1;
+                        top: 0;
+                        transition: all 0.5s;
+                        }
+                        .hover-btn {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        transform: scale(0.3);
+                        opacity: 0;
+                        border-radius: 24px;
+                        transition: all 0.5s;
+
+                        }
+                        li.nav-item {
+                        height: 50px;
+                        }
+                        #extraText, #extraENText{
+                        transition: all 0.5s;
+                        }
+                        @media (max-width: 1440px) {
+                        .responsive-image {
+                        padding: calc(118.25px* 0.3) 20px;
+                        }
+                        }
+                        @media (max-width: 992px) {
+                        .row-wrapper {
+                        gap: 48px;
+                        }
+                        .section-title {
+                        font-size: 32px;
+                        line-height: 42px;
+                        margin-bottom: 48px;
+                        }
+                        .responsive-image {
+                        .responsive-image {
+                        padding: calc(81.25px* 0.6) calc(125.77px* 0.4);
+                        }
+                        }
+                        .main-title {
+                        font-size: 32px;
+                        line-height: 42px;
+                        margin-bottom: 48px;
+                        }
+
+                        .steps-container {
+                        gap: 60px;
+                        }
+
+                        .description {
+                        font-size: 18px;
+                        line-height: 30px;
+                        }
+                        .section-title {
+                        font-size: 32px;
+                        line-height: 42px;
+                        margin-bottom: 36px;
+                        }
+
+                        .feature-card {
+                        padding: 32px 24px;
+                        margin-bottom: 20px;
+                        }
+
+                        .banner-text {
+                        font-size: 24px;
+                        line-height: 36px;
+                        }
+
+                        .content-row {
+                        gap: 40px;
+                        }
+                        .why-us-section {
+                        max-width: 1420px;
+                        margin: 0 auto;
+                        padding: 20px;
+                        }
+
+                        .section-title {
+                        color: #2F181F;
+                        font-size: 36px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 700;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        text-transform: capitalize;
+                        margin-bottom: 48px;
+                        }
+
+                        .feature-card {
+                        background: rgba(74, 206, 203, 0.05);
+                        border-radius: 20px;
+                        border: 2px solid white;
+                        padding: 40px 32px;
+                        height: 100%;
+                        }
+
+                        .card-title {
+                        color: #2F181F;
+                        font-size: 20px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 700;
+                        line-height: 30px;
+                        text-align: center;
+                        margin-bottom: 20px;
+                        }
+
+                        .card-text {
+                        color: #2F181F;
+                        font-size: 16px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 400;
+                        line-height: 24px;
+                        text-align: center;
+                        margin-bottom: 0;
+                        }
+
+                        .banner-section {
+                        max-width: 1440px;
+                        height: 120px;
+                        margin: 0 auto;
+                        background: #4ACECB;
+                        border-radius: 24px;
+                        position: relative;
+                        overflow: hidden;
+                        }
+
+                        .banner-content {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 31px;
+                        justify-content: center;
+                        align-items: center;
+                        height: 100%;
+                        }
+
+                        .content-row {
+                        display: flex;
+                        align-items: center;
+                        gap: 80px;
+                        justify-content: center;
+                        }
+
+<!--                        .square-icon {-->
+<!--                        width: 32px;-->
+<!--                        height: 32px;-->
+<!--                        background: white;-->
+<!--                        transform: rotate(-135deg);-->
+<!--                        }-->
+
+                        .banner-text {
+                        color: #EFEFEF;
+                        font-size: 28px;
+                        font-family: 'Graphik Arabic', sans-serif;
+                        font-weight: 700;
+                        text-transform: capitalize;
+                        line-height: 48px;
+                        letter-spacing: 0.15px;
+                        text-align: center;
+                        transition: all 0.3s ease;
+                        }
+                        .cta-text {
+                        cursor: pointer;
+                        position: relative;
+                        }
+
+                        }
+
+                        @media (max-width: 768px) {
+                        .description {
+                        font-size: 16px;
+                        line-height: 1.6;
+                        }
+
+                        .feature-tags {
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        }
+
+                        .feature-tag {
+                        margin: 5px;
+                        }
+                        .main-title {
+                        font-size: 28px;
+                        line-height: 38px;
+                        margin-bottom: 40px;
+                        }
+
+                        .steps-container {
+                        gap: 30px;
+                        flex-direction: row-reverse;
+                        align-items: flex-start;
+                        }
+
+                        .step {
+                        font-size: 16px;
+                        line-height: 24px;
+                        }
+
+                        .description {
+                        font-size: 16px;
+                        line-height: 28px;
+                        }
+
+                        .step-number {
+                        font-size: 28px;
+                        line-height: 36px;
+                        }
+                        .section-title {
+                        font-size: 28px;
+                        line-height: 38px;
+                        margin-bottom: 24px;
+                        }
+
+                        .feature-card {
+                        padding: 24px 20px;
+                        }
+
+                        .card-title {
+                        font-size: 18px;
+                        line-height: 28px;
+                        margin-bottom: 16px;
+                        }
+
+                        .card-text {
+                        font-size: 14px;
+                        line-height: 22px;
+                        }
+
+                        .banner-text {
+                        font-size: 20px;
+                        line-height: 32px;
+                        padding: 0 15px;
+                        }
+
+                        .banner-section {
+                        height: auto;
+<!--                        min-height: 120px;-->
+                        padding: 20px 0;
+                        }
+
+                        .content-row {
+                        flex-direction: column;
+                        gap: 20px;
+                        text-align: center;
+                        }
+                        }
+
+                        @media (max-width: 576px) {
+                        .service-content {
+                        padding: 20px;
+                        }
+                        .responsive-image {
+                        padding: calc(118.25px * 0.3) 20px;
+                        }
+                        .steps-list {
+                        flex-direction: row;
+                        gap: 27px;
+                        align-items: flex-start;
+                        }
+                        .description {
+                        font-size: 16px;
+                        line-height: 28px;
+                        margin: 47px 10px;
+                        }
+                        }
+                    </style>
+                    <div class="wrap-ar">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="container py-4">
+                                <div class="row justify-content-between align-items-start">
+                                    <!-- Content Column -->
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="service-content mb-5">
+                                            <!-- Breadcrumb -->
+                                            <div class="d-flex align-items-start justify-content-start mb-4">
+                                                <div class="sec-p1" style="">
+                                                    <div class="sparkle" style="">
+                                                        <img src="/elrabeh_site/static/src/images/sparkles.png"
+                                                             width="100%"/>
+                                                    </div>
+                                                    <div class="" style="">
+                                                        <div class="title1" style="">
+                                                            خدماتنا
+                                                        </div>
+                                                    </div>
+                                                    <div class="mx-2">›</div>
+                                                    <div class="service-tag ms-2">خدمات تصميم مواقع إلكترونية</div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Main Title -->
+                                            <h1 class="fw-bold h2 mb-5">خدمات تصميم مواقع إلكترونية</h1>
+
+                                            <!-- Description -->
+                                            <p class="description mb-5">
+                                                للحصول على موقع إلكتروني فريد لا مثيل له لدى المنافسين، فالحل واضح،
+                                                الحصول
+                                                على برمجة خاصة لموقعك الإلكتروني في المصادر الرقمية نضع بين يديك خدمة
+                                                برمجة
+                                                المواقع الإلكترونية التي تتم بكل احترافية
+                                            </p>
+
+                                            <!-- Feature Tags -->
+                                            <div class="feature-tags d-flex flex-wrap justify-content-start gap-3">
+                                                <div class="feature-tag">تصميمات محورها المستخدم</div>
+                                                <div class="feature-tag">التجربة تأتي أولًا</div>
+                                                <div class="feature-tag">تصميمات قائمة على الصناعة</div>
+                                                <div class="feature-tag">الاختبار وسهولة الاستخدام</div>
+                                                <div class="feature-tag">تصميمات وظيفية</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Illustration Column -->
+                                    <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+                                        <div class="illustration">
+                                            <img src="/elrabeh_site/static/src/images/services_illustration.png"
+                                                 alt="Web Design Illustration"
+                                                 class="img-fluid"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container creative-section">
+                                <h1 class="section-title">تصميم المواقع الابداعية التفاعلية</h1>
+
+                                <div class="content-wrapper">
+                                    <!-- First Row -->
+                                    <div class="row-wrapper">
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">تصميم يعكس الجودة والاحترافية</h2>
+                                            <p class="feature-desc">للمستشفيات، العيادات، أو حتى المواقع الشخصية، نساعدك
+                                                بتصميم
+                                                موقع يجمع بين الشكل الجذاب والوظائف العملية، ويعطي إحساس بالثقة لعملائك.
+                                            </p>
+                                        </div>
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">حلول مبتكرة لتجربة تسوق استثنائية</h2>
+                                            <p class="feature-desc">إذا كنت تبغي موقع تجارة إلكترونية مثل نون أو أمازون،
+                                                نوفر لك
+                                                تصميم يعكس هويتك، مع كل المزايا مثل السلة، الدفع الآمن، وخيارات توصيل
+                                                تناسب
+                                                احتياجات عملائك.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Second Row -->
+                                    <div class="row-wrapper">
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">وجود رقمي يعبر عن شركتك</h2>
+                                            <p class="feature-desc">خلنا نأسس لشركتك حضور قوي على الإنترنت. نعرض منتجاتك
+                                                وخدماتك
+                                                بطريقة احترافية تعكس ثقافة الشركة وتخطف انتباه عملائك.
+                                            </p>
+                                        </div>
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">مصممة حسب أهدافك التسويقية</h2>
+                                            <p class="feature-desc">عندك تطبيق أو حملة إعلانية؟ نصمم لك صفحات لاندينغ
+                                                مبتكرة
+                                                تجذب الزوار، وتحقق أهدافك بكل كفاءة.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="image-container">
+                                <img class="responsive-image" src="/elrabeh_site/static/src/images/img-design.png"
+                                     alt="Placeholder image"/>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="process-section">
+                                <h1 class="main-title">يتطلب التنظيم الجيد وجود آلية عمل<br/>محددة وفعالة
+                                </h1>
+                                <div class="container mt-5">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <div class="extra-content">
+                                                <p id="extraText" class="step-number mb-0">01/</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-10">
+                                            <ul class="nav flex-column nav-tabs border-bottom-0" id="myTab"
+                                                role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none active step" id="step1-tab"
+                                                       data-bs-toggle="tab" href="#step1" onclick="showExtraContent(1)"
+                                                       role="tab">دراسة الحالة
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step2-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step2" role="tab" onclick="showExtraContent(2)">البحث
+                                                        والتطوير
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step3-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step2" role="tab" onclick="showExtraContent(3)">تحديد
+                                                        الاهداف
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step4-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step3" role="tab" onclick="showExtraContent(4)">الاختبار
+                                                        والمراجعة
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step5-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step4" role="tab" onclick="showExtraContent(5)">النشر
+                                                        والمتابعة
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show  active " id="step1" role="tabpanel">
+                                                    <p class="description">دعنا نشمر عن سواعدنا ونغوص في أعماق عالم
+                                                        صناعة
+                                                        المنتجات المثير! سألقي
+                                                        نظرة فاحصة على
+                                                        العلامة التجارية والمنافسين وقيم السوق وأهداف المنتج لجمع كل
+                                                        التفاصيل المثيرة التي
+                                                        نحتاجها لصنع شيء مذهل.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step2" role="tabpanel">
+                                                    <p class="description">دعنا نشمر عن سواعدنا ونغوص في أعماق عالم
+                                                        صناعة
+                                                        المنتجات المثير! سألقي
+                                                        نظرة فاحصة على
+                                                        العلامة التجارية والمنافسين وقيم السوق وأهداف المنتج لجمع كل
+                                                        التفاصيل المثيرة التي
+                                                        نحتاجها لصنع شيء مذهل.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step3" role="tabpanel">
+                                                    <p class="description">دعنا نشمر عن سواعدنا ونغوص في أعماق عالم
+                                                        صناعة
+                                                        المنتجات المثير! سألقي
+                                                        نظرة فاحصة على
+                                                        العلامة التجارية والمنافسين وقيم السوق وأهداف المنتج لجمع كل
+                                                        التفاصيل المثيرة التي
+                                                        نحتاجها لصنع شيء مذهل.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step4" role="tabpanel">
+                                                    <p class="description">دعنا نشمر عن سواعدنا ونغوص في أعماق عالم
+                                                        صناعة
+                                                        المنتجات المثير! سألقي
+                                                        نظرة فاحصة على
+                                                        العلامة التجارية والمنافسين وقيم السوق وأهداف المنتج لجمع كل
+                                                        التفاصيل المثيرة التي
+                                                        نحتاجها لصنع شيء مذهل.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step5" role="tabpanel">
+                                                    <p class="description">دعنا نشمر عن سواعدنا ونغوص في أعماق عالم
+                                                        صناعة
+                                                        المنتجات المثير! سألقي
+                                                        نظرة فاحصة على
+                                                        العلامة التجارية والمنافسين وقيم السوق وأهداف المنتج لجمع كل
+                                                        التفاصيل المثيرة التي
+                                                        نحتاجها لصنع شيء مذهل.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_6">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_7">
+                            <div class="container why-us-section">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="section-title">ليش تختارنا؟</h2>
+                                    </div>
+                                </div>
+
+                                <div class="row g-4">
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">دعم فني دائم</h3>
+                                            <p class="card-text">نقدّم لك دعم فني على مدار الساعة، عشان نضمن نجاح موقعك
+                                                واستمرارية
+                                                أدائه بأفضل صورة.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">تجربة مستخدم مدروسة</h3>
+                                            <p class="card-text">بتصاميمنا، نركز على تجربة المستخدم لضمان سهولة التصفح
+                                                ورفع معدلات
+                                                التحويل بطريقة مدروسة.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">تصاميم راقية</h3>
+                                            <p class="card-text">تصميم مواقع يعكس هوية مشروعك بأسلوب راقٍ يجمع بين
+                                                الجمال والفعالية،
+                                                ليترك انطباعًا مميزًا عند زوارك.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_8">
+                            <div class="container">
+                                <div class="banner-section p-0 my-4">
+                                    <div class="banner-content">
+                                        <div class="content-row position-relative m-0">
+                                            <div class="display-btn position-absolute w-100 h-100">
+                                                <div class="banner-text me-5">
+                                                    <h4>
+                                                        امنح هويتك التجارية مظهرًا جذابًا.
+                                                    </h4>
+                                                </div>
+                                                <div class="square-icon">
+                                                    <img src="/elrabeh_site/static/src/images/arArrow.svg"/>
+                                                </div>
+                                            </div>
+                                            <div class="hover-btn position-absolute bg-dark w-100 h-100 ">
+                                                <a class="text-btn text-decoration-none text-white d-flex"
+                                                   href="/serviceOrder">
+                                                    <div class="banner-text cta-text me-5">
+                                                        <h4>
+                                                            اطلب خدمتك وابدأ بالنمو!
+                                                        </h4>
+                                                    </div>
+                                                    <div class="square-icon">
+                                                        <img src="/elrabeh_site/static/src/images/arArrow.svg"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrap-en">
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_1">
+                            <div class="container py-4">
+                                <div class="row justify-content-between align-items-start">
+                                    <!-- Content Column -->
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="service-content mb-5">
+                                            <!-- Breadcrumb -->
+                                            <div class="d-flex align-items-start justify-content-start mb-4">
+                                                <div class="sec-p1" style="">
+                                                    <div class="sparkle" style="">
+                                                        <img src="/elrabeh_site/static/src/images/sparkles.png"
+                                                             width="100%"/>
+                                                    </div>
+                                                    <div class="" style="">
+                                                        <div class="title1" style="">
+                                                            Our Services
+                                                        </div>
+                                                    </div>
+                                                    <div class="mx-2">›</div>
+                                                    <div class="service-tag ms-2">Website Design Services</div>
+                                                </div>
+
+                                            </div>
+
+                                            <!-- Main Title -->
+                                            <h1 class="fw-bold h2 mb-5">Website Design Services</h1>
+
+                                            <!-- Description -->
+                                            <p class="description mb-5">
+                                                To achieve a unique website that stands out from competitors, the
+                                                solution is clear: obtain a custom programming service for your website.
+                                                We offer professional website programming services at your fingertips.
+                                            </p>
+
+                                            <!-- Feature Tags -->
+                                            <div class="feature-tags d-flex flex-wrap justify-content-start gap-3">
+                                                <div class="feature-tag">User-Centered Designs</div>
+                                                <div class="feature-tag">Experience Comes Firstا</div>
+                                                <div class="feature-tag">Industry-Based Designs</div>
+                                                <div class="feature-tag">Testing and Usability</div>
+                                                <div class="feature-tag">Functional Designs</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Illustration Column -->
+                                    <div class="col-lg-5 col-md-6 mb-4 mb-md-0">
+                                        <div class="illustration">
+                                            <img src="/elrabeh_site/static/src/images/services_illustration.png"
+                                                 alt="Web Design Illustration"
+                                                 class="img-fluid"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_2">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_3">
+                            <div class="container creative-section">
+                                <h1 class="section-en-title">Creative Interactive
+                                    <br/>
+                                    Website Design
+                                </h1>
+
+                                <div class="content-wrapper">
+                                    <!-- First Row -->
+                                    <div class="row-wrapper">
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">Innovative Solutions for an Exceptional Shopping
+                                                Experience
+                                            </h2>
+                                            <p class="feature-desc">If you want an e-commerce site like Noon or Amazon,
+                                                we provide a design that reflects your identity, with all the features
+                                                like a cart, secure payment, and delivery options that suit your
+                                                customers' needs.
+                                            </p>
+                                        </div>
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">Design that Reflects Quality and Professionalism
+                                            </h2>
+                                            <p class="feature-desc">For hospitals, clinics, or even personal websites,
+                                                we help you design a site that combines attractive aesthetics with
+                                                practical functionality, instilling a sense of trust in your clients.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Second Row -->
+                                    <div class="row-wrapper">
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">Designed According to Your Marketing Goals</h2>
+                                            <p class="feature-desc">Do you have an app or an advertising campaign? We
+                                                design innovative landing pages that attract visitors and achieve your
+                                                goals efficiently.
+                                            </p>
+                                        </div>
+                                        <div class="feature-block">
+                                            <h2 class="feature-title">A Digital Presence that Represents Your Company
+                                            </h2>
+                                            <p class="feature-desc">Let's establish a strong online presence for your
+                                                company. We showcase your products and services in a professional manner
+                                                that reflects your company's culture and captures your clients'
+                                                attention.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_4">
+                            <div class="image-container">
+                                <img class="responsive-image" src="/elrabeh_site/static/src/images/img-design.png"
+                                     alt="Placeholder image"/>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_5">
+                            <div class="process-section">
+                                <h1 class="main-title">Good Organization Requires A Specific And
+                                    <br/>
+                                    Effective Working Mechanism.
+                                </h1>
+                                <div class="container mt-5">
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <div class="extra-content">
+                                                <p id="extraENText" class="step-number mb-0">/01</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <ul class="nav flex-column nav-tabs border-bottom-0" id="myTab"
+                                                role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none active step" id="step1-en-tab"
+                                                       data-bs-toggle="tab" href="#step1-en"
+                                                       onclick="showExtraEnContent(1)"
+                                                       role="tab">Case study
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step2-en-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step2-en" role="tab" onclick="showExtraEnContent(2)">
+                                                        Research and development
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step3-en-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step3-en" role="tab" onclick="showExtraEnContent(3)">
+                                                        Setting goals
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step4-en-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step4-en" role="tab" onclick="showExtraEnContent(4)">
+                                                        Testing and review
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="text-decoration-none step" id="step5-en-tab"
+                                                       data-bs-toggle="tab"
+                                                       href="#step5-en" role="tab" onclick="showExtraEnContent(5)">
+                                                        Publishing and follow-up
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-md-8">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade show  active " id="step1-en" role="tabpanel">
+                                                    <p class="description">Let's roll up our sleeves and dive deep into
+                                                        the exciting world of product manufacturing! I will take a close
+                                                        look at the brand, competitors, market values, and product goals
+                                                        to gather all the exciting details we need to create something
+                                                        amazing.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step2-en" role="tabpanel">
+                                                    <p class="description">Let's roll up our sleeves and dive deep into
+                                                        the exciting world of product manufacturing! I will take a close
+                                                        look at the brand, competitors, market values, and product goals
+                                                        to gather all the exciting details we need to create something
+                                                        amazing.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step3-en" role="tabpanel">
+                                                    <p class="description">Let's roll up our sleeves and dive deep into
+                                                        the exciting world of product manufacturing! I will take a close
+                                                        look at the brand, competitors, market values, and product goals
+                                                        to gather all the exciting details we need to create something
+                                                        amazing.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step4-en" role="tabpanel">
+                                                    <p class="description">Let's roll up our sleeves and dive deep into
+                                                        the exciting world of product manufacturing! I will take a close
+                                                        look at the brand, competitors, market values, and product goals
+                                                        to gather all the exciting details we need to create something
+                                                        amazing.
+                                                    </p>
+                                                </div>
+                                                <div class="tab-pane fade" id="step5-en" role="tabpanel">
+                                                    <p class="description">Let's roll up our sleeves and dive deep into
+                                                        the exciting world of product manufacturing! I will take a close
+                                                        look at the brand, competitors, market values, and product goals
+                                                        to gather all the exciting details we need to create something
+                                                        amazing.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_6">
+                            <div class="container">
+                                <div>
+                                    <hr class="text-white whiteHr"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_7">
+                            <div class="container why-us-section">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h2 class="section-title">Why Choose Us?</h2>
+                                    </div>
+                                </div>
+
+                                <div class="row g-4">
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">Continuous technical support</h3>
+                                            <p class="card-text">We offer round-the-clock technical support to keep your
+                                                website running smoothly.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">Thoughtful user experience</h3>
+                                            <p class="card-text">Our designs prioritize user experience for seamless
+                                                navigation and improved conversion rates.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="feature-card">
+                                            <h3 class="card-title">Elegant designs</h3>
+                                            <p class="card-text">Website designs that capture your project's essence
+                                                with elegance and effectiveness, making a lasting impression.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="oe_structure" id="oe_structure_website_blog_latest_blogs_8">
+                            <div class="container">
+                                <div class="banner-section p-0 my-4">
+                                    <div class="banner-content">
+                                        <div class="content-row position-relative m-0">
+                                            <div class="display-btn position-absolute w-100 h-100">
+                                                <div class="banner-text me-5">
+                                                    <h4>
+                                                        Give your brand a catchy look.
+                                                    </h4>
+                                                </div>
+                                                <div class="square-icon">
+                                                    <img src="/elrabeh_site/static/src/images/enArrow.svg"/>
+                                                </div>
+                                            </div>
+                                            <div class="hover-btn position-absolute bg-dark w-100 h-100 ">
+                                                <a class="text-btn text-decoration-none text-white d-flex"
+                                                   href="/serviceOrder">
+                                                    <div class="banner-text cta-text me-5">
+                                                        <h4>
+                                                            Request your service and start growing
+                                                        </h4>
+                                                    </div>
+                                                    <div class="square-icon">
+                                                        <img src="/elrabeh_site/static/src/images/enArrow.svg"/>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    function showExtraContent(tabNumber) {
+                    const extraText = document.getElementById("extraText");
+                    switch (tabNumber) {
+                    case 1:
+                    extraText.innerHTML = "01/";
+                    extraText.style.marginTop = "0px";
+                    break;
+                    case 2:
+                    extraText.innerHTML = "02/";
+                    extraText.style.marginTop = "50px";
+                    break;
+                    case 3:
+                    extraText.innerHTML = "03/";
+                    extraText.style.marginTop = "100px";
+                    break;
+                    case 4:
+                    extraText.innerHTML = "04/";
+                    extraText.style.marginTop = "150px";
+                    break;
+                    case 5:
+                    extraText.innerHTML = "05/";
+                    extraText.style.marginTop = "200px";
+                    break;
+                    }
+                    }
+                    function showExtraEnContent(tabNumber) {
+                    const extraENText = document.getElementById("extraENText");
+                    switch (tabNumber) {
+                    case 1:
+                    extraENText.innerHTML = "/01";
+                    extraENText.style.marginTop = "0px";
+                    break;
+                    case 2:
+                    extraENText.innerHTML = "/02";
+                    extraENText.style.marginTop = "50px";
+                    break;
+                    case 3:
+                    extraENText.innerHTML = "/03";
+                    extraENText.style.marginTop = "100px";
+                    break;
+                    case 4:
+                    extraENText.innerHTML = "/04";
+                    extraENText.style.marginTop = "150px";
+                    break;
+                    case 5:
+                    extraENText.innerHTML = "/05";
+                    extraENText.style.marginTop = "200px";
+                    break;
+                    }
+                    }
+                </script>
+            </t>
+        </template>
+    </data>
+</odoo>

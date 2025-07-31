@@ -1,0 +1,123 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+
+        <template id="mange_project_page">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <!-- النسخة العربية -->
+                    <div class="wrap-ar"  dir="rtl">
+                        <section class="container mt-5">
+                            <div class="text-center">
+                                <h1>إدارة المشاريع</h1>
+                                <p><a href="/">الرئيسية</a> / إدارة المشاريع</p>
+                            </div>
+
+                            <div class="mt-3 mb-3 text-end">
+                                <a href="/buy_more_projects" class="btn btn-light border">
+                                    ⭐ شراء المزيد من المشاريع
+                                </a>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center align-middle">
+                                    <thead class="table-danger">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>اسم المشروع</th>
+                                            <th>وصف</th>
+                                            <th>دوري</th>
+                                            <th>منشئ المشروع</th>
+                                            <th>تاريخ الإنشاء</th>
+                                            <th>آخر تعديل</th>
+                                            <th>إجراءات</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="projects" t-as="proj" t-index="index">
+                                            <tr>
+                                                <td><t t-esc="index + 1"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.name"/></td>
+                                                <td><t t-esc="proj.description"/></td>
+                                                <td><t t-esc="proj.role"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.creator"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.create_date"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.write_date"/></td>
+                                                <td>
+                                                    <a t-att-href="'/project/view/%s' % proj.id" class="btn btn-sm btn-light">
+                                                        👁️
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- النسخة الإنجليزية -->
+                    <div class="wrap-en">
+                        <section class="container mt-5">
+                            <div class="text-center">
+                                <h1>Project Management</h1>
+                                <p><a href="/">Home</a> / Project Management</p>
+                            </div>
+
+                            <div class="mt-3 mb-3 text-start">
+                                <a href="/buy_more_projects" class="btn btn-light border">
+                                    ⭐ Buy More Projects
+                                </a>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered text-center align-middle">
+                                    <thead class="table-danger">
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Project Name</th>
+                                            <th>Description</th>
+                                            <th>Role</th>
+                                            <th>Creator</th>
+                                            <th>Created At</th>
+                                            <th>Last Updated</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <t t-foreach="projects" t-as="proj" t-index="index">
+                                            <tr>
+                                                <td><t t-esc="index + 1"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.name"/></td>
+                                                <td><t t-esc="proj.description"/></td>
+                                                <td><t t-esc="proj.role"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.creator"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.create_date"/></td>
+                                                <td class="text-nowrap"><t t-esc="proj.write_date"/></td>
+                                                <td>
+                                                    <a t-att-href="'/project/view/%s' % proj.id" class="btn btn-sm btn-light">
+                                                        👁️
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </t>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

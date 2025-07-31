@@ -1,0 +1,250 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <template id="homeHead" name="home" inherit_id="website.layout">
+            <xpath expr="//head" position="inside">
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+                <link rel="stylesheet"
+                      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+            </xpath>
+        </template>
+        <template id="contact_us">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <style>
+
+
+                    </style>
+                    <div class="wrap-ar">
+                             <div class="container mt-5 mb-5">
+    <div class="row mt-3">
+        <!-- نموذج التواصل -->
+        <div class="col-md-6 ">
+            <h3 class="mb-4 d-flex justify-content-end">اتصل بنا إذا كانت لديك أي أسئلة</h3>
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3 text-end">
+                        <label>الاسم</label>
+                        <input type="text" class="form-control text-end" placeholder="الاسم الكامل"/>
+                    </div>
+                    <div class="col-md-6 mb-3 text-end">
+                        <label>البريد الإلكتروني</label>
+                        <input type="email" class="form-control " placeholder="example@email.com"/>
+                    </div>
+                    <div class="col-md-6 mb-3 text-end">
+                        <label>رقم الهاتف</label>
+                        <input type="text" class="form-control" placeholder="+966 5xxxxxxx"/>
+                    </div>
+                    <div class="col-md-6 mb-3 text-end">
+                        <label>اسم الشركة</label>
+                        <input type="text" class="form-control text-end" placeholder="اسم الشركة"/>
+                    </div>
+                    <div class="col-12 mb-3 text-end">
+                        <label>رسالتك</label>
+                        <textarea class="form-control text-end" rows="5" placeholder="اكتب رسالتك هنا..."></textarea>
+                    </div>
+                    <div class="col-12 text-end ">
+                        <button class="btn btn-warning px-4">إرسال</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- قسم الأسئلة المتداولة -->
+        <div class="col-md-6">
+            <h3 class="mb-4  d-flex justify-content-end" >الأسئلة المتداولة</h3>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            هل سأحصل على نفس المنتج الذي أراه في الصورة؟
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            نعم، ستحصل على نفس المنتج المعروض في الصورة ما لم يُذكر خلاف ذلك في وصف المنتج.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            أين يمكنني الاطلاع على إيصال المبيعات الخاص بي؟
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يمكنك العثور على إيصال المبيعات في صفحة حسابك تحت قسم "طلباتي".
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            كيف يمكنني إرجاع السلعة؟
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يمكنك طلب إرجاع من خلال صفحة "طلباتي" وسنتواصل معك لترتيب عملية الإرجاع.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            هل ستعيد تخزين العناصر المشار إليها على أنها "نفاد المخزون"؟
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            نحاول باستمرار إعادة تخزين المنتجات التي عليها طلب مرتفع. تابع المنتج لمتابعة التوفر.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            أين يمكنني شحن طلبي؟
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            يمكنك شحن الطلب لأي عنوان تحدده أثناء عملية الشراء.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                    </div>
+
+                    <div class="wrap-en">
+                        <div class="container mt-5 mb-5 text-start" dir="ltr">
+    <div class="row">
+        <!-- Contact Form -->
+        <div class="col-md-6">
+            <h3 class="mb-4">Contact Us If You Have Any Questions</h3>
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Name</label>
+                        <input type="text" class="form-control" placeholder="Full Name"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Email</label>
+                        <input type="email" class="form-control" placeholder="example@email.com"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Phone Number</label>
+                        <input type="text" class="form-control" placeholder="+1 555-1234"/>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control" placeholder="Company Name"/>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label>Your Message</label>
+                        <textarea class="form-control" rows="5" placeholder="Write your message here..."></textarea>
+                    </div>
+                    <div class="col-12 text-start">
+                        <button class="btn btn-warning px-4">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="col-md-6">
+            <h3 class="mb-4">Frequently Asked Questions</h3>
+            <div class="accordion" id="faqAccordionEn">
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqEn1">
+                            Will I receive the same product as shown in the picture?
+                        </button>
+                    </h2>
+                    <div id="faqEn1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            Yes, you will receive the exact product shown in the picture unless stated otherwise in the description.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEn2">
+                            Where can I find my sales receipt?
+                        </button>
+                    </h2>
+                    <div id="faqEn2" class="accordion-collapse collapse" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            You can find your sales receipt under "My Orders" in your account page.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEn3">
+                            How can I return a product?
+                        </button>
+                    </h2>
+                    <div id="faqEn3" class="accordion-collapse collapse" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            You can request a return through the "My Orders" page and we will contact you to arrange it.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEn4">
+                            Will out-of-stock items be restocked?
+                        </button>
+                    </h2>
+                    <div id="faqEn4" class="accordion-collapse collapse" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            We regularly try to restock popular products. You can follow the product for updates.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqEn5">
+                            Where can I ship my order?
+                        </button>
+                    </h2>
+                    <div id="faqEn5" class="accordion-collapse collapse" data-bs-parent="#faqAccordionEn">
+                        <div class="accordion-body">
+                            You can ship your order to any address you specify during checkout.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                    </div>
+                </div>
+
+
+            </t>
+        </template>
+    </data>
+</odoo>
