@@ -1,18 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
-    <t t-name="custom_add_to_project_button" t-inherit="website_sale.product" t-inherit-mode="extension">
-  <xpath expr="//div[@id='product_details']" position="inside">
-    <t t-if="request.env.user.has_group('base.group_user')"> <!-- متسجل دخول -->
-      <form action="/my/build_project/add_product" method="POST" t-att-data-product-id="product.id" class="add-to-project-form">
-        <input type="hidden" name="product_id" t-att-value="product.id"/>
-        <button type="submit" class="btn btn-primary">إضافة إلى مشروع</button>
-      </form>
-    </t>
-  </xpath>
-</t>
+    <data>
 
+        <template id="custom_add_to_project_button" inherit_id="website_sale.product" name="Add to Project Button">
+            <xpath expr="//div[@id='product_details']" position="inside">
 
-  </data>
+              <div class="wrap-ar">
+                <t t-if="request.env.user.has_group('base.group_user')">
+                    <form action="/my/build_project/add_product" method="POST" t-att-data-product-id="product.id" class="add-to-project-form">
+                        <input type="hidden" name="product_id" t-att-value="product.id"/>
+                        <button type="submit" class="btn btn-primary">إضافة إلى مشروع</button>
+                    </form>
+                </t>
+              </div>
+              <div class="wrap-en">
+                <t t-if="request.env.user.has_group('base.group_user')">
+                    <form action="/my/build_project/add_product" method="POST" t-att-data-product-id="product.id" class="add-to-project-form">
+                        <input type="hidden" name="product_id" t-att-value="product.id"/>
+                        <button type="submit" class="btn btn-primary">add to project</button>
+                    </form>
+                </t>
+              </div>
 
+            </xpath>
+        </template>
+
+    </data>
 </odoo>
-

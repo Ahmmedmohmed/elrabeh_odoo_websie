@@ -1,4 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_affiliate_request,elrabeh_affiliate_request,model_elrabeh_affiliate_request,base.group_system,1,1,1,1
 access_build_project_user,access.build.project.user,model_build_project,base.group_user,1,1,1,1
+access_project_temp_data_user,access_project_temp_data_user,model_project_temp_data,base.group_user,1,1,1,1
+
 

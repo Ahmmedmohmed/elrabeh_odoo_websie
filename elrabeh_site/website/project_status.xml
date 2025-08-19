@@ -1,0 +1,41 @@
+<odoo>
+    <data>
+        <template id="project_status_template" name="Project Status">
+            <t t-call="website.layout">
+                <section class="container mt-5">
+                    <h2 class="mb-4 text-center">حالة الموافقات لمشروع <span class="text-primary"><t t-esc="order.project_name"/></span></h2>
+
+                    <t t-if="pending_parties">
+                        <p class="lead text-end">الأطراف التي لم توافق بعد</p>
+                        <ul class="list-group mb-4">
+                            <t t-foreach="pending_parties" t-as="party">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <span><i class="fa fa-hourglass-half text-warning me-2"></i><t t-esc="party"/></span>
+                                    <span class="badge bg-warning text-dark rounded-pill">لم يوافق بعد</span>
+                                </li>
+                            </t>
+                        </ul>
+                    </t>
+                    <t t-else="">
+    <div class="alert alert-success text-center py-4 shadow rounded" role="alert" style="font-size:1.3em;">
+        <i class="fa fa-check-circle me-2" style="font-size:1.5em;"></i>
+        كل الأطراف وافقوا 🎉
+        <div class="mt-3">
+          <a t-attf-href="/installment/create/{{ order.id }}" class="btn btn-primary btn-lg px-4 shadow">
+    <i class="fa fa-plus-circle me-2"></i> إنشاء الدفعات الآن
+</a>
+        </div>
+    </div>
+</t>
+
+
+                    <div class="text-center mt-4">
+                        <a href="/my-projects" class="btn btn-primary px-4 py-2">
+                            <i class="fa fa-arrow-left me-2"></i> العودة إلى مشاريعي
+                        </a>
+                    </div>
+                </section>
+            </t>
+        </template>
+    </data>
+</odoo>

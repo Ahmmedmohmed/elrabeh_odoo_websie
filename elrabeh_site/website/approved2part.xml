@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="approval_page" name="Project Approval Page">
+            <t t-call="website.layout">
+                <section class="container mt-5 mb-5">
+                    <h2 class="text-center">Project Participation Request</h2>
+
+                    <t t-if="order">
+                        <!-- عرض معلومات المشروع -->
+                        <div class="mb-4 p-3 border rounded bg-light">
+                            <h4>Project Details</h4>
+                            <p><b>Name:</b> <span t-esc="order.project_name"/></p>
+                            <p><b>Contract Value:</b> <span t-esc="order.contract_value"/></p>
+                            <p><b>Address:</b> <span t-esc="order.project_address"/></p>
+                            <t t-if="order.project_image">
+                                <p><b>Image:</b><br/>
+                                    <img t-att-src="'data:image/png;base64,%s' % order.project_image"
+                                         style="max-width:200px; max-height:200px;"/>
+                                </p>
+                            </t>
+                            <t t-if="order.project_attachment">
+                                <p><b>Attachment:</b> <span t-esc="order.project_attachment_filename"/></p>
+                            </t>
+                            <h5>Parties</h5>
+                            <p><b>Party 1:</b> <span t-esc="order.party_one_name"/> | <span t-esc="order.party_one_role"/> | <span t-esc="order.party_one_email"/> | <span t-esc="order.party_one_phone"/></p>
+                            <p><b>Party 2:</b> <span t-esc="order.party_two_name"/> | <span t-esc="order.party_two_role"/> | <span t-esc="order.party_two_email"/> | <span t-esc="order.party_two_phone"/></p>
+                            <p><b>Party 3:</b> <span t-esc="order.party_three_name"/> | <span t-esc="order.party_three_role"/> | <span t-esc="order.party_three_email"/> | <span t-esc="order.party_three_phone"/></p>
+                        </div>
+
+                        <!-- فورم الموافقة / الرفض / طلب تعديل -->
+                        <form action="/project/respond" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <input type="hidden" name="token" t-att-value="token"/>
+
+                            <!-- Textarea لطلب التعديل (اختياري) -->
+                            <div class="mb-3">
+                                <label for="mod_request">Request Modification (optional):</label>
+                                <textarea name="mod_request" id="mod_request" class="form-control" rows="3"
+                                          placeholder="Write your modification request here..."></textarea>
+                            </div>
+
+                            <button name="action" value="approved" class="btn btn-success me-2">Approve</button>
+                            <button name="action" value="rejected" class="btn btn-danger me-2">Reject</button>
+                            <button name="action" value="approve_with_mod" class="btn btn-warning">Approve with Modification</button>
+                        </form>
+                    </t>
+                    <t t-else="">
+                        <p class="text-danger">Invalid or expired link.</p>
+                    </t>
+                </section>
+            </t>
+        </template>
+    </data>
+</odoo>

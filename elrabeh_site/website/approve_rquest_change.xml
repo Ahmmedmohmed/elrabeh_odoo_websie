@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="mod_review_page" name="Project Modification Review Page">
+            <t t-call="website.layout">
+                <section class="container mt-5 mb-5">
+                    <h2 class="text-center">Project Modification Request</h2>
+                    <t t-if="order">
+                        <!-- تفاصيل المشروع -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Project Details</h4>
+                            </div>
+                            <div class="card-body">
+                                <p><b>Project Name:</b> <t t-esc="order.project_name"/></p>
+                                <p><b>Contract Value:</b> <t t-esc="order.contract_value"/></p>
+                                <p><b>Project Address:</b> <t t-esc="order.project_address"/></p>
+                                <p><b>Created By:</b> <t t-esc="order.party_one_name"/></p>
+                            </div>
+                        </div>
+
+                        <!-- نص طلب التعديل -->
+                        <div class="card mb-4">
+                            <div class="card-header">
+                                <h4>Requested Modification</h4>
+                            </div>
+                            <div class="card-body">
+                                <p><t t-esc="mod_text"/></p>
+                            </div>
+                        </div>
+
+                        <!-- الفورم لأزرار الموافقة / الرفض -->
+                        <form action="" method="post">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <button type="submit" name="action" value="approved" class="btn btn-success me-2">Approve Modification</button>
+                            <button type="submit" name="action" value="rejected" class="btn btn-danger">Reject Modification</button>
+                        </form>
+                    </t>
+                    <t t-else="">
+                        <p class="text-danger">Invalid or expired link.</p>
+                    </t>
+                </section>
+            </t>
+        </template>
+
+        <!-- صفحة شكراً بعد الموافقة أو الرفض -->
+        <template id="mod_review_thanks" name="Modification Review Thanks">
+            <t t-call="website.layout">
+                <section class="container mt-5 mb-5 text-center">
+                    <h2>Thank you!</h2>
+                    <p>Your decision has been recorded successfully.</p>
+                </section>
+            </t>
+        </template>
+    </data>
+</odoo>

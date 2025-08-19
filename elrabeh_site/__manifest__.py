@@ -33,12 +33,35 @@
 'website/build_project_template.xml',
 'website/build_project_detail_page.xml',
 'website/overideprodecut.xml',
+'website/select_project_template.xml',
+'views/in_platforme.xml',
+'website/manage_my_project_role.xml',
+ 'views/sala_orderinherit.xml',
+        'website/approved2part.xml',
+    'website/project_submit_success.xml',
+    'website/project_submit_success.xml',
+        'website/thanks_approve.xml',
+
+        'website/contractor_installments_template.xml',
+'website/approve_rquest_change.xml',
+
+
+        'website/project_installments_template.xml',
 
 
 
 
 
 
+
+
+
+        'data/emil_templet.xml',
+
+
+
+        'website/my_project.xml',
+        'website/project_status.xml',
 
     ],
     'assets': {

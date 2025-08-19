@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+        <template id="select_project_template" name="Select Project for Product">
+ <t t-call="website.layout">
+
+      <div class="wrap-ar">
+              <div class="container my-5  text-end">
+      <h2>اختر مشروع لإضافة المنتج إليه</h2>
+      <form action="/my/build_project/confirm_add" method="post">
+
+        <input type="hidden" name="product_id" t-att-value="product_id"/>
+        <div class="form-group">
+          <label>مشاريعي:</label>
+          <select name="project_id" class="form-control">
+            <t t-foreach="projects" t-as="project">
+              <option t-att-value="project.id"><t t-esc="project.name"/></option>
+            </t>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">إضافة</button>
+      </form>
+    </div>
+
+
+      </div>
+       <div class="wrap-en">
+              <div class="container my-5">
+      <h2>Select a project to access the product</h2>
+     <form action="/my/build_project/confirm_add" method="post">
+
+        <input type="hidden" name="product_id" t-att-value="product_id"/>
+        <div class="form-group">
+          <label>my projects:</label>
+          <select name="project_id" class="form-control">
+            <t t-foreach="projects" t-as="project">
+              <option t-att-value="project.id"><t t-esc="project.name"/></option>
+            </t>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">add </button>
+      </form>
+    </div>
+
+
+      </div>
+  </t>
+</template>
+
+
+    </data>
+</odoo>

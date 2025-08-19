@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="approval_thanks" name="Approval Thanks Page">
+            <t t-call="website.layout">
+                <section class="container mt-5 mb-5 text-center">
+                    <h2>شكرًا لك</h2>
+                    <p>تم تسجيل ردك بنجاح.</p>
+                    <a href="/" class="btn btn-primary mt-3">العودة إلى الصفحة الرئيسية</a>
+                </section>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,56 @@
+<odoo>
+    <record id="view_order_form_inherit_project_data" model="ir.ui.view">
+        <field name="name">sale.order.form.project.data</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Project Data">
+
+                    <!-- بيانات المشروع -->
+                    <group string="Project Info" col="2">
+                        <field name="project_name"/>
+                        <field name="contract_value"/>
+                        <field name="project_address"/>
+                        <field name="user_role"/>
+                    </group>
+
+                    <group string="Attachments" col="2">
+                        <field name="project_image"/>
+                        <field name="project_attachment" filename="project_attachment_filename"/>
+                    </group>
+
+                    <!-- الطرف الأول -->
+                    <group string="Party One Details" col="2">
+                        <field name="party_one_name"/>
+                        <field name="party_one_email"/>
+                        <field name="party_one_phone"/>
+                        <field name="party_one_role"/>
+                        <field name="party_one_approved"/>
+                    </group>
+
+                    <!-- الطرف الثاني -->
+                    <group string="Party Two Details" col="2">
+                        <field name="party_two_name"/>
+                        <field name="party_two_email"/>
+                        <field name="party_two_phone"/>
+                        <field name="party_two_role"/>
+                        <field name="party_two_approved"/>
+                        <field name="party2_approved"/>
+                    </group>
+
+                    <!-- الطرف الثالث -->
+                    <group string="Party Three Details" col="2">
+                        <field name="party_three_name"/>
+                        <field name="party_three_email"/>
+                        <field name="party_three_phone"/>
+                        <field name="party_three_role"/>
+                        <field name="party_three_approved"/>
+                        <field name="party3_approved"/>
+                    </group>
+
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,41 @@
+<odoo>
+
+  <data>
+
+    <template id="installment_form_page" name="Installment Form Page">
+  <t t-call="website.layout">
+
+    <div  class="wrap-ar" dir="rtl">
+          <div id="wrap" class="container py-5">
+      <h2 class="text-center mb-4">إضافة دفعة جديدة</h2>
+      <form action="/installment/create" method="post">
+        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+        <input type="hidden" name="project_id" t-att-value="project.id"/>
+
+        <div class="mb-3">
+          <label>اسم الدفعة</label>
+          <input type="text" name="name" required="true" class="form-control"/>
+        </div>
+        <div class="mb-3">
+          <label>المبلغ</label>
+          <input type="number" step="0.01" name="amount" required="true" class="form-control"/>
+        </div>
+        <div class="mb-3">
+          <label>تاريخ الاستحقاق</label>
+          <input type="date" name="due_date" required="true" class="form-control"/>
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-danger px-4">حفظ الدفعة</button>
+        </div>
+      </form>
+    </div>
+
+
+    </div>
+  </t>
+</template>
+
+  </data>
+</odoo>
+

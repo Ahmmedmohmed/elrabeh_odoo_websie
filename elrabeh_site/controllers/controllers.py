@@ -2,6 +2,14 @@ from odoo import http
 from odoo.http import request
 from odoo import _, api, models
 from odoo.addons.website_sale.controllers.main import WebsiteSale
+from odoo import http, models, fields
+import logging
+
+_logger = logging.getLogger(__name__)
+
+import uuid
+
+
 
 import datetime
 from datetime import datetime, timedelta
@@ -10,6 +18,8 @@ import logging
 
 from odoo.addons.auth_signup.controllers.main import AuthSignupHome
 from odoo.http import request, route
+import uuid
+
 
 
 
@@ -154,11 +164,45 @@ class QamarWebsite(http.Controller):
     @http.route('/my/project/create', type='http', auth='user', website=True, csrf=False, methods=['POST'])
     def create_project(self, **post):
         project_name = post.get('project_name')
-        if project_name:
-            request.env['build.project'].sudo().create({
-                'name': project_name,
-                'user_id': request.env.user.id
+        user = request.env.user
+        Project = request.env['build.project'].sudo()
+        SaleOrder = request.env['sale.order'].sudo()
+        Product = request.env['product.product'].sudo()
+
+        # اسم المنتج اللي بيمنح صلاحية إنشاء مشروع جديد
+        product_name = "ابني مشروعك"
+        product = Product.search([('name', '=', product_name)], limit=1)
+
+        if not product:
+            # إنشاء المنتج تلقائياً إذا مش موجود
+            product = Product.create({
+                'name': product_name,
+                'type': 'service',
+                'list_price': 100.0,  # عدل السعر حسب ما تريد
             })
+
+        # تحقق إذا كان لدى المستخدم مشاريع بالفعل
+        existing_projects = Project.search([('user_id', '=', user.id)], limit=1)
+
+        if existing_projects:
+            # تأكد إن المستخدم اشترى المنتج
+            orders = SaleOrder.search([
+                ('partner_id', '=', user.partner_id.id),
+                ('state', 'in', ['sale', 'done']),
+                ('order_line.product_id', '=', product.id)
+            ], limit=1)
+
+            if not orders:
+                # لم يشتري المنتج → تحويله إلى صفحة شراء المنتج
+                return request.redirect(f'/shop/{product.id}')
+
+        # إنشاء المشروع
+        if project_name:
+            Project.create({
+                'name': project_name,
+                'user_id': user.id
+            })
+
         return request.redirect('/my/build')
 
     @http.route('/my/build', type='http', auth='user', website=True)
@@ -177,6 +221,8 @@ class QamarWebsite(http.Controller):
             return request.redirect('/my/build')
 
         categories = request.env['product.public.category'].sudo().search([])
+
+        # كل منتجات المتجر مصنفة حسب التصنيفات
         products_by_category = []
         for cat in categories:
             products = request.env['product.product'].sudo().search([
@@ -187,9 +233,20 @@ class QamarWebsite(http.Controller):
                 'products': products,
             })
 
+        # ✅ منتجات المشروع فقط مصنفة حسب التصنيفات
+        my_products_by_category = []
+        for cat in categories:
+            my_products = project.product_ids.filtered(lambda p: cat.id in p.public_categ_ids.ids)
+            if my_products:
+                my_products_by_category.append({
+                    'category': cat,
+                    'products': my_products,
+                })
+
         return request.render('elrabeh_site.build_project_detail_page', {
             'project': project,
             'products_by_category': products_by_category,
+            'my_products_by_category': my_products_by_category,  # الجديد
         })
 
     @http.route('/add_product_to_project/<int:project_id>/<int:product_id>', type='http', auth='user', website=True)
@@ -211,8 +268,12 @@ class QamarWebsite(http.Controller):
 
     @http.route('/add_to_cart/<int:project_id>', type='http', auth='user', website=True)
     def add_to_cart(self, project_id, **kwargs):
-        order = request.website.sale_get_order()
+        order = request.website.sale_get_order(force_create=1)
         project = request.env['build.project'].sudo().browse(project_id)
+
+        if not project.exists():
+            return request.not_found()
+
         for product in project.product_ids:
             order._cart_update(product_id=product.id, add_qty=1)
         return request.redirect('/shop/cart')
@@ -221,15 +282,453 @@ class QamarWebsite(http.Controller):
     def remove_from_cart(self, project_id, **kwargs):
         order = request.website.sale_get_order()
         project = request.env['build.project'].sudo().browse(project_id)
+
+        if not project.exists():
+            return request.not_found()
+
         for line in order.order_line:
             if line.product_id.id in project.product_ids.ids:
                 line.unlink()
         return request.redirect('/shop/cart')
 
+    @http.route(['/my/build_project/confirm_add'], type='http', auth='user', methods=['POST'], csrf=False)
+    def confirm_add_product(self, **post):
+        product_id = int(post.get('product_id', 0))
+        project_id = int(post.get('project_id', 0))
+        _logger = logging.getLogger(__name__)
+        _logger.info(f"[Confirm Add] product_id: {product_id}, project_id: {project_id}")
+
+        Product = request.env['product.product'].sudo()
+        Project = request.env['build.project'].sudo()
+
+        product = Product.browse(product_id)
+        project = Project.browse(project_id)
+
+        if product in project.product_ids:
+
+            request.session['add_product_message'] = f"⚠️ المنتج  مضاف بالفعل للمشروع."
+        else:
+            project.write({'product_ids': [(4, product.id)]})
+            request.session['add_product_message'] = f"✅ تم إضافة المنتج للمشروع بنجاح "
+
+        return request.redirect(f'/my/project/{project_id}')
+
+    @http.route(['/my/build_project/add_product'], type='http', auth='user', methods=['POST'], csrf=False ,website=True)
+    def add_product_to_project_from_Shop(self, **post):
+        product_id = int(post.get('product_id'))
+        user = request.env.user
+
+        # نجيب المشاريع بتاعت المستخدم
+        user_projects = request.env['build.project'].sudo().search([('user_id', '=', user.id)])
+
+        if user_projects:
+            # لو عنده مشاريع، نعرض صفحة اختيار مشروع
+            return request.render('elrabeh_site.select_project_template', {
+                'product_id': product_id,  # حوله لـ str عشان يظهر في التيمبلت
+                'projects': user_projects,
+            })
+
+
+        else:
+            # مفيش مشاريع؟ يروح ينشئ مشروع جديد
+            return request.redirect('/my/build_project/create')
+
+
+    ########## mange my project #############
+
+    @http.route('/project/approve/<string:token>', type='http', auth='public', website=True)
+    def project_approve_page(self, token, **kwargs):
+        order = request.env['sale.order'].sudo().search([
+            '|',
+            ('approval_token_party2', '=', token),
+            ('approval_token_party3', '=', token)
+        ], limit=1)
+
+        if not order:
+            return request.render('elrabeh_site.approval_invalid')
+
+        # تحديد الطرف
+        party = 'party2' if order.approval_token_party2 == token else 'party3'
+
+        return request.render('elrabeh_site.approval_page', {
+            'order': order,
+            'party': party,
+            'token': token
+        })
+ #  الموافقة او الرفض او طلب تعديل
+    @http.route('/project/respond', type='http', auth='public', website=True, csrf=False)
+    def project_respond(self, **post):
+        token = post.get('token')
+        action = post.get('action')  # approved / rejected / approve_with_mod
+        mod_request = post.get('mod_request', False)
+
+        order = request.env['sale.order'].sudo().search([
+            '|',
+            ('approval_token_party2', '=', token),
+            ('approval_token_party3', '=', token)
+        ], limit=1)
+
+        if order:
+            # تحديد الطرف
+            if order.approval_token_party2 == token:
+                party_field = 'party2_approved'
+                party_name = order.party_two_name
+            elif order.approval_token_party3 == token:
+                party_field = 'party3_approved'
+                party_name = order.party_three_name
+            else:
+                party_field = None
+
+            if party_field:
+                if action == 'approve_with_mod' and mod_request:
+                    # حفظ طلب التعديل وحالة خاصة
+                    order.sudo().write({
+                        party_field: 'pending',  # حالة جديدة
+                        f'{party_field}_mod_request': mod_request if hasattr(order,
+                                                                             f'{party_field}_mod_request') else False
+                    })
+
+                    # إرسال إيميل للطرف الأول (مالك المشروع)
+                    body_mail = f"""
+                    <p>Hello <b>{order.party_one_name}</b>,</p>
+                    <p><b>{party_name}</b> has requested modifications for the project <b>{order.project_name}</b>.</p>
+                    <p><b>Requested Changes:</b></p>
+                    <p>{mod_request}</p>
+                    <p>Please review and approve or reject the modification in your portal.</p>
+                    """
+
+                    mail_values = {
+                        'subject': f"📌 Modification Request from {party_name}",
+                        'body_html': body_mail,
+                        'email_from': 'odooboot2025@gmail.com',
+                        'email_to': order.party_one_email,
+                        'res_id': order.id,
+                        'model': 'sale.order',
+                    }
+                    mail = request.env['mail.mail'].sudo().create(mail_values)
+                    mail.sudo().send()
+                else:
+                    # الحالة العادية approve / reject
+                    order.sudo().write({party_field: action})
+
+        return request.render('elrabeh_site.approval_thanks')
+
+    # الموافقة او الرفض على التعديل
+
+    @http.route('/project/mod_review/<int:order_id>/<string:party>', type='http', auth='public', website=True,
+                csrf=False)
+    def mod_review_page(self, order_id, party, **post):
+        order = request.env['sale.order'].sudo().browse(order_id)
+        if not order:
+            return request.render('elrabeh_site.approval_invalid')
+
+        if post.get('action') in ['approved', 'rejected']:
+            # تنفيذ التعديل لو وافق
+            if post.get('action') == 'approved':
+                if party == 'party2':
+                    # هنا نطبق التعديل على المشروع تلقائيًا حسب نص طلب التعديل
+                    # مثال: تعديل اسم المشروع أو أي حقل حسب طلب الطرف 2
+                    # order.write({'project_name': order.party2_mod_request})
+                    order.party_mod_approved = 'approved'
+                elif party == 'party3':
+                    order.party_mod_approved = 'approved'
+            else:
+                order.party_mod_approved = 'rejected'
+            return request.render('elrabeh_site.mod_review_thanks')
+
+        # الصفحة تعرض نص التعديل
+        mod_text = order.party2_mod_request if party == 'party2' else order.party3_mod_request
+        return request.render('elrabeh_site.mod_review_page', {
+            'order': order,
+            'party': party,
+            'mod_text': mod_text
+        })
+
     @http.route('/mangeyproject', type='http', auth='user', website=True)
     def affiliate_link_page(self):
-        return request.render('elrabeh_site.mange_project_page')
+        user = request.env.user
+        # البحث عن منتج المشروع - مثلاً المنتج اللي عنده in_platform = True
+        product = request.env['product.product'].sudo().search([('in_platform', '=', True)], limit=1)
 
+        if product:
+            # ابحث إذا عنده طلب بيع مرتبط بالمنتج ده
+            sale_order = request.env['sale.order'].sudo().search([
+                ('partner_id', '=', user.partner_id.id),
+                ('order_line.product_id', '=', product.id)
+            ], limit=1)
+
+            if sale_order:
+                # لو موجود طلب بيع بالمشروع، يروح للصفحة الخاصة بالمشاريع
+                return request.redirect('/my-projects')
+
+        # لو مفيش طلب بيع مرتبط بالمشروع، عرض النموذج عادي مع البيانات المؤقتة (لو موجودة)
+        temp = request.env['project.temp.data'].sudo().search([('user_id', '=', user.id)], limit=1)
+        values = {}
+        if temp:
+            values = {
+                'name': temp.name,
+                'contract_value': temp.contract_value,
+                'address': temp.address,
+                'role': temp.role,
+                'image': temp.image,
+                'attachment': temp.attachment,
+            }
+        return request.render('elrabeh_site.project_form_template', values)
+
+    @http.route('/my-projects', type='http', auth='user', website=True)
+    def my_projects(self):
+        product = request.env['product.product'].sudo().search([('in_platform', '=', True)], limit=1)
+
+        orders = request.env['sale.order'].sudo().search([
+            ('partner_id', '=', request.env.user.partner_id.id),
+            ('order_line.product_id', '=', product.id)
+        ])
+
+        return request.render('elrabeh_site.my_projects_template', {
+            'orders': orders
+        })
+
+    @http.route('/project-status/<int:order_id>', type='http', auth='user', website=True)
+    def project_status(self, order_id):
+        order = request.env['sale.order'].sudo().browse(order_id)
+        if not order or order.partner_id.id != request.env.user.partner_id.id:
+            return request.not_found()
+
+        pending_parties = []
+        if order.party1_approved == 'pending':
+            pending_parties.append(order.party_one_name or 'Party 1')
+        if order.party2_approved == 'pending':
+            pending_parties.append(order.party_two_name or 'Party 2')
+        if order.party3_approved == 'pending':
+            pending_parties.append(order.party_three_name or 'Party 3')
+
+        return request.render('elrabeh_site.project_status_template', {
+            'order': order,
+            'pending_parties': pending_parties
+        })
+
+    @http.route('/project/step2', type='http', auth='user', website=True, csrf=False)
+    def project_step2(self, **post):
+        # جلب أو إنشاء سجل مؤقت للمستخدم
+        temp = request.env['project.temp.data'].sudo().search([('user_id', '=', request.env.user.id)], limit=1)
+        vals = {
+            'user_id': request.env.user.id,
+            'name': post.get('name'),
+            'contract_value': post.get('contract_value'),
+            'address': post.get('address'),
+            'role': post.get('role'),
+            # image و attachment يفضل التعامل معهم كملفات في فورم خاص لو محتاج
+            # لذا هنا افترض أنك ترسلهم كبيانات باينري مباشرة أو تعاملهم لاحقًا
+            'image': post.get('image'),
+            'attachment': post.get('attachment'),
+        }
+        if temp:
+            temp.sudo().write(vals)
+        else:
+            temp = request.env['project.temp.data'].sudo().create(vals)
+
+        user = request.env.user
+        return request.render('elrabeh_site.project_role', {
+            'name': user.name,
+            'email': user.email,
+            'phone': user.partner_id.phone or '',
+            'user_role': post.get('role'),
+        })
+
+    @http.route('/project/submit/roles', type='http', auth='user', website=True, csrf=False)
+    def submit_roles(self, **post):
+        temp = request.env['project.temp.data'].sudo().search([('user_id', '=', request.env.user.id)], limit=1)
+        if not temp:
+            return request.redirect('/mangeyproject')
+
+        # تحديث بيانات الأطراف الثانية والثالثة
+        temp.sudo().write({
+            'party_two_name': post.get('second_party_name'),
+            'party_two_role': post.get('second_party_role'),
+            'party_two_phone': post.get('second_party_phone'),
+            'party_two_email': post.get('second_party_email'),
+            'party_three_name': post.get('third_party_name'),
+            'party_three_role': post.get('third_party_role'),
+            'party_three_phone': post.get('third_party_phone'),
+            'party_three_email': post.get('third_party_email'),
+        })
+
+        # إنشاء sale.order
+        product = request.env['product.product'].sudo().search([('in_platform', '=', True)], limit=1)
+        sale_order_vals = {
+            'partner_id': request.env.user.partner_id.id,
+            'order_line': [(0, 0, {
+                'product_id': product.id if product else False,
+                'product_uom_qty': 1,
+                'price_unit': 0,
+            })],
+
+            # بيانات المشروع
+            'project_name': temp.name,
+            'contract_value': temp.contract_value,
+            'project_address': temp.address,
+            'user_role': temp.role,
+            'project_image': temp.image,
+            'project_attachment': temp.attachment,
+
+            # بيانات الطرف الأول
+            'party_one_name': request.env.user.name,
+            'party_one_email': request.env.user.email,
+            'party_one_phone': request.env.user.partner_id.phone or '',
+            'party_one_role': temp.role,
+
+            # بيانات الطرف الثاني
+            'party_two_name': temp.party_two_name,
+            'party_two_role': temp.party_two_role,
+            'party_two_phone': temp.party_two_phone,
+            'party_two_email': temp.party_two_email,
+
+            # بيانات الطرف الثالث
+            'party_three_name': temp.party_three_name,
+            'party_three_role': temp.party_three_role,
+            'party_three_phone': temp.party_three_phone,
+            'party_three_email': temp.party_three_email,
+        }
+        sale_order = request.env['sale.order'].sudo().create(sale_order_vals)
+
+        # إنشاء رموز الموافقة
+        token2 = str(uuid.uuid4())
+        token3 = str(uuid.uuid4())
+        sale_order.sudo().write({
+            'approval_token_party2': token2,
+            'approval_token_party3': token3,
+        })
+
+        # روابط الموافقة
+        base_url = request.env['ir.config_parameter'].sudo().get_param('web.base.url')
+        link_party2 = f"{base_url}/project/approve/{token2}"
+        link_party3 = f"{base_url}/project/approve/{token3}"
+
+        # صياغة HTML للإيميل
+        body_party2 = f"""
+        <p>Hello <b>{post.get('second_party_name')}</b>,</p>
+        <p>You have been added to the project <b>{sale_order.project_name or sale_order.name}</b> 
+        as <b>{post.get('second_party_role')}</b>.</p>
+        <p>Please review the project details and approve your participation using the link below:</p>
+        <p><a href="{link_party2}" style="background:#28a745;color:#fff;padding:10px 15px;border-radius:5px;text-decoration:none;">
+        Approve Project</a></p>
+        """
+
+        body_party3 = f"""
+        <p>Hello <b>{post.get('third_party_name')}</b>,</p>
+        <p>You have been added to the project <b>{sale_order.project_name or sale_order.name}</b> 
+        as <b>{post.get('third_party_role')}</b>.</p>
+        <p>Please review the project details and approve your participation using the link below:</p>
+        <p><a href="{link_party3}" style="background:#28a745;color:#fff;padding:10px 15px;border-radius:5px;text-decoration:none;">
+        Approve Project</a></p>
+        """
+        # إرسال للطرف الثاني
+        if post.get('second_party_email'):
+            mail_values2 = {
+                'subject': "📌 تمت إضافتك في مشروع جديد",
+                'body_html': body_party2,
+                'email_from': 'odooboot2025@gmail.com',
+                'email_to': post.get('second_party_email'),
+                'res_id': sale_order.id,
+                'model': 'sale.order',
+            }
+            mail2 = request.env['mail.mail'].sudo().create(mail_values2)
+            mail2.sudo().send()
+
+        # إرسال للطرف الثالث
+        if post.get('third_party_email'):
+            mail_values3 = {
+                'subject': "📌 تمت إضافتك في مشروع جديد",
+                'body_html': body_party3,
+                'email_from': 'odooboot2025@gmail.com',
+                'email_to': post.get('third_party_email'),
+                'res_id': sale_order.id,
+                'model': 'sale.order',
+            }
+            mail3 = request.env['mail.mail'].sudo().create(mail_values3)
+            mail3.sudo().send()
+
+        # # إرسال إيميل للطرف الثاني
+        # if post.get('second_party_email'):
+        #     template_two = request.env.ref('elrabeh_site.email_template_project_party_two')
+        #     template_two.sudo().with_context(
+        #         approval_link=link_party2,
+        #         party_two_name=temp.party_two_name,
+        #         party_two_role=temp.party_two_role,
+        #         project_name=temp.name
+        #     ).send_mail(
+        #         sale_order.id,
+        #         force_send=True,
+        #         email_values={
+        #             'email_to': post.get('second_party_email'),
+        #             'email_from': 'odooboot2025@gmail.com'
+        #         }
+        #     )
+
+        # إرسال إيميل للطرف الثالث
+        # if post.get('third_party_email'):
+        #     template_three = request.env.ref('elrabeh_site.email_template_project_party_three')
+        #     template_three.sudo().with_context(
+        #         approval_link=link_party3,
+        #         party_three_name=temp.party_three_name,
+        #         party_three_role=temp.party_three_role,
+        #         project_name=temp.name
+        #     ).send_mail(
+        #         sale_order.id,
+        #         force_send=True,
+        #         email_values={
+        #             'email_to': post.get('third_party_email'),
+        #             'email_from': 'odooboot2025@gmail.com'
+        #         }
+        #     )
+
+        # حذف البيانات المؤقتة
+        temp.sudo().unlink()
+
+        return request.render('elrabeh_site.project_submit_success', {
+            'order': sale_order
+        })
+
+    @http.route('/project/create', type='http', auth='user', website=True)
+    def create_project(self):
+        # بس عرض فورم إنشاء مشروع بدون فحص
+        temp = request.env['project.temp.data'].sudo().search([('user_id', '=', request.env.user.id)], limit=1)
+        values = {}
+        if temp:
+            values = {
+                'name': temp.name,
+                'contract_value': temp.contract_value,
+                'address': temp.address,
+                'role': temp.role,
+                'image': temp.image,
+                'attachment': temp.attachment,
+            }
+        return request.render('elrabeh_site.project_form_template', values)
+
+    @http.route(['/installment/create/<int:order_id>'], type='http', auth="user", website=True)
+    def installment_form(self, order_id, **post):
+        order = request.env['sale.order'].browse(order_id)
+        if not order:
+            return request.not_found()
+        return request.render("elrabeh_site.installment_form_page", {
+            'project': order,  # عشان في التمبلت انت مسميها project
+        })
+
+    # معالجة الفورم وحفظ الدفعة
+    @http.route(['/installment/save'], type='http', auth="user", website=True, methods=['POST'], csrf=True)
+    def installment_save(self, **post):
+        project_id = int(post.get('project_id'))
+        vals = {
+            'project_id': project_id,
+            'name': post.get('name'),
+            'amount': float(post.get('amount')),
+            'due_date': post.get('due_date'),
+            'owner_id': request.env.user.id,
+        }
+        request.env['project.installment'].sudo().create(vals)
+        return request.redirect('/my/projects/%s' % project_id)
+
+    ############  end mange my project #########################
 
 
 class WebsiteSaleCustom(WebsiteSale):
@@ -247,6 +746,7 @@ class WebsiteSaleCustom(WebsiteSale):
             request.session['utm_medium'] = utm_medium
         if utm_campaign:
             request.session['utm_campaign'] = utm_campaign
+
         print("=== UTM DEBUG ===")
         print(f"utm_source: {kwargs.get('utm_source')}")
         print(f"utm_medium: {kwargs.get('utm_medium')}")

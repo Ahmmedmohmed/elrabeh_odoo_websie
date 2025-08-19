@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="contractor_installments_template" name="Contractor Installments Page">
+      <t t-call="website.layout">
+        <div id="wrap" class="py-5">
+          <div class="container">
+            <h2 class="text-center fw-bold mb-4" style="color:#d9534f;">💰 الدفعات المستحقة لك</h2>
+            <div class="card shadow-lg border-0 rounded-4 p-4">
+              <table class="table table-hover">
+                <thead class="bg-light">
+                  <tr>
+                    <th>اسم الدفعة</th>
+                    <th>المبلغ</th>
+                    <th>تاريخ الاستحقاق</th>
+                    <th>الحالة</th>
+                    <th>إجراء</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="installments" t-as="inst">
+                    <tr>
+                      <td><t t-esc="inst.name"/></td>
+                      <td><t t-esc="inst.amount"/></td>
+                      <td><t t-esc="inst.due_date"/></td>
+                      <td><t t-esc="inst.state"/></td>
+                      <td>
+                        <t t-if="inst.state == 'draft'">
+                          <a t-att-href="'/contractor/request_payment/%d' % inst.id" class="btn btn-sm btn-warning">طلب دفع</a>
+                        </t>
+                        <t t-if="inst.state == 'requested'">
+                          <span class="text-primary fw-bold">تم طلب الدفع</span>
+                        </t>
+                        <t t-if="inst.state == 'approved'">
+                          <span class="text-success fw-bold">تمت الموافقة</span>
+                        </t>
+                        <t t-if="inst.state == 'rejected'">
+                          <span class="text-danger fw-bold">تم الرفض</span>
+                        </t>
+                        <t t-if="inst.state == 'paid'">
+                          <span class="text-success fw-bold">تم الدفع</span>
+                        </t>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </t>
+    </template>
+  </data>
+</odoo>

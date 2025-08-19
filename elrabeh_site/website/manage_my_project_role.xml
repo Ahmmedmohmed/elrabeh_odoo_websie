@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="project_role" name="Project Role Page">
+            <t t-call="website.layout">
+                <div id="wrap">
+
+                    <!-- Arabic Section -->
+                    <div class="wrap-ar py-5" dir="rtl">
+                        <div class="container mt-5 mb-5">
+                            <div class="card shadow-lg border-0 rounded-3">
+                                <div class="card-header text-white text-center py-4" style="background: linear-gradient(90deg, #d9534f, #c9302c);">
+                                    <h4 class="mb-0">تفاصيل أطراف التعاقد</h4>
+                                </div>
+                                <div class="card-body p-4">
+                                    <form action="/project/submit/roles" method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                        <!-- منشئ المشروع -->
+                                        <h5 class="fw-bold text-secondary mb-3">منشئ المشروع</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">الاسم</label>
+                                                <input type="text" name="your_name" class="form-control" t-att-value="name" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">الدور</label>
+                                                <input type="text" name="your_role" class="form-control" t-att-value="user_role" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">الهاتف</label>
+                                                <input type="text" name="your_phone" class="form-control" t-att-value="phone" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">الإيميل</label>
+                                                <input type="email" name="your_email" class="form-control" t-att-value="email" readonly="true"/>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4"/>
+
+                                        <!-- الطرف الثاني -->
+                                        <h5 class="fw-bold text-secondary mb-3">الطرف الثاني</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label>الاسم</label>
+                                                <input type="text" name="second_party_name" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الدور</label>
+                                                <select name="second_party_role" class="form-select">
+                                                    <option value="owner">مالك</option>
+                                                    <option value="contractor">مقاول</option>
+                                                    <option value="consultant">استشاري</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الهاتف</label>
+                                                <input type="text" name="second_party_phone" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الإيميل</label>
+                                                <input type="email" name="second_party_email" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4"/>
+
+                                        <!-- الطرف الثالث -->
+                                        <h5 class="fw-bold text-secondary mb-3">الطرف الثالث</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label>الاسم</label>
+                                                <input type="text" name="third_party_name" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الدور</label>
+                                                <select name="third_party_role" class="form-select">
+                                                    <option value="owner">مالك</option>
+                                                    <option value="contractor">مقاول</option>
+                                                    <option value="consultant">استشاري</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الهاتف</label>
+                                                <input type="text" name="third_party_phone" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>الإيميل</label>
+                                                <input type="email" name="third_party_email" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-danger btn-lg px-5">إنشاء المشروع</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- English Section -->
+                    <div class="wrap-en py-5" dir="ltr">
+                        <div class="container mt-5 mb-5">
+                            <div class="card shadow-lg border-0 rounded-3">
+                                <div class="card-header text-white text-center py-4" style="background: linear-gradient(90deg, #d9534f, #c9302c);">
+                                    <h4 class="mb-0">Contract Parties Details</h4>
+                                </div>
+                                <div class="card-body p-4">
+                                    <form action="/project/submit/roles" method="post">
+                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                                        <!-- Project Creator -->
+                                        <h5 class="fw-bold text-secondary mb-3">Project Creator</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">Name</label>
+                                                <input type="text" name="your_name" class="form-control" t-att-value="name" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">Role</label>
+                                                <input type="text" name="your_role" class="form-control" t-att-value="user_role" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">Phone</label>
+                                                <input type="text" name="your_phone" class="form-control" t-att-value="phone" readonly="true"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label class="fw-bold">Email</label>
+                                                <input type="email" name="your_email" class="form-control" t-att-value="email" readonly="true"/>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4"/>
+
+                                        <!-- Second Party -->
+                                        <h5 class="fw-bold text-secondary mb-3">Second Party</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label>Name</label>
+                                                <input type="text" name="second_party_name" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Role</label>
+                                                <select name="second_party_role" class="form-select">
+                                                    <option value="owner">Owner</option>
+                                                    <option value="contractor">Contractor</option>
+                                                    <option value="consultant">Consultant</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Phone</label>
+                                                <input type="text" name="second_party_phone" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Email</label>
+                                                <input type="email" name="second_party_email" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <hr class="my-4"/>
+
+                                        <!-- Third Party -->
+                                        <h5 class="fw-bold text-secondary mb-3">Third Party</h5>
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label>Name</label>
+                                                <input type="text" name="third_party_name" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Role</label>
+                                                <select name="third_party_role" class="form-select">
+                                                    <option value="owner">Owner</option>
+                                                    <option value="contractor">Contractor</option>
+                                                    <option value="consultant">Consultant</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Phone</label>
+                                                <input type="text" name="third_party_phone" class="form-control"/>
+                                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label>Email</label>
+                                                <input type="email" name="third_party_email" class="form-control"/>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button type="submit" class="btn btn-danger btn-lg px-5">create Project</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

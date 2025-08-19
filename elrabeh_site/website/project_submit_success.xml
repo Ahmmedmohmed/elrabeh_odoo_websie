@@ -1,0 +1,49 @@
+<odoo>
+    <data>
+        <template id="project_submit_success" name="Project Submit Success">
+            <t t-call="website.layout">
+
+                <!-- النسخة العربية -->
+                <div class="wrap-ar" dir="rtl">
+                    <div class="container mt-5 text-center">
+                        <div style="font-size: 80px; color: #28a745; margin-bottom: 20px;">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <h1 style="color: #28a745; font-weight: bold;">تم إرسال المشروع بنجاح</h1>
+                        <p style="font-size: 18px; margin-top: 10px;">
+                            شكرًا لك! تم إرسال مشروعك
+                            <strong style="color: #007bff;"><t t-esc="order.project_name"/></strong> بنجاح.
+                        </p>
+                        <p style="font-size: 16px; color: #555;">
+                            الرجاء الانتظار حتى تتم موافقة جميع الأطراف.
+                        </p>
+                        <a href="/" class="btn btn-success mt-4" style="padding: 10px 20px; font-size: 16px;">
+                            العودة للرئيسية
+                        </a>
+                    </div>
+                </div>
+
+                <!-- النسخة الإنجليزية -->
+                <div class="wrap-en">
+                    <div class="container mt-5 text-center">
+                        <div style="font-size: 80px; color: #28a745; margin-bottom: 20px;">
+                            <i class="fa fa-check-circle"></i>
+                        </div>
+                        <h1 style="color: #28a745; font-weight: bold;">Project Submitted Successfully</h1>
+                        <p style="font-size: 18px; margin-top: 10px;">
+                            Thank you! Your project
+                            <strong style="color: #007bff;"><t t-esc="order.project_name"/></strong> has been submitted.
+                        </p>
+                        <p style="font-size: 16px; color: #555;">
+                            Please wait until all parties approve.
+                        </p>
+                        <a href="/" class="btn btn-success mt-4" style="padding: 10px 20px; font-size: 16px;">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+
+            </t>
+        </template>
+    </data>
+</odoo>
