@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- صفحة عدم السماح -->
+    <template id="unauthorized_page" name="Unauthorized">
+      <t t-call="website.layout">
+        <section class="container py-5">
+          <div class="alert alert-danger rounded-4 p-4 text-center">
+            <h4 class="mb-2">صلاحيات غير كافية</h4>
+            <p>ليس لديك صلاحية للوصول إلى هذه الصفحة.</p>
+          </div>
+        </section>
+      </t>
+    </template>
+
+    <!-- رسالة بسيطة -->
+    <template id="simple_message" name="Simple Message">
+      <t t-call="website.layout">
+        <section class="container py-5">
+          <div class="card shadow-sm border-0 rounded-4 p-4">
+            <h3 class="mb-3"><t t-esc="title"/></h3>
+            <p><t t-esc="message"/></p>
+          </div>
+        </section>
+      </t>
+    </template>
+  </data>
+</odoo>

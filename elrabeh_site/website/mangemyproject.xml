@@ -3,6 +3,10 @@
   <data>
     <template id="project_form_template" name="Project Form Page">
       <t t-call="website.layout">
+
+        <!-- Navbar فوق الصفحة -->
+
+        <!-- بقية الصفحة -->
         <div id="wrap" class="py-5">
 
           <style>
@@ -47,6 +51,30 @@
 
           <!-- Arabic Form -->
           <div class="wrap-ar" dir="rtl">
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+          <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🚀 مشاريعنا</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRoles" aria-controls="navbarRoles" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarRoles">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    المشاريع حسب الدور
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/contractor/my_projects">مشاريع المقاول</a></li>
+                    <li><a class="dropdown-item" href="/owner/my_projects">مشاريع المالك</a></li>
+                    <li><a class="dropdown-item" href="/consultant/my_projects">مشاريع الاستشاري</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+
             <div class="container">
               <h2 class="text-center fw-bold mb-4" style="color:#d9534f;">🚀 ابدأ مشروعك معنا الآن!</h2>
               <div class="card shadow-lg border-0 rounded-4">
@@ -56,16 +84,21 @@
                 <div class="card-body p-5">
                   <form action="/project/step2" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-
                     <div class="row mb-4">
-                      <div class="col-md-6">
+
+                       <div class="col-md-4">
                         <label class="fw-bold fs-5">اسم المشروع</label>
                         <input type="text" name="name" required="true" class="form-control form-control-lg shadow-sm"/>
                       </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <label class="fw-bold fs-5">القيمة التعاقدية</label>
                         <input type="number" step="0.01" name="contract_value" required="true" class="form-control form-control-lg shadow-sm"/>
                       </div>
+                      <div class="col-md-4">
+                        <label class="fw-bold fs-5">عدد الدفعات</label>
+                        <input type="number" name="installments_count" min="1" required="true" class="form-control form-control-lg shadow-sm"/>
+                      </div>
+
                     </div>
 
                     <div class="mb-4">
@@ -87,7 +120,7 @@
                         <label class="fw-bold fs-5">صورة المشروع</label>
                         <div class="custom-file-input">
                           <input type="file" name="image" onchange="this.nextElementSibling.setAttribute('data-filename', this.files[0]?.name || 'اختر ملف')"/>
-                          <span class="custom-file-label" data-filename=" لم يتم اختيار ملف">  اختر ملف</span>
+                          <span class="custom-file-label" data-filename=" لم يتم اختيار ملف">اختر ملف</span>
                         </div>
                       </div>
                     </div>
@@ -120,15 +153,18 @@
                 <div class="card-body p-5">
                   <form action="/project/submit" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-
                     <div class="row mb-4">
-                      <div class="col-md-6">
-                        <label class="fw-bold fs-5">Project Name</label>
-                        <input type="text" name="name" required="true" class="form-control form-control-lg shadow-sm"/>
-                      </div>
-                      <div class="col-md-6">
+                      <div class="col-md-4">
                         <label class="fw-bold fs-5">Contract Value</label>
                         <input type="number" step="0.01" name="contract_value" required="true" class="form-control form-control-lg shadow-sm"/>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="fw-bold fs-5">Number of Installments</label>
+                        <input type="number" name="installments_count" min="1" required="true" class="form-control form-control-lg shadow-sm"/>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="fw-bold fs-5">Project Name</label>
+                        <input type="text" name="name" required="true" class="form-control form-control-lg shadow-sm"/>
                       </div>
                     </div>
 

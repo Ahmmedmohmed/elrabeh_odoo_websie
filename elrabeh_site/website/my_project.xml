@@ -2,6 +2,29 @@
     <data>
         <template id="my_projects_template" name="My Projects">
             <t t-call="website.layout">
+                     <nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+          <div class="container">
+            <a class="navbar-brand fw-bold" href="#">🚀 مشاريعنا</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarRoles" aria-controls="navbarRoles" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarRoles">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    المشاريع حسب الدور
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/contractor/my_projects">مشاريع المقاول</a></li>
+                    <li><a class="dropdown-item" href="/owner/my_projects">مشاريع المالك</a></li>
+                    <li><a class="dropdown-item" href="/consultant/my_projects">مشاريع الاستشاري</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
                 <section class="container mt-5">
                     <h2 class="mb-4 text-center">مشاريعي</h2>
                     <div class="row justify-content-center">

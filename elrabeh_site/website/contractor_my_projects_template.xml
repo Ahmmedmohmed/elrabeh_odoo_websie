@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="contractor_my_projects_template" name="Contractor My Projects Page">
+      <t t-call="website.layout">
+        <section class="container py-5" dir="rtl">
+          <h2 class="text-center fw-bold mb-4">📋 مشاريعي</h2>
+          <div class="card shadow-lg border-0 rounded-4 p-4">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead class="bg-light">
+                  <tr>
+                    <th>اسم المشروع</th>
+                    <th>قيمة العقد</th>
+                    <th class="text-end">الدفعات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="projects" t-as="proj">
+                    <tr>
+                      <td><t t-esc="proj.name"/></td>
+                      <td><t t-esc="proj.contract_value"/></td>
+                      <td class="text-end">
+                        <a t-att-href="'/contractor/installments/%d' % proj.sale_order_id.id"
+                           class="btn btn-sm btn-primary">عرض الدفعات</a>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </t>
+    </template>
+  </data>
+</odoo>

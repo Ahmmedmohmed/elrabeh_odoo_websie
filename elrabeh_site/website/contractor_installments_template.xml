@@ -12,7 +12,6 @@
                   <tr>
                     <th>اسم الدفعة</th>
                     <th>المبلغ</th>
-                    <th>تاريخ الاستحقاق</th>
                     <th>الحالة</th>
                     <th>إجراء</th>
                   </tr>
@@ -22,23 +21,35 @@
                     <tr>
                       <td><t t-esc="inst.name"/></td>
                       <td><t t-esc="inst.amount"/></td>
-                      <td><t t-esc="inst.due_date"/></td>
-                      <td><t t-esc="inst.state"/></td>
+                      <td><t t-esc="dict(inst._fields['state'].selection).get(inst.state)"/></td>
                       <td>
                         <t t-if="inst.state == 'draft'">
-                          <a t-att-href="'/contractor/request_payment/%d' % inst.id" class="btn btn-sm btn-warning">طلب دفع</a>
+                          <!-- نموذج رفع المرفق (اختياري) -->
+                          <form action="/installment/upload_attachment" method="post" enctype="multipart/form-data" class="d-inline">
+                            <input type="hidden" name="installment_id" t-att-value="inst.id"/>
+                            <input type="file" name="contractor_attachment" class="form-control mb-2"/>
+                            <button type="submit" class="btn btn-sm btn-secondary">📎 رفع مرفق</button>
+                          </form>
+                          <!-- زر طلب الدفع -->
+                          <a t-att-href="'/contractor/request_payment/%d' % inst.id" class="btn btn-sm btn-warning mt-2">طلب دفع</a>
                         </t>
-                        <t t-if="inst.state == 'requested'">
-                          <span class="text-primary fw-bold">تم طلب الدفع</span>
+                        <t t-elif="inst.state == 'requested'">
+                          <span class="text-primary fw-bold">بانتظار موافقة الاستشاري</span>
                         </t>
-                        <t t-if="inst.state == 'approved'">
-                          <span class="text-success fw-bold">تمت الموافقة</span>
+                        <t t-elif="inst.state == 'consultant_approved'">
+                          <span class="text-success fw-bold">بانتظار موافقة المالك</span>
                         </t>
-                        <t t-if="inst.state == 'rejected'">
+                        <t t-elif="inst.state == 'owner_approved'">
+                          <span class="text-success fw-bold">بانتظار الدفع من المالك</span>
+                        </t>
+                        <t t-elif="inst.state == 'paid'">
+                          <span class="text-success fw-bold">تم الدفع - في انتظار تأكيدك</span>
+                        </t>
+                        <t t-elif="inst.state == 'done'">
+                          <span class="text-success fw-bold">✅ مكتملة</span>
+                        </t>
+                        <t t-elif="inst.state == 'rejected'">
                           <span class="text-danger fw-bold">تم الرفض</span>
-                        </t>
-                        <t t-if="inst.state == 'paid'">
-                          <span class="text-success fw-bold">تم الدفع</span>
                         </t>
                       </td>
                     </tr>
@@ -52,3 +63,4 @@
     </template>
   </data>
 </odoo>
+

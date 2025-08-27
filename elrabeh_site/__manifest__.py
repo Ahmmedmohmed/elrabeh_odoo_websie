@@ -6,7 +6,7 @@
     'sequence': '200',
     'category': 'Extra Tools',
     'description': "",
-    'depends': ['website' ,'website_sale' ,'auth_signup'],
+    'depends': ['website' ,'website_sale' ,'auth_signup' ,'project','mail'],
     'data': [
         'website/menu-template.xml',
         'website/foter.xml',
@@ -37,6 +37,9 @@
 'views/in_platforme.xml',
 'website/manage_my_project_role.xml',
  'views/sala_orderinherit.xml',
+        'views/installment_due_cron.xml',
+
+
         'website/approved2part.xml',
     'website/project_submit_success.xml',
     'website/project_submit_success.xml',
@@ -47,14 +50,11 @@
 
 
         'website/project_installments_template.xml',
-
-
-
-
-
-
-
-
+        'website/installment_common_templates.xml',
+        'website/installment_form_templates.xml',
+        'website/installment_contractor_templates.xml',
+        'website/installment_consultant_templates.xml',
+        'website/installment_owner_templates.xml',
 
         'data/emil_templet.xml',
 
@@ -62,6 +62,11 @@
 
         'website/my_project.xml',
         'website/project_status.xml',
+        'website/simple_massge_when_requestpyment.xml',
+        'website/contractor_my_projects_template.xml',
+
+
+
 
     ],
     'assets': {

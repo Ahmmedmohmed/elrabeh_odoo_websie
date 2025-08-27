@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <data>
+
+       <template id="simple_message" name="Simple Message">
+    <t t-call="website.layout">
+        <div class="container my-5" dir="rtl">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h3 class="mb-0"><t t-esc="title"/></h3>
+                        </div>
+                        <div class="card-body">
+                            <p class="lead"><t t-esc="message"/></p>
+                            <div class="text-center mt-4">
+                                <a href="/" class="btn btn-success">الرجوع للرئيسية</a>
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted text-center">
+                            Elrabeh System
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+    </data>
+</odoo>
+

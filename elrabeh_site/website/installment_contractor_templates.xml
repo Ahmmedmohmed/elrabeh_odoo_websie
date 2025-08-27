@@ -1,0 +1,38 @@
+<odoo>
+    <template id="contractor_installments_template" name="Contractor Installments">
+        <t t-call="website.layout">
+            <div class="container mt-5" dir="rtl">
+                <h2>دفعات المشروع: <t t-esc="project.name"/></h2>
+
+                <table class="table table-bordered mt-4">
+                    <thead>
+                        <tr>
+                            <th>اسم الدفعة</th>
+                            <th>المبلغ</th>
+                            <th>الحالة</th>
+                            <th>إجراء</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="installments" t-as="inst">
+                            <tr>
+                                <td><t t-esc="inst.name"/></td>
+                                <td><t t-esc="inst.amount"/></td>
+                                <td><t t-esc="inst.state"/></td>
+                                <td>
+                                    <t t-if="inst.state == 'draft'">
+                                        <a t-att-href="'/contractor/request_payment/%s?token=%s' % (inst.id, inst.confirm_token)"
+                                           class="btn btn-success">طلب دفعة</a>
+                                    </t>
+                                    <t t-if="inst.state != 'draft'">
+                                        <span>لا يمكن الطلب</span>
+                                    </t>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                </table>
+            </div>
+        </t>
+    </template>
+</odoo>

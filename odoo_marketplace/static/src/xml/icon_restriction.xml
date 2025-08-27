@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+  <t t-inherit="mail.MessagingMenu" t-inherit-mode="extension">
+    <xpath expr="//div[hasclass('o_MessagingMenu')]" position="after">
+      <script type="text/javascript" src="/odoo_marketplace/static/src/js/icon_restriction.js"></script>
+    </xpath>
+  </t>
+  <t t-inherit="web.DebugMenu" t-inherit-mode="extension">
+    <xpath expr="//Dropdown" position="attributes">
+      <attribute name="t-if">state.seller</attribute>
+  </xpath>
+  </t>
+</templates>

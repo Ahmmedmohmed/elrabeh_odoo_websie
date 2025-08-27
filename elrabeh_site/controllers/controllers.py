@@ -4,7 +4,8 @@ from odoo import _, api, models
 from odoo.addons.website_sale.controllers.main import WebsiteSale
 from odoo import http, models, fields
 import logging
-
+from odoo.exceptions import UserError
+import base64
 _logger = logging.getLogger(__name__)
 
 import uuid
@@ -472,6 +473,7 @@ class QamarWebsite(http.Controller):
                 'role': temp.role,
                 'image': temp.image,
                 'attachment': temp.attachment,
+                'installments_count' : temp.installments_count,
             }
         return request.render('elrabeh_site.project_form_template', values)
 
@@ -521,6 +523,7 @@ class QamarWebsite(http.Controller):
             # لذا هنا افترض أنك ترسلهم كبيانات باينري مباشرة أو تعاملهم لاحقًا
             'image': post.get('image'),
             'attachment': post.get('attachment'),
+            'installments_count' : post.get('installments_count')
         }
         if temp:
             temp.sudo().write(vals)
@@ -565,9 +568,10 @@ class QamarWebsite(http.Controller):
 
             # بيانات المشروع
             'project_name': temp.name,
+            'installments_count' : temp.installments_count,
             'contract_value': temp.contract_value,
             'project_address': temp.address,
-            'user_role': temp.role,
+            'party_one_role': temp.role,
             'project_image': temp.image,
             'project_attachment': temp.attachment,
 
@@ -705,30 +709,292 @@ class QamarWebsite(http.Controller):
             }
         return request.render('elrabeh_site.project_form_template', values)
 
+
+    # الدفعات
+    # --------- إنشاء دفعة (مالك/استشاري) ---------
     @http.route(['/installment/create/<int:order_id>'], type='http', auth="user", website=True)
     def installment_form(self, order_id, **post):
-        order = request.env['sale.order'].browse(order_id)
-        if not order:
+        order = request.env['sale.order'].sudo().browse(order_id)
+        if not order.exists():
             return request.not_found()
-        return request.render("elrabeh_site.installment_form_page", {
-            'project': order,  # عشان في التمبلت انت مسميها project
-        })
 
-    # معالجة الفورم وحفظ الدفعة
+        current_user_email = request.env.user.email
+        allowed_emails = ["admin@yourcompany.example.com"]
+        for party_num in [1, 2, 3]:
+            email_field = getattr(order, f'party_{party_num}_email', False)
+            role_field = getattr(order, f'party_{party_num}_role', False)
+            if email_field and role_field in ['owner', 'consultant']:
+                allowed_emails.append(email_field)
+
+        if current_user_email not in allowed_emails:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        return request.render("elrabeh_site.installment_form_page", {'project': order})
+
+    # --------- حفظ الدفعة ---------
     @http.route(['/installment/save'], type='http', auth="user", website=True, methods=['POST'], csrf=True)
     def installment_save(self, **post):
-        project_id = int(post.get('project_id'))
+        order = request.env['sale.order'].sudo().browse(int(post.get('project_id')))
+        if not order.exists():
+            return request.render('elrabeh_site.installment_form_page', {
+                'project': order,
+                'error_message': "لم يتم العثور على أمر البيع."
+            })
+
+        current_user_email = request.env.user.email
+        project = order.analytic_account_id.project_ids[:1]
+        if not project:
+            return request.render('elrabeh_site.installment_form_page', {
+                'project': order,
+                'error_message': "لم يتم العثور على مشروع مرتبط بهذا الطلب."
+            })
+
+        allowed_emails = ["admin@yourcompany.example.com"]
+        if project.owner_email:
+            allowed_emails.append(project.owner_email)
+        if project.consultant_email:
+            allowed_emails.append(project.consultant_email)
+
+        if current_user_email not in allowed_emails:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        # تحويل المبلغ ل float
+        try:
+            amount = float(post.get('amount', 0))
+        except:
+            return request.render('elrabeh_site.installment_form_page', {
+                'project': order,
+                'error_message': "المبلغ غير صالح."
+            })
+
+        # --- التحقق من عدد الدفعات ---
+        total_installments_allowed = order.installments_count or 0
+        existing_installments_count = request.env['project.installment'].sudo().search_count(
+            [('project_id', '=', project.id)]
+        )
+
+        if total_installments_allowed and existing_installments_count >= total_installments_allowed:
+            msg = f"عدد الدفعات المسموح به هو {total_installments_allowed} فقط. لا يمكنك إنشاء دفعات أكثر."
+            return request.render('elrabeh_site.installment_form_page', {
+                'project': order,
+                'error_message': msg,
+                'remaining_installments': total_installments_allowed - existing_installments_count
+            })
+
+        # --- التحقق من إجمالي المبلغ ---
+        total_paid = sum(
+            request.env['project.installment'].sudo().search([('project_id', '=', project.id)]).mapped('amount')
+        )
+        contract_value = order.contract_value or 0.0
+        if contract_value and (total_paid + amount > contract_value):
+            msg = f"القيمة الإجمالية للدفعات ({total_paid + amount}) تجاوزت القيمة التعاقدية للمشروع ({contract_value})."
+            return request.render('elrabeh_site.installment_form_page', {
+                'project': order,
+                'error_message': msg,
+                'total_paid': total_paid,
+                'contract_value': contract_value
+            })
+
+        # إنشاء الدفعة الجديدة
+        owner_user = request.env['res.users'].sudo().search([('email', '=', project.owner_email)], limit=1)
         vals = {
-            'project_id': project_id,
+            'project_id': project.id,
             'name': post.get('name'),
-            'amount': float(post.get('amount')),
-            'due_date': post.get('due_date'),
-            'owner_id': request.env.user.id,
+            'amount': amount,
+            'owner_id': owner_user.id if owner_user else request.env.user.id,
         }
         request.env['project.installment'].sudo().create(vals)
-        return request.redirect('/my/projects/%s' % project_id)
 
-    ############  end mange my project #########################
+        return request.redirect(f'/owner/installments/{order.id}')
+
+    # --------- عرض دفعات المقاول ---------
+    @http.route(['/contractor/installments/<int:order_id>'], type='http', auth="user", website=True)
+    def contractor_installments(self, order_id):
+        order = request.env['sale.order'].sudo().browse(order_id)
+        if not order.exists():
+            return request.not_found()
+
+        project = order.analytic_account_id.project_ids[:1]
+        if not project or not project.contractor_email:
+            return request.not_found()
+
+        if request.env.user.email != project.contractor_email:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        installments = request.env['project.installment'].sudo().search([('project_id', '=', project.id)])
+        return request.render("elrabeh_site.contractor_installments_template", {
+            'project': order,
+            'installments': installments
+        })
+
+    # --------- عرض دفعات الاستشاري ---------
+    @http.route(['/consultant/installments/<int:project_id>'], type='http', auth="user", website=True)
+    def consultant_installments(self, project_id):
+        project = request.env['project.project'].sudo().browse(project_id)
+        if not project.exists():
+            return request.not_found()
+
+        allowed_email = project.consultant_email
+        if not allowed_email or request.env.user.email != allowed_email:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        installments = request.env['project.installment'].sudo().search([('project_id', '=', project.id)])
+        return request.render("elrabeh_site.consultant_installments_template", {
+            'project': project,
+            'installments': installments
+        })
+
+    # --------- عرض دفعات المالك ---------
+    @http.route(['/owner/installments/<int:order_id>'], type='http', auth="user", website=True)
+    def owner_installments(self, order_id):
+        order = request.env['sale.order'].sudo().browse(order_id)
+        if not order.exists():
+            return request.not_found()
+
+        allowed_emails = []
+        for party in ['party_one', 'party_two', 'party_three']:
+            role = getattr(order, f'{party}_role')
+            email = getattr(order, f'{party}_email')
+            if role in ['owner', 'consultant', 'contractor'] and email:
+                allowed_emails.append(email)
+
+        if request.env.user.email not in allowed_emails:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        project = order.analytic_account_id.project_ids[:1]
+        if not project:
+            return request.not_found()
+
+        installments = request.env['project.installment'].sudo().search([('project_id', '=', project.id)])
+        return request.render("elrabeh_site.owner_installments_template", {
+            'project': order,
+            'installments': installments
+        })
+
+    # --------- المقاول يطلب دفعة ---------
+    @http.route(['/contractor/request_payment/<int:inst_id>'], type='http', auth="user", website=True)
+    def contractor_request_payment(self, inst_id):
+        inst = request.env['project.installment'].sudo().browse(inst_id)
+        if not inst.project_id.contractor_email or request.env.user.email != inst.project_id.contractor_email:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        try:
+            inst.action_request_payment()
+            message = "تم طلب الدفعة بنجاح! إشعار تم إرساله للمالك والاستشاري."
+        except UserError as e:
+            message = str(e)
+
+        return request.render('elrabeh_site.simple_message', {
+            'title': 'طلب الدفعة',
+            'message': message
+        })
+
+    # --------- الاستشاري يوافق ---------
+    @http.route(['/consultant/approve/<int:inst_id>'], type='http', auth="user", website=True)
+    def consultant_approve(self, inst_id):
+        inst = request.env['project.installment'].sudo().browse(inst_id)
+        if not inst.project_id.consultant_email or request.env.user.email != inst.project_id.consultant_email:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        try:
+            inst.action_consultant_approve()
+        except UserError as e:
+            return request.render('elrabeh_site.simple_message', {'title': 'خطأ', 'message': str(e)})
+
+        project_id = inst.project_id
+        return request.redirect(f"/consultant/installments/{project_id.id}")
+
+    # --------- الاستشاري/المالك يرفض ---------
+    @http.route(['/consultant/reject/<int:inst_id>'], type='http', auth="user", website=True)
+    def consultant_reject(self, inst_id):
+        inst = request.env['project.installment'].sudo().browse(inst_id)
+        emails_allowed = []
+        if inst.project_id.consultant_email:
+            emails_allowed.append(inst.project_id.consultant_email)
+        if inst.project_id.owner_email:
+            emails_allowed.append(inst.project_id.owner_email)
+
+        if request.env.user.email not in emails_allowed:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        inst.action_owner_reject()
+        project_id = inst.project_id
+        return request.redirect(f"/consultant/installments/{project_id.id}")
+
+    # --------- المالك يدفع ---------
+    @http.route(['/owner/pay/<int:inst_id>'], type='http', auth="user", website=True)
+    def owner_pay_form(self, inst_id, **kw):
+        inst = request.env['project.installment'].sudo().browse(inst_id)
+
+        # تأكد أن الدفعة موجودة
+        if not inst.exists():
+            return request.not_found()
+
+        project = inst.project_id
+        # تحقق أن المشروع موجود
+        if not project:
+            return request.not_found()
+
+        # تحقق أن المستخدم هو المالك
+        # if not project.owner_email or request.env.user.email != project.owner_email:
+        #     return request.render('elrabeh_site.unauthorized_page')
+
+        if inst.state not in ('consultant_approved', 'owner_approved'):
+            return request.render('elrabeh_site.simple_message',
+                                  {'title': 'تنبيه', 'message': 'لا يمكن الدفع قبل موافقة الاستشاري.'})
+        return request.render('elrabeh_site.owner_pay_form_template', {'inst': inst})
+
+    @http.route(['/owner/pay/submit'], type='http', auth="user", website=True, methods=['POST'], csrf=True)
+    def owner_pay_submit(self, **post):
+        inst = request.env['project.installment'].sudo().browse(int(post.get('inst_id')))
+        if not inst.project_id.owner_email or request.env.user.email != inst.project_id.owner_email:
+            return request.render('elrabeh_site.unauthorized_page')
+
+        upload = post.get('payment_proof')
+        if not upload or not getattr(upload, 'filename', False):
+            return request.render('elrabeh_site.simple_message',
+                                  {'title': 'تنبيه', 'message': 'من فضلك أرفع إثبات الدفع.'})
+
+        attachment = request.env['ir.attachment'].sudo().create({
+            'name': upload.filename,
+            'datas': base64.b64encode(upload.read()),
+            'res_model': 'project.installment',
+            'res_id': inst.id,
+            'mimetype': upload.mimetype or 'application/octet-stream',
+        })
+
+        try:
+            inst.action_owner_pay(attachment)
+        except UserError as e:
+            return request.render('elrabeh_site.simple_message', {'title': 'خطأ', 'message': str(e)})
+
+        return request.render('elrabeh_site.simple_message',
+                              {'title': 'تم الدفع', 'message': 'تم تسجيل الدفع وإرسال إشعار للمقاول لتأكيد الاستلام.'})
+
+    # --------- المقاول يؤكد الاستلام بالتوكن ---------
+    @http.route(['/contractor/confirm/<int:inst_id>/<string:token>'], type='http', auth="user", website=True)
+    def contractor_confirm_received(self, inst_id, token, **kw):
+        inst = request.env['project.installment'].sudo().browse(inst_id)
+        try:
+            inst.action_contractor_confirm(token)
+        except UserError as e:
+            return request.render('elrabeh_site.simple_message', {'title': 'خطأ', 'message': str(e)})
+
+        return request.render('elrabeh_site.simple_message',
+                              {'title': 'تم التأكيد', 'message': 'تم تأكيد استلام الدفعة. شكراً لك.'})
+
+    #الدفعات المستحقة من المقاول
+    @http.route(['/contractor/my_projects'], type='http', auth="user", website=True)
+    def contractor_projects(self):
+        # جلب كل المشاريع اللي المقاول مربوط بيها
+        projects = request.env['project.project'].sudo().search([
+            ('contractor_email', '=', request.env.user.email)
+        ])
+        return request.render("elrabeh_site.contractor_my_projects_template", {
+            'projects': projects
+        })
+
+############  end mange my project #########################
 
 
 class WebsiteSaleCustom(WebsiteSale):

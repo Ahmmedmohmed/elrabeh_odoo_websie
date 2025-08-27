@@ -1,41 +1,54 @@
 <odoo>
-
   <data>
-
     <template id="installment_form_page" name="Installment Form Page">
-  <t t-call="website.layout">
+      <t t-if="error_message">
+    <div class="alert alert-danger" role="alert">
+        <t t-esc="error_message"/>
+    </div>
+</t>
 
-    <div  class="wrap-ar" dir="rtl">
+      <t t-call="website.layout">
+        <div class="wrap-ar" dir="rtl">
           <div id="wrap" class="container py-5">
-      <h2 class="text-center mb-4">إضافة دفعة جديدة</h2>
-      <form action="/installment/create" method="post">
-        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-        <input type="hidden" name="project_id" t-att-value="project.id"/>
+            <h2 class="text-center mb-4">إضافة دفعة جديدة</h2>
 
-        <div class="mb-3">
-          <label>اسم الدفعة</label>
-          <input type="text" name="name" required="true" class="form-control"/>
+            <!-- عرض رسالة الخطأ إن وجدت -->
+            <t t-if="error_message">
+              <div class="alert alert-danger text-center">
+                <t t-esc="error_message"/>
+                <t t-if="remaining_installments is not None">
+                  <br/>عدد الدفعات المتبقية: <t t-esc="remaining_installments"/>
+                </t>
+                <t t-if="total_paid is not None and contract_value is not None">
+                  <br/>إجمالي الدفعات المدفوعة: <t t-esc="total_paid"/> من <t t-esc="contract_value"/>
+                </t>
+              </div>
+            </t>
+
+            <form action="/installment/save" method="post">
+              <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+              <input type="hidden" name="project_id" t-att-value="project.id"/>
+
+              <div class="mb-3">
+                <label>اسم الدفعة</label>
+                <input type="text" name="name" required="true" class="form-control"/>
+              </div>
+              <div class="mb-3">
+                <label>المبلغ</label>
+                <input type="number" step="0.01" name="amount" required="true" class="form-control"/>
+              </div>
+              <div class="mb-3">
+                <label>تاريخ الاستحقاق</label>
+                <input type="date" name="due_date" required="true" class="form-control"/>
+              </div>
+
+              <div class="text-center">
+                <button type="submit" class="btn btn-danger px-4">حفظ الدفعة</button>
+              </div>
+            </form>
+          </div>
         </div>
-        <div class="mb-3">
-          <label>المبلغ</label>
-          <input type="number" step="0.01" name="amount" required="true" class="form-control"/>
-        </div>
-        <div class="mb-3">
-          <label>تاريخ الاستحقاق</label>
-          <input type="date" name="due_date" required="true" class="form-control"/>
-        </div>
-
-        <div class="text-center">
-          <button type="submit" class="btn btn-danger px-4">حفظ الدفعة</button>
-        </div>
-      </form>
-    </div>
-
-
-    </div>
-  </t>
-</template>
-
+      </t>
+    </template>
   </data>
 </odoo>
-

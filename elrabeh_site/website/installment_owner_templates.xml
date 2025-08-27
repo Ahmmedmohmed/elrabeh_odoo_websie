@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <!-- جدول الدفعات - المالك -->
+    <template id="owner_installments_template" name="Owner Installments Page">
+      <t t-call="website.layout">
+        <section class="container py-5" dir="rtl">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2 class="fw-bold mb-0">🏦 دفعات المشروع (المالك)</h2>
+            <a t-att-href="'/installment/create/%d' % project.id"
+               class="btn btn-primary rounded-pill">➕ إضافة دفعة</a>
+          </div>
+
+          <div class="card shadow border-0 rounded-4 p-4">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle">
+                <thead>
+                  <tr>
+                    <th>الدفعة</th>
+                    <th>المبلغ</th>
+                    <th>النسبة %</th>
+                    <th>الحالة</th>
+                    <th class="text-end">إجراء</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="installments" t-as="inst">
+                    <tr>
+                      <td><t t-esc="inst.name"/></td>
+                      <td><t t-esc="inst.amount"/></td>
+                      <td><t t-esc="('%.2f' % inst.percentage) if inst.percentage else '0.00'"/></td>
+                      <td>
+                        <span class="badge bg-secondary"
+                              t-esc="dict(inst._fields['state'].selection).get(inst.state)"/>
+                      </td>
+                      <td class="text-end">
+                        <t t-if="inst.state == 'consultant_approved'">
+                          <a t-att-href="'/owner/pay/%d' % inst.id"
+                             class="btn btn-sm btn-success">دفع ورفع المرفق</a>
+                        </t>
+                        <t t-elif="inst.state in ['requested']">
+                          <span class="text-muted">بانتظار موافقة الاستشاري</span>
+                        </t>
+                        <t t-else="">
+                          <span class="text-muted">—</span>
+                        </t>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </t>
+    </template>
+
+  </data>
+</odoo>

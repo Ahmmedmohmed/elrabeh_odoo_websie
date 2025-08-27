@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="consultant_installments_template" name="Consultant Installments Page">
+      <t t-call="website.layout">
+        <section class="container py-5" dir="rtl">
+          <h2 class="text-center fw-bold mb-4">🧑‍💼 مراجعة الدفعات (الاستشاري)</h2>
+          <div class="card shadow border-0 rounded-4 p-4">
+            <div class="table-responsive">
+              <table class="table table-striped align-middle">
+                <thead>
+                  <tr>
+                    <th>الدفعة</th>
+                    <th>المبلغ</th>
+                    <th>الحالة</th>
+                    <th class="text-end">إجراء</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-foreach="installments" t-as="inst">
+                    <tr>
+                      <td><t t-esc="inst.name"/></td>
+                      <td><t t-esc="inst.amount"/></td>
+                      <td><span class="badge bg-secondary" t-esc="dict(inst._fields['state'].selection).get(inst.state)"/></td>
+                      <td class="text-end">
+                        <t t-if="inst.state == 'requested'">
+                          <a t-att-href="'/consultant/approve/%d' % inst.id" class="btn btn-sm btn-success me-2">موافقة</a>
+                          <a t-att-href="'/consultant/reject/%d' % inst.id" class="btn btn-sm btn-outline-danger">رفض</a>
+                        </t>
+                        <t t-else="">
+                          <span class="text-muted">—</span>
+                        </t>
+                      </td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </t>
+    </template>
+  </data>
+</odoo>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- فورم إنشاء دفعة -->
+    <template id="installment_form_page" name="Installment Form Page">
+      <t t-call="website.layout">
+        <section class="container py-5" dir="rtl">
+          <t t-if="error_message">
+    <div class="alert alert-danger" role="alert">
+        <t t-esc="error_message"/>
+    </div>
+</t>
+
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+              <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-4">
+                  <h3 class="mb-4 text-center">➕ إضافة دفعة جديدة</h3>
+                  <form action="/installment/save" method="post">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="project_id" t-att-value="project.id"/>
+                    <div class="mb-3">
+                      <label class="form-label fw-bold">اسم الدفعة</label>
+                      <input type="text" name="name" required="true" class="form-control" placeholder="مثال: دفعة مقدمة"/>
+                      <div class="form-text">اكتب اسمًا واضحًا يعبّر عن المرحلة (مقدمة / مرحلة 1 / ختامية).</div>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label fw-bold">المبلغ</label>
+                      <input type="number" step="0.01" name="amount" required="true" class="form-control" placeholder="مثال: 50000"/>
+                      <div class="form-text">قيمة الدفعة بالعملة الافتراضية للنظام.</div>
+                    </div>
+<!--                    <div class="mb-4">-->
+<!--                      <label class="form-label fw-bold">تاريخ الاستحقاق</label>-->
+<!--                      <input type="date" name="due_date" required="true" class="form-control"/>-->
+<!--                      <div class="form-text">التاريخ الذي يحق للمقاول طلب صرف الدفعة بعده.</div>-->
+<!--                    </div>-->
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary px-4 rounded-pill">حفظ الدفعة</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <a t-att-href="'/owner/installments/%d' % project.id" class="text-decoration-none">العودة لقائمة الدفعات</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </t>
+    </template>
+
+    <!-- فورم دفع ورفع مرفق (المالك) -->
+    <template id="owner_pay_form_template" name="Owner Pay Form">
+      <t t-call="website.layout">
+        <section class="container py-5" dir="rtl">
+          <div class="row justify-content-center">
+            <div class="col-lg-7">
+              <div class="card shadow border-0 rounded-4">
+                <div class="card-body p-4">
+                  <h3 class="mb-4">💳 دفع الدفعة: <t t-esc="inst.name"/></h3>
+                  <ul class="list-unstyled mb-4">
+                    <li><b>المبلغ:</b> <t t-esc="inst.amount"/></li>
+<!--                    <li><b>الاستحقاق:</b> <t t-esc="inst.due_date"/></li>-->
+                    <li><b>المشروع:</b> <t t-esc="inst.project_id.project_name or inst.project_id.name"/></li>
+                  </ul>
+                  <form action="/owner/pay/submit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                    <input type="hidden" name="inst_id" t-att-value="inst.id"/>
+                    <div class="mb-3">
+                      <label class="form-label fw-bold">إثبات الدفع (PDF/صورة)</label>
+                      <input class="form-control" type="file" name="payment_proof" accept=".pdf,image/*" required="true"/>
+                      <div class="form-text">قم برفع التحويل البنكي/الإيصال.</div>
+                    </div>
+                    <div class="text-center">
+                      <button class="btn btn-success px-4 rounded-pill" type="submit">تسجيل الدفع</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="text-center mt-3">
+                <a t-att-href="'/owner/installments/%d' % inst.project_id.id" class="text-decoration-none">العودة لقائمة الدفعات</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </t>
+    </template>
+  </data>
+</odoo>

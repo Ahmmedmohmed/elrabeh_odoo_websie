@@ -22,3 +22,6 @@ class ProjectTempData(models.Model):
     party_three_role = fields.Char(string='Party Three Role')
     party_three_phone = fields.Char(string='Party Three Phone')
     party_three_email = fields.Char(string='Party Three Email')
+
+    installments_count = fields.Integer(string="عدد الدفعات", default=1)
+
